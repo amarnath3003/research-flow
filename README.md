@@ -88,6 +88,14 @@ For any questions or inquiries, please reach out to **Amarnath** at [amarnath@ex
 - [ ] Real-time visualization dashboard.
 - [ ] Automated citation network extraction.
 
+## Changelog
+
+### [1.0.0] - 2026-05-13
+- Initial release of the generalized Research Flow Pipeline.
+- Integrated BERTopic and Ollama support.
+- Added multi-phase automated runner.
+
+
 
 
 
