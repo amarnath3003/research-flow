@@ -25,4 +25,15 @@ A generalized framework for end-to-end scientometric research and AI-driven anal
 3. **Set up Ollama** (for AI interpreter):
    Ensure [Ollama](https://ollama.ai/) is installed and running locally.
 
+## Quick Start
+
+To run the entire pipeline automatically:
+
+```powershell
+python run_research_pipeline.py all-auto
+```
+
+This will perform the base data fetch, cleaning, and generate initial topic classifications.
+
+
 
