@@ -54,6 +54,16 @@ The pipeline's behavior can be customized by editing the `config.py` files in ea
 - Exclusion keywords for domain-specific filtering.
 - AI model selection and prompt templates.
 
+## Technology Stack
+
+- **Python**: Core programming language.
+- **BERTopic**: For advanced topic modeling.
+- **Ollama**: For local LLM-assisted analysis.
+- **Pandas/NumPy**: For data manipulation and analysis.
+- **Matplotlib/Seaborn**: For data visualization.
+- **NetworkX**: For bibliometric network analysis.
+
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
