@@ -9,3 +9,20 @@ A generalized framework for end-to-end scientometric research and AI-driven anal
 - **Scientometric Visualizations**: Generate manuscript-ready figures and network maps.
 - **Multi-Phase Pipeline**: Structured workflow from raw data to final research report.
 
+## Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/amarnath3003/research-flow.git
+   cd research-flow
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set up Ollama** (for AI interpreter):
+   Ensure [Ollama](https://ollama.ai/) is installed and running locally.
+
+
