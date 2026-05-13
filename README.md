@@ -100,6 +100,12 @@ For any questions or inquiries, please reach out to **Amarnath** at [amarnath@ex
 - Integrated BERTopic and Ollama support.
 - Added multi-phase automated runner.
 
+## Acknowledgements
+
+- Special thanks to the open-source community for providing the foundational libraries (Scikit-learn, BERTopic, etc.).
+- Inspired by the need for more transparent and reproducible scientometric research.
+
+
 
 
 
