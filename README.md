@@ -54,6 +54,16 @@ The pipeline's behavior can be customized by editing the `config.py` files in ea
 - Exclusion keywords for domain-specific filtering.
 - AI model selection and prompt templates.
 
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+1. Fork the repository.
+2. Create a new feature branch (`git checkout -b feature/your-feature`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature`).
+5. Open a Pull Request.
+
+
 
 
 
