@@ -1,6 +1,11 @@
 # Research Flow Pipeline
 
+![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+
 A generalized framework for end-to-end scientometric research and AI-driven analysis of scholarly communication.
+
 
 ## Key Features
 
