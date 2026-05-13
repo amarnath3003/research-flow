@@ -1,0 +1,3842 @@
+Id,Frequency
+variety (cybernetics),88
+computer security,2295
+computer science,4325
+agriculture,40
+internet of things,399
+internet privacy,778
+precision agriculture,11
+business,1595
+artificial intelligence,1519
+ecology,182
+biology,732
+accountability,108
+health care,475
+transparency (behavior),235
+software deployment,153
+audit,48
+applications of artificial intelligence,71
+best practice,39
+foundation (evidence),9
+knowledge management,666
+political science,1578
+law,1324
+operating system,886
+accounting,95
+context (archaeology),323
+electric vehicle,4
+engineering,1295
+adaptation (eye),25
+risk analysis (engineering),361
+optics,52
+physics,443
+power (physics),120
+quantum mechanics,229
+paleontology,292
+metering mode,6
+smart grid,107
+salient,10
+reliability (semiconductor),40
+open research,72
+sustainability,88
+mechanical engineering,209
+world wide web,986
+electrical engineering,234
+data science,1290
+machine learning,551
+denial-of-service attack,54
+deep learning,183
+network security,53
+the internet,481
+ransomware,57
+key (lock),236
+malware,143
+intrusion detection system,177
+anomaly detection,88
+software engineering,161
+harm,47
+medical emergency,28
+service (business),87
+medicine,771
+marketing,356
+generative grammar,115
+field (mathematics),212
+personalization,30
+quality (philosophy),77
+mathematics,592
+epistemology,264
+philosophy,551
+pure mathematics,215
+transmission (telecommunications),6
+wireless,75
+telecommunications,253
+big data,364
+data security,47
+data mining,507
+encryption,143
+automation,74
+process (computing),219
+plan (archaeology),9
+military technology,1
+engineering management,95
+archaeology,153
+history,67
+cyber-physical system,78
+perspective (graphical),106
+remedial education,1
+control (management),84
+symmetric-key algorithm,2
+public-key cryptography,18
+mathematical proof,2
+semantic security,1
+attribute-based encryption,1
+information retrieval,61
+theoretical computer science,37
+geometry,119
+interconnectivity,7
+home automation,13
+cyber threats,49
+taxonomy (biology),51
+cloud computing,302
+botany,132
+systems engineering,122
+state (computer science),92
+current (fluid),28
+forensic engineering,2
+algorithm,164
+thematic analysis,40
+stakeholder,51
+vendor,7
+public relations,423
+qualitative research,73
+sociology,600
+social science,219
+interoperability,104
+systematic review,89
+emerging technologies,90
+medline,137
+feature selection,25
+task (project management),39
+feature engineering,6
+intrusion,24
+feature (linguistics),35
+management,115
+geochemistry,22
+geology,49
+economics,672
+linguistics,266
+blockchain,303
+scalability,115
+analytics,138
+database,231
+information privacy,326
+open data,50
+confidentiality,120
+data sharing,190
+social media,71
+popularity,42
+psychology,788
+alternative medicine,244
+pathology,398
+social psychology,228
+economic growth,278
+openness to experience,15
+open_science,44
+open government,11
+incentive,24
+reuse,14
+bridging (networking),17
+data collection,42
+government (linguistics),136
+knowledge sharing,6
+astronomy,44
+waste management,15
+computer network,275
+microeconomics,69
+health insurance portability and accountability act,8
+identification (biology),81
+software portability,6
+scale (ratio),49
+fidelity,5
+engineering ethics,434
+programming language,386
+asset (computer security),23
+decentralization,15
+immutability,13
+cryptography,109
+subcarrier,1
+mathematical optimization,11
+heuristic,5
+enhanced data rates for gsm evolution,56
+convergence (economics),9
+geometric programming,1
+optimization problem,2
+distributed computing,154
+channel (broadcasting),10
+orthogonal frequency-division multiplexing,1
+cryptographic primitive,10
+elliptic curve cryptography,4
+security of cryptographic hash functions,2
+block cipher,1
+embedded system,160
+cryptographic protocol,16
+architecture,85
+artificial neural network,85
+implementation,42
+reinforcement learning,26
+computational intelligence,8
+visual arts,105
+art,132
+upload,16
+set (abstract data type),100
+public health,68
+neuroimaging,4
+psychiatry,63
+process management,189
+management science,189
+mqtt,3
+message queue,2
+network packet,26
+protocol (science),36
+direct anonymous attestation,2
+trusted computing,3
+transformative learning,94
+pedagogy,149
+metaverse,40
+visualization,15
+possible world,7
+human–computer interaction,125
+virtual reality,49
+human multitasking,1
+cognitive computing,3
+adaptability,13
+domain (mathematical analysis),97
+situation awareness,20
+human intelligence,13
+cognition,17
+mathematical analysis,159
+neuroscience,90
+aerospace engineering,84
+cognitive psychology,21
+knowledge graph,5
+graph,6
+hamming distance,1
+constraint (computer-aided design),3
+automotive industry,16
+rdm,3
+workflow,35
+data curation,24
+conceptual framework,20
+data management,54
+originality,33
+conceptual model,3
+traceability,19
+port (circuit theory),6
+supply chain,9
+outsourcing,9
+pandemic,70
+mobility model,1
+mobile phone,7
+coronavirus disease 2019 (covid-19),96
+geography,232
+infectious disease (medical specialty),95
+disease,111
+neuroinformatics,4
+data protection act 1998,143
+stewardship (theology),10
+intellectual property,13
+corporate governance,202
+data governance,67
+frontier,7
+data quality,89
+finance,375
+politics,180
+metric (unit),89
+grid,56
+cyber-attack,43
+geodesy,71
+documentation,14
+medical education,78
+grey literature,10
+reactance,1
+deterrence theory,2
+blame,3
+voltage,18
+testbed,14
+emulation,5
+microgrid,21
+real time digital simulator,2
+simulation,4
+real-time computing,32
+electric power system,41
+metadata,25
+anonymity,21
+ethical issues,52
+deception,8
+revenue management,2
+organizational justice,2
+economic justice,25
+empirical research,38
+organizational commitment,2
+revenue,12
+grasp,2
+vehicular ad hoc network,16
+intelligent transportation system,23
+wireless ad hoc network,16
+transport engineering,41
+cyberspace,45
+authentication (law),81
+network access control,1
+cloud computing security,92
+service-oriented architecture,1
+web service,5
+standardization,39
+information sharing,11
+information exchange,8
+risk management,62
+compromise,23
+information security,115
+software security assurance,13
+security testing,10
+software,92
+information security standards,5
+security information and event management,38
+security service,40
+network security policy,13
+recurrent neural network,8
+multilayer perceptron,2
+long short term memory,2
+perceptron,3
+edge computing,47
+edge device,21
+inference,17
+wireless network,15
+hacker,62
+vulnerability (computing),74
+vulnerability assessment,16
+vulnerability management,7
+component (thermodynamics),11
+work (physics),118
+psychological resilience,12
+psychotherapist,59
+thermodynamics,84
+session (web analytics),4
+man-in-the-middle attack,3
+transport layer security,1
+domain name,3
+raw data,19
+range (aeronautics),12
+composite material,14
+materials science,29
+data breach,58
+identity theft,13
+credit card,8
+exploratory research,10
+phishing,59
+data analysis,35
+payment,27
+anthropology,29
+information and communications technology,31
+promotion (chess),9
+competition (biology),17
+industrial organization,57
+viewpoints,10
+energy security,6
+efficient energy use,20
+energy policy,3
+environmental economics,52
+public economics,10
+renewable energy,49
+data exchange,10
+correctness,7
+security token,3
+scheme (mathematics),20
+enterprise resource planning,1
+distributed ledger,13
+bottleneck,6
+cloudlet,1
+data processing,6
+intrusion prevention system,9
+usable,4
+curriculum,28
+quality of service,9
+stateful firewall,2
+smart city,85
+cartography,27
+adversarial system,44
+survey research,2
+generative adversarial network,4
+image (mathematics),38
+applied psychology,29
+library science,55
+python (programming language),9
+computer graphics (images),4
+obfuscation,8
+risk assessment,32
+preparedness,16
+multinomial logistic regression,1
+risk perception,5
+perception,50
+survey data collection,11
+statistics,131
+zero (linguistics),17
+zero-knowledge proof,5
+beijing,2
+washington consensus,1
+china,27
+usability,34
+autonomy,46
+reciprocity (cultural anthropology),4
+user experience design,1
+end user,1
+emergency management,10
+scope (computer science),69
+unintended consequences,14
+research ethics,25
+order (exchange),51
+proteomics,4
+biochemistry,109
+gene,106
+energy management,10
+energy consumption,10
+energy management system,3
+energy (signal processing),26
+higher education,51
+sustainability science,3
+conversation,12
+sustainability organizations,3
+communication,18
+internet governance,2
+internet research,1
+public administration,66
+media studies,13
+environmental resource management,36
+biodiversity,3
+citizen science,15
+wildlife,1
+deforestation (computer science),1
+endangered species,1
+environmental planning,31
+habitat,1
+environmental science,41
+inclusion (mineral),24
+ethical standards,5
+security domain,8
+focus (optics),42
+mathematics education,75
+trustworthiness,60
+differential privacy,31
+robustness (evolution),36
+chemistry,134
+federated learning,50
+attack surface,18
+adversary,21
+smart objects,4
+resource (disambiguation),49
+isolation (microbiology),7
+microbiology,8
+situational ethics,7
+personally identifiable information,42
+construct (python library),12
+information sensitivity,11
+e-commerce,12
+section (typography),2
+liability,10
+advertising,31
+probabilistic logic,10
+software as a service,1
+relevance (law),34
+facilitator,2
+mobile device,22
+service catalog,1
+information access,1
+service provider,21
+software development,7
+service design,2
+position (finance),7
+position paper,6
+law and economics,77
+environmental ethics,27
+electricity,36
+electricity system,1
+architectural engineering,22
+electricity generation,4
+node (physics),15
+key-agreement protocol,1
+security analysis,10
+key distribution,1
+structural engineering,23
+strengths and weaknesses,18
+publishing,36
+preprint,6
+mental health,29
+nursing,140
+clinical trial,14
+leverage (statistics),54
+privacy by design,72
+realm,24
+digital evidence,16
+digital forensics,27
+computer forensics,11
+law enforcement,29
+cyber crime,8
+cybercrime,70
+network forensics,5
+financial services,45
+systemic risk,3
+financial crisis,6
+macroeconomics,41
+information warfare,5
+game theory,5
+influence diagram,1
+information operations,3
+information system,34
+operations research,36
+decision tree,28
+communicable disease,1
+disease surveillance,3
+global health,13
+mobile payment,4
+database transaction,30
+session key,1
+non-repudiation,2
+hash function,19
+near field communication,2
+key exchange,2
+mobile commerce,1
+ultra high frequency,2
+verifiable secret sharing,8
+pseudorandom number generator,1
+business management,2
+business administration,3
+robotics,20
+robot,31
+statistical inference,2
+estimator,3
+variance (accounting),3
+statistical model,2
+private information retrieval,3
+econometrics,17
+legislation,33
+resilience (materials science),71
+multidisciplinary approach,25
+hospitality,7
+tourism,13
+insider threat,8
+insider,14
+prospect theory,1
+dimension (graph theory),13
+expected utility hypothesis,2
+frame (networking),2
+mathematical economics,10
+public value,4
+interactive kiosk,1
+value (mathematics),62
+business value,5
+human capital,6
+population,60
+crossover,1
+data publishing,8
+competitor analysis,5
+operator (biology),1
+transcription factor,2
+repressor,1
+demography,29
+extant taxon,15
+evolutionary biology,33
+geopolitics,12
+cyberwarfare,16
+russian federation,1
+economy,26
+regional science,14
+transfer of learning,10
+convolutional neural network,37
+cognitive science,46
+cryptocurrency,31
+smart contract,35
+electricity market,6
+non-communicable disease,1
+burden of disease,1
+low and middle income countries,1
+environmental health,50
+gerontology,14
+developing country,18
+covert,10
+drone,34
+honeypot,9
+genetics,74
+application layer,8
+differential (mechanical device),5
+spear,2
+athletes,3
+wearable technology,24
+wearable computer,38
+informed consent,19
+sports medicine,1
+cardiology,3
+internal medicine,54
+physical therapy,4
+open label,1
+medical physics,7
+early adopter,1
+selection (genetic algorithm),20
+credit card fraud,2
+adversarial machine learning,8
+evasion (ethics),9
+sandbox (software development),4
+threat model,11
+botnet,33
+android malware,7
+false accusation,1
+support vector machine,52
+deep neural networks,6
+commit,7
+trinoo,8
+application layer ddos attack,8
+denial,1
+psychoanalysis,5
+enterprise information security architecture,4
+industry 4.0,63
+industrial control system,5
+academic writing,4
+affect (linguistics),7
+autism spectrum disorder,4
+economic shortage,6
+dyslexia,1
+attention deficit hyperactivity disorder,1
+autism,3
+reading (process),3
+clothing,1
+structural equation modeling,11
+normalization (sociology),1
+customer satisfaction,3
+interpretability,36
+open architecture,1
+democracy,28
+political economy,30
+foreign policy,5
+financial sector,8
+anomaly (physics),21
+condensed matter physics,19
+certification,15
+scrutiny,14
+secrecy,7
+business model,38
+disruptive technology,1
+manufacturing engineering,23
+legitimacy,12
+compliance (psychology),34
+mental healthcare,3
+synthetic data,11
+digital transformation,76
+point of care,2
+sepsis,2
+intensive care medicine,17
+critical thinking,4
+reconfigurability,1
+field-programmable gate array,4
+reconfigurable computing,1
+computer architecture,10
+status quo,8
+privacy policy,46
+product (mathematics),21
+market economy,14
+overhead (engineering),18
+modular design,4
+benchmark (surveying),43
+tariff,1
+dynamic pricing,3
+electricity pricing,1
+demand response,12
+thematic map,7
+demand management,1
+dynamic demand,1
+peak demand,1
+international trade,55
+taxpayer,1
+charter,2
+proof of concept,6
+psychological intervention,43
+digitization,26
+digital health,61
+information technology,27
+digital revolution,10
+subject (documents),17
+scopus,34
+citation,10
+likert scale,2
+health technology,6
+developmental psychology,16
+wireless sensor network,33
+food security,11
+generalizability theory,8
+computational model,3
+psychological science,1
+personality,4
+computational sociology,1
+social neuroscience,2
+social cognition,2
+access control,39
+biosecurity,4
+authoritarianism,4
+local government,5
+ransom,12
+negotiation,6
+capability maturity model,5
+master data,1
+linked data,3
+semantic web,5
+ibm,4
+globe,14
+nanotechnology,15
+ophthalmology,11
+data aggregator,6
+attribution,9
+term (time),5
+fintech,16
+mnist database,3
+data modeling,17
+margin (machine learning),1
+operations management,55
+general partnership,12
+mediation,3
+critical incident technique,1
+security policy,9
+state of art,1
+unavailability,4
+downtime,7
+live migration,1
+virtual machine,3
+virtualization,8
+orchestration,12
+high availability,2
+reliability engineering,21
+musical,13
+profitability index,4
+retail banking,4
+banking industry,9
+function (biology),18
+competitive advantage,12
+observational study,8
+cohort,5
+cohort study,3
+commons,6
+genome-wide association study,2
+genetic association,1
+genetic architecture,1
+trait,2
+heritability,1
+computational biology,26
+quantitative trait locus,1
+single-nucleotide polymorphism,2
+genotype,2
+data access,20
+server,28
+predictive analytics,21
+business intelligence,33
+countermeasure,9
+data deduplication,2
+data integrity,23
+cloud storage,6
+arbitration,2
+private sector,13
+brier score,1
+receiver operating characteristic,4
+gradient boosting,11
+boosting (machine learning),17
+calibration,1
+f1 score,3
+odds,2
+random forest,40
+logistic regression,5
+multitude,6
+ingenuity,2
+neoclassical economics,3
+health data,14
+statistical learning,1
+healthcare system,24
+health informatics,34
+patient privacy,8
+exploit,51
+key generation,1
+physical layer,6
+randomness,2
+beacon,1
+nist,13
+randomness tests,1
+bit error rate,1
+computer engineering,5
+speech recognition,11
+information security management,11
+clarity,14
+certified information security manager,1
+commission,4
+qualitative property,15
+clinical decision support system,10
+decision support system,12
+multimodality,2
+multimedia,39
+swift,1
+vehicular communication systems,6
+latency (audio),8
+fog computing,9
+european union,59
+unfair_data competition,1
+aeronautics,10
+climate change,7
+reputation,23
+research data,12
+resource allocation,5
+wage,1
+labour economics,1
+academic library,2
+greenhouse gas,12
+metropolitan area,3
+bandwidth (computing),5
+enabling,25
+synchronization (alternating current),2
+power consumption,2
+extremely high frequency,2
+bibliometrics,17
+publication,7
+public domain,1
+topic model,3
+computer vision,35
+facial recognition system,8
+face (sociological concept),19
+three-dimensional face recognition,1
+face detection,1
+object-class detection,1
+pattern recognition (psychology),53
+security through obscurity,16
+marketing research,4
+social media marketing,5
+digital marketing,8
+data set,8
+personalized search,1
+search engine,3
+forwarding plane,2
+control reconfiguration,4
+flexibility (engineering),39
+software-defined networking,17
+biometrics,11
+sustainable development,52
+digital media,5
+prioritization,4
+translational research informatics,2
+engineering informatics,1
+informatics,12
+health administration informatics,2
+association rule learning,2
+reusability,2
+distributed learning,6
+point (geometry),12
+scada,14
+security management,8
+medical diagnosis,6
+maintainability,2
+artifact (error),3
+open standard,1
+code (set theory),15
+user engagement,1
+in vitro fertilisation,1
+fertility,2
+human fertilization,1
+andrology,1
+pregnancy,2
+anatomy,1
+vickrey–clarke–groves auction,1
+bid shading,1
+unique bid auction,1
+english auction,1
+collusion,2
+generalized second-price auction,1
+auction theory,1
+common value auction,1
+hospitality industry,4
+co-creation,3
+electroencephalography,5
+watermark,2
+digital watermarking,2
+embedding,9
+proof-of-work system,2
+freedom of information,2
+web application,13
+misinformation,17
+attrition,1
+human resource management,17
+human resources,7
+retention management,1
+dentistry,3
+dependability,8
+credential,4
+cyberinfrastructure,4
+middleware (distributed applications),2
+suite,5
+mainstream,14
+artificial general intelligence,6
+empathy,4
+timeline,7
+criminology,35
+event (particle physics),10
+security engineering,4
+affordance,2
+personalized medicine,15
+precision medicine,31
+pharmacogenomics,1
+bioinformatics,42
+pharmacology,10
+custodians,3
+agency (philosophy),16
+united states national security agency,2
+national security,23
+creativity,21
+humanities,10
+scarcity,16
+bioethics,11
+relation (database),14
+demographics,3
+consumer privacy,18
+civil society,4
+journalism,2
+public health surveillance,2
+stage (stratigraphy),1
+authorization,5
+ranking (information retrieval),8
+android (operating system),17
+counterfeit,1
+paradigm shift,11
+white paper,2
+vision,5
+theology,21
+bosnia herzegovina,1
+ethnology,2
+alliance,5
+postpartum depression,1
+netflow,3
+adversary model,1
+class (philosophy),16
+unobservable,2
+dignity,8
+equity (law),26
+exposome,1
+occupational exposure,1
+environmental research,1
+environmental protection,2
+regret,1
+shame,2
+hrhis,2
+health information technology,4
+health policy,11
+measure (data warehouse),7
+simple (philosophy),6
+data management plan,5
+scholarly communication,9
+gnss applications,1
+spoofing attack,12
+global positioning system,10
+ideology,3
+faith,1
+conviction,3
+currency,7
+monetary economics,10
+computer science and engineering,3
+computer software,2
+engineering research,3
+computer applications,3
+research program,3
+information engineering,3
+computer technology,3
+science and engineering,3
+information science,4
+stress (linguistics),2
+firmware,2
+critical infrastructure,48
+authentication protocol,5
+image processing,7
+plant disease,1
+biotechnology,3
+boltzmann machine,2
+cover (algebra),2
+abstraction,4
+enthusiasm,7
+automatic summarization,5
+pace,22
+healthcare industry,13
+public transport,2
+traffic flow (computer networking),1
+sustainable transport,3
+advanced traffic management system,3
+transport network,1
+flow network,3
+intelligent decision support system,5
+data integration,15
+traffic congestion,4
+adaptive system,1
+smart system,2
+transportation planning,2
+safeguarding,45
+nexus (standard),12
+factor (programming language),1
+sophistication,9
+christian ministry,1
+confounding,1
+national health insurance,1
+data source,3
+pharmacoepidemiology,1
+family medicine,25
+medical prescription,3
+black box,12
+distribution (mathematics),6
+smart power,1
+ensemble learning,20
+dermatology,4
+traditional medicine,2
+profiling (computer programming),18
+joint (building),1
+constant false alarm rate,10
+genetic algorithm,3
+interdependence,12
+manufacturing,12
+bridge (graph theory),14
+cross-platform,2
+data visualization,6
+data transformation,2
+transformation (genetics),28
+data warehouse,4
+default gateway,2
+modbus,5
+communications protocol,8
+root cause analysis,1
+genomics,17
+dementia,3
+exome sequencing,2
+exome,1
+genome,17
+mutation,2
+day to day,1
+present day,1
+joins,1
+heterogeneous network,2
+sensor fusion,2
+internationalization,2
+excellence,7
+diplomacy,4
+key management,2
+group (periodic table),3
+organic chemistry,16
+digital humanities,3
+diffusion,2
+disinformation,11
+polarization (electrochemistry),1
+political communication,1
+physical chemistry,2
+mentorship,2
+gender balance,1
+gender studies,6
+forensic science,4
+accident (philosophy),1
+markov decision process,2
+dynamic bayesian network,1
+rehabilitation,2
+bayesian probability,4
+markov process,2
+machine translation,5
+translation (biology),3
+translation studies,1
+natural language processing,57
+messenger rna,3
+social network (sociolinguistics),5
+privacy software,22
+categorization,23
+credence,1
+industrial internet,24
+aviation,6
+general data protection regulation,50
+data protection directive,8
+right to be forgotten,4
+european union law,8
+economic policy,26
+production (economics),12
+development environment,1
+cluster (spacecraft),1
+normative,25
+philosophy of science,21
+philosophy of mind,2
+applied ethics,11
+ethics of technology,10
+business ethics,21
+information ethics,28
+practical reason,1
+normative ethics,5
+meta-ethics,10
+deontological ethics,2
+industrial revolution,14
+agrarian society,1
+gender bias,2
+trilemma,1
+financial asset,1
+alternative investment,1
+financial economics,9
+exchange rate,1
+transaction cost,2
+brand management,1
+brand equity,2
+brand awareness,1
+consumer advocacy,1
+employer branding,1
+brand experience,1
+brand loyalty,1
+product management,1
+new product development,4
+matching (statistics),7
+voter registration,1
+voting,12
+construction engineering,9
+poverty,4
+discipline,8
+information age,1
+administration (probate law),7
+e-governance,3
+secret sharing,5
+spamming,4
+cluster analysis,16
+drug discovery,5
+docking (animal),1
+structural bioinformatics,1
+protein structure,1
+partition (number theory),2
+combinatorics,12
+artificial nutrition,1
+parenteral nutrition,1
+employability,1
+image quality,1
+maturity (psychological),13
+focus group,8
+proxy re-encryption,1
+block (permutation group theory),13
+proxy (statistics),5
+supply chain management,1
+multimodal transport,1
+intermediary,3
+sociotechnical system,13
+doppler ultrasound,1
+radiology,18
+mobile telephony,6
+performance indicator,2
+strategic planning,4
+market research,1
+dozen,1
+silver bullet,1
+guideline,6
+productivity,25
+financial market,5
+financial regulation,6
+homomorphic encryption,20
+permission,7
+biomanufacturing,1
+safeguard,13
+biochemical engineering,1
+multiple-criteria decision analysis,4
+analytic hierarchy process,6
+rigour,3
+mental health service,1
+test data,2
+test (biology),12
+independent and identically distributed random variables,1
+random variable,3
+metacognition,4
+self-reflection,1
+reflection (computer programming),4
+petroleum industry,3
+fossil fuel,3
+environmental engineering,11
+course (navigation),2
+action (physics),16
+scientometrics,3
+period (music),2
+quartile,1
+confidence interval,1
+acoustics,30
+principal (computer security),5
+haystack,1
+eavesdropping,3
+jamming,2
+layer (electronics),6
+communications system,6
+vehicle-to-vehicle,1
+civil engineering,38
+password,15
+one-time password,2
+password strength,2
+password policy,2
+s/key,2
+zero-knowledge password proof,1
+social engineering (security),13
+globalization,6
+ethical code,3
+ethical decision,9
+information assurance,8
+proportionality (law),2
+grounded theory,6
+communications satellite,2
+satellite,2
+adjudication,2
+center of excellence,1
+2019-20 coronavirus outbreak,32
+severe acute respiratory syndrome coronavirus 2 (sars-cov-2),29
+center (category theory),1
+virology,35
+outbreak,34
+crystallography,1
+dilemma,7
+feedforward neural network,1
+feed forward,1
+encoding (memory),3
+control engineering,8
+self driving,2
+asynchronous communication,3
+opportunism,1
+ambidexterity,2
+training (meteorology),13
+meteorology,23
+xml database,1
+xml,1
+computational thinking,1
+medical imaging,10
+particle swarm optimization,6
+ant colony optimization algorithms,2
+metaheuristic,1
+consistency (knowledge bases),10
+biomedical text mining,1
+text mining,1
+backdoor,2
+power grid,3
+power transmission,1
+security controls,10
+damages,6
+extortion,1
+customer relationship management,2
+personalized marketing,3
+malware analysis,11
+literacy,15
+dynamism,1
+equivalence (formal languages),1
+discrete mathematics,4
+advanced driver assistance systems,1
+emotion recognition,2
+emotion detection,1
+pedestrian,2
+trajectory,2
+offensive,10
+assisted living,2
+environmental stewardship,1
+monetization,2
+typology,7
+conceptualization,8
+extension (predicate logic),3
+commerce,11
+grand challenges,7
+active queue management,1
+multihoming,1
+network congestion,1
+multipath tcp,1
+transmission control protocol,2
+throughput,5
+multipath propagation,1
+packet loss,1
+network performance,1
+internet protocol,1
+cloud testing,6
+privacy protection,19
+license,8
+sample (material),19
+chromatography,20
+pleasure,2
+color image,1
+ycbcr,1
+color histogram,1
+color normalization,1
+closed captioning,5
+classifier (uml),28
+gesture,1
+sign language,1
+gesture recognition,1
+sign (mathematics),1
+convolution (computer science),2
+fake news,2
+plaintiff,1
+redress,2
+class action,1
+securities fraud,1
+actuarial science,22
+supreme court,3
+masking (illustration),3
+agile software development,7
+project management,3
+project manager,1
+project management triangle,2
+hilbert space,1
+quantum computer,11
+quantum,21
+cryptosystem,7
+quantum cryptography,9
+quantum key distribution,3
+quantum information,8
+cinahl,6
+semi-structured interview,1
+objectivity (philosophy),2
+content analysis,5
+research design,2
+physical security,10
+pipeline (software),5
+water resources,3
+healthcare delivery,6
+workforce,19
+patient safety,3
+sketch,3
+data anonymization,10
+installation,1
+benchmarking,14
+naive bayes classifier,18
+encoder,5
+autoencoder,19
+transformer,9
+language model,6
+environmental security,2
+mental illness,3
+criminal justice,7
+motion planning,1
+discourse analysis,1
+intelligence analysis,3
+backup,2
+search engine indexing,1
+arms race,2
+economic history,2
+sleep medicine,1
+sleep (system call),1
+position statement,1
+behavioral medicine,1
+sleep disorder,1
+insomnia,1
+terminology,8
+lithuanian,1
+scaling,5
+resource management (computing),5
+visibility,4
+signature (topology),4
+digital signature,6
+cross-sectional study,3
+medical record,9
+intersection (aeronautics),15
+personalized learning,9
+open learning,5
+teaching method,10
+cooperative learning,5
+control system security,1
+mashup,2
+human health,1
+environmental data,2
+web standards,3
+adaboost,7
+digital government,5
+epidemiology,5
+data stream mining,3
+health records,10
+neutrality,1
+inequality,6
+diversity (politics),14
+information security audit,2
+standard of good practice,2
+information security management system,4
+scholarship,30
+vetting,2
+scientific misconduct,2
+bioconductor,1
+health informatics tools,1
+byzantine fault tolerance,3
+fault tolerance,5
+distributed transaction,1
+transaction processing,1
+digital library,6
+digital curation,1
+poetry,6
+literature,19
+financial transaction,2
+money laundering,4
+value chain,3
+profit (economics),6
+economic geography,7
+geomatics,1
+geospatial analysis,4
+remote sensing,4
+nothing,1
+consumer behaviour,6
+west bengal,1
+socioeconomics,1
+interface (matter),6
+interface design,1
+user interface,3
+bubble,6
+maximum bubble pressure method,6
+ontology,11
+upper ontology,1
+ontology components,1
+ontology alignment,1
+fandom,1
+performativity,2
+aesthetics,6
+popular culture,1
+queer,1
+indonesian,3
+financial system,16
+pillar,2
+cobit,1
+social responsibility,10
+stroke (engine),1
+consensus conference,3
+dataflow,2
+parallel computing,6
+mobile edge computing,8
+augmented reality,11
+radio access network,3
+cellular network,6
+mobile station,3
+base station,8
+biobank,16
+urban planning,11
+scripting language,5
+curse of dimensionality,5
+prior authorization,1
+diabetes mellitus,3
+endocrinology,5
+public sector,15
+spectrum (functional analysis),2
+complaint,1
+track (disk drive),2
+skin cancer,4
+cancer detection,1
+spectral imaging,1
+cancer imaging,1
+cancer,11
+electronic data capture,1
+electronic data,1
+multicast,1
+credentialing,2
+concordance,1
+united states medical licensing examination,1
+licensure,1
+medical school,1
+underpinning,12
+regularization (linguistics),1
+false positive rate,9
+feature learning,2
+learning analytics,15
+ethnography,1
+loan,3
+default,2
+non-performing loan,1
+overfitting,7
+accreditation,5
+granularity,2
+inference engine,1
+declaration,2
+public engagement,2
+science policy,3
+european research area,1
+public policy,18
+public interest,2
+phenomenon,4
+organizational change,1
+organizational studies,1
+organization development,1
+deep web,2
+crime analysis,4
+credit risk,2
+reflective practice,1
+sustainable city,5
+urbanity,1
+milestone,3
+reactionary,1
+insulin delivery,1
+safer,10
+urbanization,8
+veterans affair_datas,2
+transactive memory,2
+prosumer,4
+distributed generation,18
+energy market,4
+information industry,1
+information revolution,1
+ftc fair_data information practice,6
+privacy law,16
+enforcement,18
+scientific literature,3
+disappointment,1
+mulligan,1
+constructive,1
+development plan,1
+tree traversal,1
+decoy,1
+file system,5
+receptor,2
+identity management,12
+vehicle information and communication system,1
+limiting,5
+road traffic,1
+service delivery framework,8
+public service,5
+neurology,1
+closing (real estate),4
+trace (psycholinguistics),5
+generative model,19
+sovereignty,23
+pharmacy,4
+descriptive statistics,5
+natural resource economics,10
+limit (mathematics),2
+grading (engineering),11
+deep integration,1
+legal education,1
+smart manufacturing,5
+advanced manufacturing,3
+chatbot,14
+panel discussion,1
+moderation,9
+predictability,1
+formative assessment,4
+hybridity,2
+privacy laws of the united states,4
+boycott,1
+corporate social responsibility,10
+can bus,2
+search and rescue,3
+random oracle,1
+plaintext,2
+merkle tree,3
+hash chain,3
+digital divide,8
+digital literacy,4
+internet access,2
+technology integration,3
+digital learning,4
+educational technology,18
+flourishing,1
+humanity,6
+metaphysics,2
+traumatic stress,1
+clinical psychology,5
+generalization,9
+time delay neural network,1
+data center,6
+identity (music),17
+predictive power,4
+employee engagement,4
+headway,1
+sustainable energy,4
+critical infrastructure protection,12
+transformational leadership,4
+noma,2
+single antenna interference cancellation,1
+spectral efficiency,2
+interference (communication),2
+telecommunications link,2
+argument (complex analysis),6
+pragmatism,1
+positive economics,7
+neglect,2
+ecosystem,7
+forensic accounting,2
+prosperity,8
+terrorism,12
+crisis management,4
+lifelong learning,4
+linear discriminant analysis,1
+looming,1
+social sustainability,4
+investment (military),9
+debt,1
+risk factor,3
+knowledge extraction,3
+socialization,1
+accession,1
+transition economy,1
+flow (mathematics),2
+information flow,2
+null hypothesis,1
+significant difference,1
+cheating,4
+financial intermediary,2
+intermediation,4
+capital market,1
+single market,2
+international economics,1
+new business development,2
+interpretation (philosophy),5
+cube (algebra),1
+consensus algorithm,3
+modalities,15
+industrial engineering,6
+entertainment,5
+video game development,1
+game developer,1
+entertainment industry,1
+game design,1
+traumatic brain injury,1
+societal impact of nanotechnology,5
+occupational safety and health,1
+years of potential life lost,1
+injury prevention,1
+poison control,7
+life expectancy,2
+traffic classification,4
+traffic generation model,2
+data discovery,2
+expediting,1
+beneficence,9
+mechanism (biology),4
+digital economy,20
+nonprobability sampling,3
+workload,8
+neurofeedback,1
+skin conductance,1
+heart rate variability,1
+neurophysiology,1
+audiology,3
+heart rate,1
+biomedical engineering,2
+blood pressure,1
+privacy rights,1
+electronic surveillance,1
+data type,5
+information repository,1
+biological data,4
+disparate system,1
+shared resource,3
+data mapping,1
+information dissemination,2
+data structure,1
+data acquisition,1
+radiology information systems,1
+teleradiology,1
+telemedicine,26
+gadget,1
+source lines of code,1
+source code,5
+software system,5
+secure coding,4
+collection development,1
+organizational structure,2
+health services research,1
+flooding (psychology),3
+local government area,1
+county government,1
+water resource management,1
+categorical variable,2
+aggregate data,1
+microdata (statistics),3
+linear regression,1
+regression analysis,2
+aggregate (composite),3
+standard error,1
+census,3
+ethos,1
+omnichannel,1
+digital ecosystem,4
+information governance,14
+academic integrity,5
+plagiarism detection,4
+academic freedom,2
+loyalty,4
+experiential learning,7
+consumption (sociology),3
+multi-factor authentication,3
+sharing economy,5
+natural language understanding,4
+natural language,7
+enterprise system,1
+containment (computer programming),3
+presentation (obstetrics),3
+directive,6
+private security,1
+peer-to-peer,3
+eye,1
+optometry,2
+storm,2
+population health,4
+pain management,1
+anesthesia,3
+segmentation,6
+image segmentation,5
+scale-space segmentation,2
+epidemiological surveillance,1
+challenge–response authentication,1
+ethical dilemma,1
+islam,5
+morality,2
+scheduling (production processes),10
+simulated annealing,1
+download,2
+majority rule,1
+lookup table,1
+design flow,1
+data flow diagram,2
+scientific integrity,1
+harmonization,11
+research integrity,2
+scientific evidence,2
+hopfield network,1
+outlier,3
+rabbit (cipher),1
+firewall (physics),3
+horizon,2
+charged black hole,3
+extremal black hole,1
+freedom of expression,3
+expression (computer science),3
+human rights,12
+attendance,1
+object (grammar),7
+object detection,2
+sentiment analysis,3
+stream processing,1
+element (criminal law),4
+wideband,1
+antenna (radio),3
+electronic engineering,4
+air quality index,1
+air pollution,1
+index (typography),4
+pollution,1
+air pollution index,1
+constitution,3
+discoverability,2
+pangaea,1
+structural basin,1
+permian,1
+food and drug administration,1
+cipher,1
+mandate,6
+economic system,14
+question answering,3
+philosophy of technology,9
+brother,1
+warrant,1
+lottery,1
+technology management,1
+product innovation,1
+preference,2
+welfare,4
+microinsurance,1
+preprocessor,13
+data pre-processing,7
+information society,2
+solidarity,2
+interpersonal communication,5
+educational research,3
+visual search,1
+management information systems,14
+snowball sampling,1
+checklist,9
+misconduct,2
+air transport,2
+transport infrastructure,1
+latent variable,1
+presumption,1
+strategic intelligence,1
+sociocultural evolution,4
+sociocultural perspective,1
+consciousness raising,1
+capability approach,2
+teacher education,3
+diffie–hellman key exchange,1
+authenticated key exchange,1
+sizing,2
+process engineering,2
+situated,2
+computer ethics,2
+professional ethics,3
+engineering education,2
+core knowledge,1
+core (optical fiber),9
+experiential education,1
+active learning (machine learning),5
+content (measure theory),9
+false positive paradox,6
+fuzzy logic,7
+work productivity,2
+work performance,1
+decision-making,1
+decision quality,1
+job satisfaction,3
+predictive value,1
+laziness,1
+prudence,1
+through-the-lens metering,2
+entropy (arrow of time),3
+trust management (information system),5
+lens (geology),2
+petroleum engineering,2
+open source,7
+rss,1
+recommender system,6
+noise (video),4
+vocational education,1
+spillover effect,2
+interim,1
+precision and recall,5
+binary classification,7
+real world data,1
+distrust,7
+portfolio,4
+institution,7
+singularity,1
+complex system,2
+grid computing,1
+semiotics,1
+anomaly-based intrusion detection system,6
+swot analysis,6
+financial innovation,5
+financial stability,3
+expansive,5
+compressive strength,5
+e-government,2
+linkage (software),2
+learning object,1
+code of practice,1
+operationalization,10
+dependency (uml),6
+legislature,9
+heart failure,1
+information literacy,2
+empowerment,6
+attraction,1
+security council,1
+international security,4
+oceanography,10
+great rift,4
+far side of the moon,1
+realization (probability),2
+moral responsibility,2
+solidity,2
+electronic voting,8
+chain (unit),2
+knowledge base,3
+empirical evidence,5
+base (topology),1
+professional development,1
+longitudinal data,1
+marketing buzz,2
+participatory sensing,1
+collective intelligence,3
+fair_dataness measure,1
+futures contract,11
+futures studies,7
+quality management,2
+information leakage,1
+information loss,1
+management system,7
+sport management,1
+adapter (computing),1
+domain knowledge,5
+knowledge representation and reasoning,1
+word2vec,1
+word embedding,3
+theory of planned behavior,3
+declaration of helsinki,1
+computer security model,7
+security convergence,1
+garbage,1
+thesaurus,1
+cryptovirology,6
+rootkit,2
+static analysis,5
+immunology,13
+immune system,7
+optical coherence tomography,1
+signal processing,1
+coherence (philosophical gambling strategy),2
+signal (programming language),2
+computer hardware,3
+digital signal processing,1
+covariate,1
+mathematical finance,2
+electronic medical record,2
+calreticulin,1
+myelofibrosis,1
+essential thrombocythemia,1
+janus kinase 2,1
+polycythemia vera,1
+germline mutation,1
+frameshift mutation,1
+myeloproliferative neoplasm,1
+cancer research,5
+myeloproliferative disorders,1
+myeloid leukemia,1
+germline,1
+myeloid,1
+endoplasmic reticulum,1
+bone marrow,1
+drug development,3
+drug,3
+forgetting,2
+catastrophic failure,1
+instant,1
+instant messaging,1
+social distance,3
+rule of law,2
+oppression,3
+small and medium-sized enterprises,6
+language barrier,1
+patient advocacy,1
+overconfidence effect,1
+flowchart,2
+topsis,2
+financial engineering,2
+narrative,16
+social worlds,7
+open educational resources,1
+open education,1
+praxis,2
+macromarketing,1
+marketing ethics,1
+quality of life research,3
+glossary,2
+hierarchy,2
+expectancy theory,4
+explanatory power,2
+unified theory of acceptance and use of technology,3
+partial least squares regression,1
+explanatory model,1
+technology acceptance model,2
+logit,2
+social influence,1
+behavioral modeling,2
+ordinary least squares,1
+pipeline transport,1
+secure communication,2
+communications security,1
+heart disease,1
+training set,2
+volume (thermodynamics),4
+feature extraction,13
+reduction (mathematics),4
+traffic analysis,2
+web of things,3
+estonian,1
+tree (set theory),2
+time series,6
+series (stratigraphy),7
+language acquisition,3
+active listening,1
+comprehension approach,1
+language learning strategies,1
+language industry,1
+triage,3
+learning disability,2
+attack model,4
+host (biology),1
+audit trail,3
+raising (metalworking),1
+reference architecture,1
+software architecture,1
+novelty,13
+style (visual arts),1
+manifesto,4
+mile,1
+last mile (transportation),1
+phone,7
+neuropharmacology,1
+program code,1
+code generation,1
+impartiality,1
+machine vision,1
+computer graphics,1
+cognitive neuroscience of visual object recognition,1
+spacecraft,2
+hybrid system,1
+energy engineering,1
+wind power,5
+ehealth,9
+consumer protection,5
+pledge,1
+league,1
+online learning,4
+german,8
+factory (object-oriented programming),5
+german government,1
+oversampling,1
+stacking,2
+computational science and engineering,2
+news aggregator,3
+procurement,6
+educational leadership,1
+suspect,1
+rank (graph theory),2
+c4.5 algorithm,2
+medical research,6
+coping (psychology),2
+medical ethics,2
+competence (human resources),5
+computation,13
+high-level architecture,1
+clinical decision making,2
+decision process,1
+network management,6
+catalysis,1
+mhealth,17
+electronic health record,3
+system integration,3
+patient care,6
+geotechnics,1
+rubric,1
+throwing,1
+argumentation theory,2
+cognitive reframing,2
+asymptomatic,1
+organised crime,3
+crystal twinning,1
+metallurgy,1
+microstructure,1
+automotive engineering,4
+conversation analysis,1
+web application security,5
+web development,7
+balance (ability),7
+cross-cultural,1
+transnational governance,1
+design science research,2
+digital currency,5
+blocking (statistics),1
+utopia,1
+cvar,1
+residual risk,1
+expected shortfall,1
+semantic interoperability,3
+health information exchange,2
+health information,2
+behavioral economics,3
+decision analysis,1
+adaptive learning,9
+e learning,2
+critical reflection,1
+imperfect,1
+building information modeling,5
+compatibility (geochemistry),2
+chemical engineering,2
+comparative genomics,1
+ensemble forecasting,1
+homogeneous,2
+cascading classifiers,1
+random subspace method,1
+externality,3
+telecommunications network,7
+phasor,3
+electrification,6
+tracing,5
+mit license,1
+jurisprudence,4
+real estate,2
+ambiguity,7
+situation analysis,3
+jurisdiction,7
+indonesian government,1
+rewriting,2
+swarm behaviour,3
+collaborative model,1
+collaborative learning,3
+construction industry,6
+resistance (ecology),6
+questionnaire,1
+computer-assisted web interviewing,2
+cripple,1
+economic transformation,2
+memory footprint,2
+blueprint,8
+gradation,1
+legal aspects of computing,5
+good governance,3
+public trust,3
+workforce development,2
+mental health literacy,1
+human services,1
+system safety,1
+health equity,8
+socioeconomic status,5
+civil aviation,1
+probabilistic argumentation,1
+argumentation framework,1
+fuzz testing,4
+software testing,1
+symbolic execution,1
+software bug,2
+electric power,1
+dehumanization,2
+statement (logic),2
+soil moisture sensor,1
+geotechnical engineering,1
+water content,1
+ipsec,1
+private network,2
+gig economy,1
+ethical theory,1
+emerging markets,7
+coding (social sciences),3
+commoditization,1
+steganalysis,2
+steganography,3
+steganography tools,2
+agrochemical,1
+agricultural productivity,2
+dream,1
+energy storage,7
+peer review,3
+6lowpan,1
+ipv6,1
+distributed computing environment,1
+cultural analytics,1
+business analytics,12
+semantic analytics,1
+business analysis,10
+web modeling,3
+utility computing,8
+development (topology),4
+obligation,4
+physics education,1
+moral obligation,1
+comprehension,3
+formal verification,3
+desk,1
+state owned,1
+bidding,1
+border security,1
+member states,2
+internal security,1
+performance management,2
+job performance,3
+organizational performance,1
+organizational culture,2
+workforce management,2
+line management,1
+dynamic capabilities,3
+commercialization,6
+provisioning,5
+return on marketing investment,2
+business-to-government,2
+human welfare,1
+working life,1
+spark (programming language),4
+built environment,1
+bargaining problem,1
+nash equilibrium,2
+economic dispatch,1
+karush–kuhn–tucker conditions,1
+coupling (piping),1
+lagrange multiplier,1
+thermal energy,1
+co-simulation,1
+thermal energy storage,1
+thermal,1
+ductal carcinoma,1
+breast tumor,1
+atypia,1
+breast cancer,4
+mistake,1
+capital (architecture),1
+raspberry pi,1
+thresholding,2
+unstructured data,3
+sanity,1
+bureaucracy,4
+stakeholder engagement,5
+digital strategy,3
+biomarker,4
+ex-ante,1
+security awareness,9
+penetration (warfare),3
+access management,2
+mode (computer interface),1
+business continuity,5
+unsupervised learning,4
+dimensionality reduction,5
+incident response,7
+response time,3
+cognitive radio,2
+spectrum management,1
+payload (computing),4
+operability,1
+dual (grammatical number),3
+cultural diversity,2
+network monitoring,1
+network administrator,1
+environmental compliance,1
+environmental regulation,1
+environmental monitoring,3
+internet security,4
+psycinfo,6
+intervention (counseling),7
+software peer review,1
+personal software process,1
+social software engineering,1
+software review,1
+software construction,7
+software quality,1
+graduate medical education,1
+statutory law,3
+strategic management,2
+path (computing),4
+mobile computing,7
+mobile technology,5
+mobile radio,5
+schwarzschild radius,2
+accretion (finance),1
+valuation (finance),2
+valuation of options,1
+systematic risk,1
+geovisualization,1
+geographic information system,2
+gis and public health,1
+gis applications,1
+information visualization,2
+"failure mode, effects, and criticality analysis",1
+criticality,1
+nuclear physics,2
+notice,5
+extracorporeal membrane oxygenation,1
+blood oxygenation,1
+functional magnetic resonance imaging,1
+citizen journalism,4
+investment decisions,1
+antecedent (behavioral psychology),1
+credibility,7
+technoscience,1
+mediator,1
+alternative dispute resolution,1
+dispute resolution,1
+disadvantage,2
+anticipation (artificial intelligence),3
+carbon footprint,3
+converse,2
+cites,2
+fishery,2
+login,3
+promulgation,1
+job design,1
+philosophy of medicine,8
+distributed database,4
+expert system,4
+telerehabilitation,1
+physical medicine and rehabilitation,7
+financial literacy,2
+certificate,3
+unbanked,2
+financial security,1
+international trade law,1
+international law,5
+trade and development,1
+trade barrier,1
+principle of legality,3
+revolution in military affair_datas,1
+military science,1
+cohesion (chemistry),1
+tuple,2
+battery (electricity),4
+computer data storage,1
+neurolaw,1
+prejudice (legal term),1
+neuroethics,4
+slicing,2
+realisation,1
+network architecture,5
+normative model of decision-making,1
+mindset,4
+ignorance,2
+real world evidence,1
+evidence-based practice,1
+language change,2
+workforce planning,1
+strategic human resource planning,1
+turnover,1
+industrial relations,1
+strategic fit,1
+aging in the american workforce,1
+successor cardinal,1
+natural disaster,3
+regulatory science,3
+drug approval,1
+tail risk,1
+financial risk management,1
+stock (firearms),4
+binary number,3
+nuclear magnetic resonance,1
+arithmetic,4
+sort,1
+global governance,4
+rhetoric,3
+multilateralism,1
+stack (abstract data type),2
+web traffic,1
+purchasing,6
+insurance policy,2
+risk aversion (psychology),1
+key person insurance,1
+statute,2
+crime prevention,2
+heuristics,3
+human language,2
+internship,1
+antibiotic resistance,2
+antibiotics,2
+narrative review,5
+drug resistance,1
+national strategy to secure cyberspace,1
+industrial espionage,4
+espionage,4
+innovation management,2
+stakeholder analysis,1
+obstacle,3
+patient data,2
+biostatistics,1
+water security,1
+meaning (existential),4
+fundamental rights,2
+reinterpretation,1
+constitutional law,1
+constitutional theory,1
+digital rights,3
+constitutional court,1
+margin of appreciation,1
+international human rights law,1
+constitutional right,1
+social movement,1
+surge capacity,1
+pornography,2
+curiosity,1
+everyday life,4
+burnout,2
+nobody,1
+fallacy,1
+opcode,1
+system call,1
+educational data mining,3
+market intelligence,3
+multinational corporation,6
+market segmentation,3
+data-driven,1
+embodied cognition,3
+contemporary society,2
+technology and society,2
+differential algebraic equation,1
+nonlinear system,1
+inverted pendulum,1
+optimal control,1
+algebraic equation,1
+model predictive control,1
+control theory (sociology),4
+lyapunov function,1
+stability (learning theory),4
+differential equation,1
+ordinary differential equation,1
+network governance,1
+public management,1
+clinical governance,1
+ethics committee,1
+financial inclusion,5
+revocation,1
+counterattack,1
+counterintelligence,1
+composability,1
+smart meter,3
+distributed file system,1
+distributed data store,2
+public key infrastructure,2
+dynamics (music),2
+evolutionary dynamics,1
+resampling,1
+financial fraud,3
+executable,5
+hyperparameter,7
+casual,1
+meta data services,2
+metadata repository,2
+metadata management,1
+data stream,1
+identifier,4
+digital identity,6
+web of science,6
+meta-analysis,1
+pediatrics,2
+space (punctuation),8
+management accounting,1
+movement (music),2
+semantic analysis (machine learning),1
+semantic data model,1
+sensationalism,1
+gold rush,1
+criminal law,5
+directive on privacy and electronic communications,2
+information privacy law,7
+mobile cloud computing,3
+telehealth,10
+appeal,4
+airport security,5
+natural (archaeology),2
+scientific discovery,1
+omics,3
+systems biology,1
+biomarker discovery,3
+behavior change,3
+certainty,2
+deterrence (psychology),1
+microprocessor,1
+turkish,2
+sports biomechanics,1
+technology policy,1
+urban studies,1
+urban computing,1
+haulage,1
+truck,1
+mining industry,1
+mining engineering,1
+rope,1
+persuasion,2
+educational equity,1
+unpacking,2
+astrobiology,2
+ranging,2
+fault detection and isolation,3
+fault (geology),8
+open set,1
+stockpile,1
+segmentation-based object categorization,1
+computational linguistics,2
+art history,1
+structuring,2
+software design pattern,1
+pattern language (formal languages),1
+risk management framework,5
+it risk management,9
+craft,2
+misuse detection,3
+application programming interface,3
+cultural heritage,3
+avatar,2
+contact tracing,9
+race (biology),2
+marginal distribution,1
+learning styles,2
+learning management,3
+photovoltaic system,7
+engineering physics,3
+demographic economics,1
+legal research,4
+consumer bill of rights,1
+regulatory reform,1
+harassment,2
+legal action,1
+colonialism,2
+criminalization,1
+ask price,1
+snapshot (computer storage),2
+holy grail,1
+technocracy,2
+dominance (genetics),5
+interfacing,1
+sanctions,2
+writing process,1
+hidden markov model,1
+network layer,1
+low latency (capital markets),4
+network model,1
+dynamic network analysis,1
+legitimation,1
+cognitive model,1
+accounting research,1
+formal methods,3
+railway system,1
+arduino,1
+tracking (education),6
+biomedicine,4
+surprise,2
+invariant (physics),1
+permutation (music),2
+mathematical physics,1
+parkinson's disease,1
+magnetic resonance imaging,3
+romanian,1
+contingency,1
+warning system,4
+home security,1
+smart device,3
+steam engine,1
+public health policy,1
+lipidome,1
+lipidomics,1
+lipid metabolism,1
+human plasma,1
+replicate,1
+adverse effect,1
+emergency medicine,4
+treatment-resistant depression,1
+forestry,1
+animal science,1
+underwriting,1
+mental state,1
+economic security,1
+collocation (remote sensing),1
+partial differential equation,1
+finite element method,1
+applied mathematics,3
+javascript,1
+graphical user interface,2
+web server,2
+clickstream,1
+web api,1
+officer,1
+international business,2
+electronic business,3
+behaviour change,1
+norm (philosophy),3
+victimisation,3
+suicide prevention,4
+blood transfusion,1
+petabyte,2
+shock (circulatory),1
+on board,1
+medical journal,2
+trial registration,1
+jpeg,1
+lossy compression,1
+ethical leadership,1
+leadership studies,1
+leadership development,1
+genome browser,2
+disruptive innovation,4
+ccpa,1
+adenosine receptor,1
+agonist,1
+generative design,1
+network topology,2
+replication (statistics),5
+cuda,1
+general-purpose computing on graphics processing units,1
+graphics,1
+diffusion mri,1
+graphics processing unit,1
+computational science,1
+data transmission,5
+customer value,1
+cross disciplinary,1
+computation offloading,1
+computational complexity theory,1
+bittorrent tracker,2
+experience sampling method,1
+eye tracking,2
+bildung,1
+reimbursement,2
+specialty,2
+cochrane library,2
+injustice,3
+capitalism,2
+centrality,2
+fair_data-share scheduling,1
+dynamic priority scheduling,1
+two-level scheduling,1
+rate-monotonic scheduling,1
+unilateralism,1
+hegemony,1
+international relations,5
+protectionism,2
+virtual currency,2
+trade finance,2
+public finance,2
+environmentally friendly,2
+cost reduction,1
+economic cost,1
+representation (politics),6
+disparate impact,1
+outcome (game theory),4
+referral,2
+distance education,3
+social connectedness,3
+fuzzy set,1
+power electronics,1
+academic advising,1
+predictive modelling,2
+predictive validity,1
+supervised learning,2
+student engagement,2
+at-risk students,1
+software analytics,4
+spambot,2
+forum spam,1
+network effect,1
+supply and demand,1
+load management,3
+the good life,1
+pooling,2
+sustainable business,4
+audience measurement,1
+implementation research,1
+nudge theory,3
+paternalism,2
+dropout (neural networks),2
+user friendly,1
+antimicrobial stewardship,1
+regimen,1
+image manipulation,1
+image retrieval,1
+zero emission,1
+transition (genetics),1
+net (polyhedron),1
+merge (version control),2
+physical activity,2
+activity recognition,1
+randomized controlled trial,1
+degree (music),1
+communication in small groups,1
+ledger,4
+side channel attack,2
+sense of agency,1
+delphi method,6
+factoring,2
+premise,6
+business model canvas,1
+sustainable value,1
+nursing management,1
+adaptive capacity,1
+complex adaptive system,1
+ten commandments,1
+diversification (marketing strategy),2
+marketing and artificial intelligence,2
+colonisation,1
+ambient intelligence,1
+web intelligence,4
+nursing practice,1
+insurance industry,1
+inclusion and exclusion criteria,1
+univariate,1
+bivariate analysis,1
+multivariate statistics,1
+statistic,1
+multivariate analysis,1
+single point of failure,3
+cloud manufacturing,2
+lesion,2
+melanoma,2
+basal cell carcinoma,2
+residual neural network,1
+skin lesion,2
+basal cell,2
+toxicology,1
+economic impact analysis,1
+economic recovery,1
+development economics,8
+keynesian economics,3
+confirmatory factor analysis,2
+human factors and ergonomics,2
+value proposition,3
+numeracy,1
+enterprise risk management,3
+outreach,3
+technical standard,1
+absorptive capacity,1
+disadvantaged,2
+personal information management,1
+personal information manager,1
+financial cryptography,1
+malpractice,1
+medical malpractice,1
+medical advice,1
+competitive intelligence,3
+determinism,1
+social capital,1
+corporate sustainability,1
+triple bottom line,2
+lead (geology),1
+generator (circuit theory),3
+ran,2
+c-ran,1
+networking hardware,2
+repurposing,1
+performative utterance,1
+public international law,2
+stock exchange,1
+geographic mobility,1
+human dynamics,1
+individual mobility,1
+census tract,1
+flow map,1
+building automation,3
+building management system,1
+load balancing (electrical power),3
+disaster recovery,1
+information technology management,2
+legal ethics,1
+homomorphic secret sharing,1
+learning with errors,1
+internet appliance,1
+conventional pci,1
+myocardial infarction,1
+complementarity (molecular biology),2
+decentralised system,1
+water quality,1
+generation y,1
+commodification,3
+flag (linear algebra),1
+algebra over a field,1
+causality (physics),1
+causal inference,1
+causal model,1
+medical decision making,1
+mobile apps,2
+computational trust,4
+layperson,1
+natural language generation,1
+information overload,2
+table (database),4
+panel data,1
+interdiction,1
+data web,1
+web page,2
+web mining,1
+web crawler,1
+html,1
+news media,2
+boom,3
+bust,1
+new normal,1
+affective computing,1
+"artificial intelligence, situated approach",1
+health administration,1
+open innovation,2
+digital preservation,2
+refining (metallurgy),1
+security bug,3
+circuit breaker,1
+pareto principle,2
+sewerage,1
+pareto optimal,1
+multi-objective optimization,1
+free speech,1
+private speech,1
+stride,2
+character (mathematics),2
+philosophy of business,1
+hero,1
+six sigma,1
+technology roadmap,2
+lean manufacturing,1
+lean six sigma,1
+detector,4
+false alarm,4
+retraining,1
+institutionalisation,1
+social issues,2
+scope of practice,1
+electronic stability control,1
+biorepository,1
+psychoeducation,1
+social impact assessment,1
+collaborative filtering,1
+primer (cosmetics),1
+critical literacy,1
+harmony (color),2
+filter (signal processing),2
+framing (construction),6
+sustainable society,1
+knowledge society,1
+line (geometry),2
+upstream (networking),4
+downstream (manufacturing),3
+design elements and principles,2
+user-centered design,1
+air traffic control,1
+aside,1
+instance-based learning,1
+robot learning,1
+inductive transfer,1
+algorithmic learning theory,1
+mobile robot,1
+smart growth,1
+electronic publishing,1
+constellation,1
+satellite constellation,1
+health communication,2
+service-level agreement,1
+job shop scheduling,1
+schedule,2
+common criteria,1
+certified information systems security professional,1
+crowdsourcing,5
+mechatronics,1
+cybernetics,2
+preventive healthcare,1
+digital era,3
+dental public health,1
+evidence-based dentistry,1
+new horizons,1
+delegation,2
+witness,3
+cardiac imaging,1
+cardiac magnetic resonance,1
+cardiac magnetic resonance imaging,1
+computed tomography,1
+modality (human–computer interaction),2
+cardiac ultrasound,1
+wavelet,2
+instructional design,4
+small business,1
+commodity,1
+altmetrics,3
+social media optimization,1
+social media analytics,3
+migrant workers,1
+advice (programming),1
+turing,1
+turing test,1
+knowledge economy,2
+fusion,1
+deep packet inspection,2
+medical law,1
+indigenous,1
+yesterday,1
+digital earth,1
+depression (economics),1
+person-centered therapy,1
+psychodynamic psychotherapy,1
+multi-level governance,2
+democratization,4
+selection bias,1
+encyclopedia,2
+democratic legitimacy,1
+qualitative analysis,5
+plural,1
+legal positivism,1
+legal profession,2
+legal realism,2
+container (type theory),1
+restructuring,2
+causation,1
+human–robot interaction,1
+similarity (geometry),3
+data extraction,4
+epigenome,1
+dna methylation,1
+gene expression,1
+coronavirus,3
+the arts,1
+dissemination,2
+water supply,1
+smartwatch,1
+liberalization,1
+pathogen,1
+yardstick,2
+salience (neuroscience),1
+responsible research and innovation,2
+vanguard,1
+ukrainian,1
+dynamic programming,1
+optimism,1
+tipping point (physics),1
+runtime verification,1
+functional verification,1
+software verification,1
+verification,1
+intelligent verification,1
+high-level verification,1
+instrumentation (computer programming),1
+verification and validation,1
+consequentialism,1
+utilitarianism,2
+complement (music),1
+phenotype,2
+complementation,1
+educational assessment,2
+judgement,1
+high tech,2
+frame analysis,1
+guardian,1
+modularity (biology),1
+toolbox,2
+learning sciences,2
+curriculum development,1
+synchronous learning,1
+natural hazard,2
+unemployment,1
+livelihood,1
+viral vector,1
+vector (molecular biology),1
+genetically modified organism,1
+recombinant dna,1
+crowds,1
+social network analysis,2
+virtual prototyping,1
+project-based learning,1
+delegate,1
+terahertz radiation,1
+beam (structure),1
+cellular communication,2
+optoelectronics,1
+criminal investigation,2
+guard (computer science),4
+expressive power,1
+formal description,1
+ubiquitous computing,3
+body of knowledge,2
+human genetics,3
+longevity,1
+regenerative medicine,1
+stem cell,2
+turnout,1
+generality,1
+critical security studies,3
+spare time,1
+norwegian,1
+adaptive neuro fuzzy inference system,1
+fuzzy control system,1
+patient confidentiality,1
+polling,2
+consumer research,1
+compass,1
+actigraphy,1
+circadian rhythm,1
+urbanism,3
+task force,2
+political advertising,1
+template,1
+emerald,1
+mineralogy,1
+sustainable tourism,3
+citation analysis,1
+co-citation,1
+exploratory analysis,2
+annotation,2
+genome project,1
+dna sequencing,3
+earnings,1
+word of mouth,1
+zero tolerance,1
+performing arts,2
+quantum technology,2
+quantum sensor,1
+open quantum system,1
+risk governance,4
+critical pathways,1
+sword,2
+password cracking,1
+keystroke logging,1
+paranoia,1
+tamper resistance,1
+delphi,2
+chaos (operating system),1
+smart environment,2
+waveform,1
+iec 61850,3
+time domain,1
+frequency domain,1
+respiratory system,1
+respiratory monitoring,1
+culpability,1
+fatalism,1
+skepticism,3
+transferability,1
+distillation,1
+proposition,2
+behavioral pattern,2
+web engineering,1
+web navigation,1
+web 2.0,1
+unit of account,1
+store of value,1
+volatility (finance),5
+medium of exchange,2
+ovarian cancer,1
+genetic testing,1
+genetic variation,1
+scientific communication,1
+human communication,1
+models of communication,1
+humanitarian logistics,1
+fiduciary,2
+duty,3
+turning point,1
+policy making,1
+hospitality management studies,1
+intuition,1
+environmental governance,1
+enterprise data management,1
+business process,6
+work in process,8
+enterprise information system,1
+high-voltage direct current,1
+control system,2
+direct current,1
+model checking,1
+redundancy (engineering),2
+circular economy,3
+carbon neutrality,1
+industrialisation,1
+life-cycle assessment,1
+low-carbon economy,1
+land use,1
+suicidal ideation,1
+bluetooth,4
+syllabus,1
+counterfactual thinking,4
+database security,1
+development aid,1
+humanitarian aid,4
+health literacy,1
+random permutation,1
+shot (pellet),1
+ground zero,1
+debugging,1
+cross-site scripting,1
+sql injection,2
+sql,1
+query by example,2
+web search query,2
+mental health care,1
+victory,1
+alienation,1
+nursing diagnosis,1
+span (engineering),1
+life span,1
+evidence-based policy,2
+fault tree analysis,1
+root cause,1
+formalism (music),1
+conformity assessment,1
+metrology,1
+quantum information science,1
+quantum entanglement,1
+terabyte,1
+fair_data value,1
+mark-to-market accounting,1
+fair_data market value,1
+financial accounting,1
+accounting information system,2
+market value,1
+balance sheet,2
+diligence,1
+protection mechanism,1
+sensitivity (control systems),2
+k-nearest neighbors algorithm,2
+mobile banking,2
+radio-frequency identification,2
+warehouse,1
+discriminator,1
+connotation,1
+value capture,1
+architecture framework,1
+public opinion,1
+mutual authentication,2
+textile,1
+human enhancement,1
+sustainable agriculture,1
+resource efficiency,2
+devops,1
+systems development life cycle,1
+application security,2
+software development process,1
+planet,1
+astrophysics,3
+honesty,1
+business ecosystem,3
+value creation,2
+property (philosophy),4
+ideal (ethics),1
+nursing ethics,3
+baseline (sea),6
+body area network,2
+frequentist inference,1
+cognitive neuroscience,1
+computational neuroscience,1
+systems neuroscience,1
+bayesian inference,1
+central nervous system,1
+myelin,1
+oligodendrocyte,1
+subspace topology,1
+restricted boltzmann machine,1
+feature vector,1
+consumer welfare,1
+computer access control,2
+pharmacy practice,2
+clinical pharmacy,1
+contrast (vision),2
+human error,1
+quantitative assessment,1
+workbook,1
+design methods,1
+feeling,5
+marketing strategy,1
+marketing management,2
+translational science,1
+translational medicine,2
+translational research,1
+climate finance,1
+self-organization,1
+aes implementations,1
+power analysis,2
+advanced encryption standard,1
+deliberation,2
+deliberative democracy,1
+belligerent,1
+government regulation,1
+oral microbiome,1
+microbiome,2
+dysbiosis,1
+metagenomics,2
+human microbiome,1
+decipher,1
+gut flora,1
+laptop,2
+observatory,1
+dynamic decision-making,1
+mobile malware,3
+personal computer,1
+cash flow,1
+business risks,2
+business operations,2
+cornerstone,2
+variable pricing,2
+pricing strategies,3
+outrage,1
+investment theory,1
+capital asset pricing model,1
+dedicated short-range communications,1
+beamwidth,1
+active fault,1
+actuator,2
+seismology,7
+disaster risk reduction,2
+science education,1
+anxiety,2
+technological convergence,2
+trend analysis,1
+bespoke,1
+r package,1
+comorbidity,1
+body mass index,1
+pneumonia,1
+retrospective cohort study,1
+attack patterns,2
+explosive material,1
+protocol stack,1
+visible light communication,1
+light-emitting diode,1
+fundus photography,1
+retinal,1
+fluorescein angiography,1
+agricultural economics,2
+dialog box,1
+rebuttal,1
+social change,2
+social computing,1
+social relation,1
+social heuristics,1
+healthcare service,2
+autoregressive integrated moving average,1
+autonomous system (mathematics),1
+core self-evaluations,1
+job attitude,1
+prime (order theory),1
+prime time,1
+operational risk,1
+electronic mail,1
+signcryption,1
+key space,3
+scrambling,1
+inductive charging,1
+regression,1
+integer (computer science),2
+scientific publishing,2
+gene isoform,1
+apoptosis,1
+cell culture,1
+suppressor,1
+transcription (linguistics),1
+cell biology,2
+molecular biology,1
+respondent,1
+distributive justice,1
+interactional justice,1
+geospatial metadata,1
+data dictionary,1
+data element,1
+database catalog,1
+metadata modeling,1
+cryptographic hash function,2
+sha-2,1
+secure hash algorithm,1
+hash-based message authentication code,1
+message authentication code,1
+quality assurance,1
+external quality assessment,1
+new economy,1
+incident management,3
+command and control,2
+train,1
+controller (irrigation),2
+haar wavelet,1
+wavelet transform,1
+discrete wavelet transform,1
+agronomy,2
+dichotomy,1
+psychological safety,1
+authenticated encryption,1
+cryptanalysis,1
+censorship,1
+convention,2
+digital scholarship,1
+destinations,1
+tourist destinations,1
+neural cryptography,1
+customer base,2
+financial risk,1
+broadband,1
+mobile broadband,1
+process safety,2
+sequence (biology),5
+process mining,1
+business process management,1
+core network,1
+aka,2
+medical information,1
+european commission,1
+mobile ad hoc network,1
+social security,2
+personality psychology,1
+big five personality traits,1
+greenwashing,2
+trojan horse,1
+trojan,1
+opposition (politics),1
+publicity,1
+newspaper,3
+distributed power,1
+due diligence,1
+public healthcare,1
+app store,1
+social determinants of health,3
+censoring (clinical trials),1
+midstream,1
+industrial production,1
+safety assurance,1
+carcinogenesis,1
+cancer stem cell,1
+cancer cell,1
+metabolic disease,1
+cell metabolism,1
+surgical oncology,1
+metabolism,1
+cell,1
+interoperation,1
+personal protective equipment,1
+discriminative model,1
+region of interest,1
+pessimism,1
+humanism,1
+self-confidence,1
+urban metabolism,1
+urban density,1
+health promotion,3
+threat assessment,2
+financial instrument,1
+corporation,1
+jargon,1
+code of conduct,1
+upgrade,1
+named-entity recognition,1
+entity linking,1
+information extraction,2
+named entity,1
+physical system,1
+provenance,1
+petrology,1
+nuclear power,1
+energy subsidies,1
+energy source,1
+civil liberties,1
+right to privacy,3
+express trust,1
+bernoulli distribution,1
+discrete time and continuous time,1
+bernoulli's principle,1
+stochastic neural network,1
+multiplicative function,1
+stochastic process,1
+header,1
+multidimensional scaling,1
+pairwise comparison,1
+metric space,1
+blended learning,1
+central bank,1
+monetary policy,1
+venous thromboembolism,1
+european population,1
+vaccination,1
+surgery,1
+thrombosis,1
+interactivity,1
+goodwill,1
+mandatory access control,1
+role-based access control,1
+morphing,1
+critically ill,1
+surge,1
+critical illness,1
+osi model,2
+interconnection,2
+genome biology,1
+computational genomics,1
+personal genomics,2
+services computing,1
+collective action,1
+price discrimination,2
+commercial law,1
+law of one price,1
+mid price,1
+price level,1
+leakage (economics),1
+battle,3
+space policy,1
+space exploration,1
+confusion matrix,1
+stressor,1
+supervisor,1
+concatenation (mathematics),1
+human development (humanity),1
+reverse engineering,1
+transactional leadership,1
+marketing science,1
+relationship marketing,1
+cultural psychology,1
+action plan,1
+blacklisting,1
+food industry,1
+food processing,2
+food safety,2
+information hiding,1
+yield management,1
+intelligent agent,1
+apprehension,1
+sybil attack,2
+philosophy of law,1
+internet service provider,1
+normality,2
+memorization,1
+energy transition,1
+panacea (medicine),2
+rare disease,1
+incident report,1
+counterfactual conditional,1
+colorectal cancer,1
+behavioral analysis,1
+physical access,1
+watson,1
+semantics (computer science),2
+virtual power plant,1
+epidemic model,1
+basic reproduction number,1
+boundary-work,1
+policy analysis,1
+neuromarketing,1
+serious game,1
+information-centric networking,1
+content delivery,1
+ip address,1
+content centric networking,1
+divergence (linguistics),1
+quantitative analysis (chemistry),1
+critical appraisal,2
+mel-frequency cepstrum,1
+cepstrum,1
+health management system,1
+tanzania,1
+social acceptance,1
+file format,1
+multi-frequency network,1
+quantum machine learning,1
+rivalry,2
+flood myth,2
+flash flood,1
+pluvial,1
+hazard,1
+application lifecycle management,1
+upsampling,1
+backpropagation,1
+disconnection,1
+distraction,1
+brownfield,1
+redevelopment,1
+willingness to pay,1
+labelling,1
+energy sector,4
+electoral reform,1
+matrix multiplication,1
+secure multi-party computation,4
+multiplication (music),1
+grid-connected photovoltaic power system,1
+maximum power point tracking,1
+inverter,1
+building design,1
+sustainable design,1
+conceptual design,1
+engineering design process,3
+buffer overflow,1
+possession (linguistics),1
+superpower,1
+global leadership,2
+brain disease,1
+decision engineering,1
+business decision mapping,1
+industrial society,1
+open society,1
+stylized fact,2
+production theory,1
+macro,1
+member state,1
+contest,2
+grid system,1
+enlightenment,1
+eurobarometer,1
+sampling bias,1
+skew,1
+sampling (signal processing),1
+sample size determination,1
+experimental economics,1
+carbon fibers,2
+composite number,2
+automatic identification system,1
+collision,1
+maritime safety,1
+multiclass classification,1
+project risk management,2
+extreme project management,1
+opm3,1
+civil infrastructure,1
+interrupted time series analysis,1
+reputation management,1
+digital data,2
+operational excellence,1
+existentialism,1
+exposition (narrative),1
+demand side,1
+mixed reality,1
+creative visualization,1
+mimo,1
+beamforming,1
+betrayal,1
+bounded function,1
+covert channel,1
+dairy farming,1
+technological change,2
+market analysis,1
+analogy,1
+health law,1
+public health law,1
+international health,1
+knapsack problem,1
+crisis communication,1
+crisis response,1
+market penetration,1
+genetic data,1
+descriptive research,1
+structural functionalism,1
+great moderation,1
+stratified sampling,1
+volunteered geographic information,1
+spatial data infrastructure,1
+spatial analysis,1
+mobile internet,1
+android application,1
+fear appeal,1
+link (geometry),1
+recreation,1
+personnel selection,1
+openflow,1
+hardware security module,1
+realism,1
+monopolization,1
+monopoly,1
+nuclear engineering,2
+teriflunomide,1
+ofatumumab,1
+multiple sclerosis,1
+monoclonal antibody,1
+cd20,1
+antibody,1
+fingolimod,1
+streaming data,2
+negativity effect,1
+estimation,2
+oracle,2
+quality of experience,1
+access network,1
+cross-domain interoperability,1
+compendium,1
+functional illiteracy,1
+obsolescence,1
+key distribution in wireless sensor networks,2
+backwardness,1
+imitation,1
+classical mechanics,2
+gravitation,1
+blackout,1
+protective relay,2
+relay,2
+scientific modelling,1
+czech,1
+human trafficking,2
+chart,1
+service-dominant logic,1
+factor analysis of information risk,1
+risk-based testing,1
+risk management information systems,2
+tacit knowledge,1
+siege,1
+criticism,3
+virtue ethics,1
+virtue,1
+post hoc,1
+communication source,1
+customer engagement,2
+metaproteomics,1
+shapley value,1
+sequential game,1
+cooperative game theory,1
+non-cooperative game,1
+screening game,1
+ac power,2
+medical device,1
+units of measurement,1
+intellectual capital,1
+embeddedness,1
+internet traffic,1
+electronics,1
+total quality management,1
+electric energy,1
+interview,1
+expert opinion,1
+biodiversity conservation,1
+cronbach's alpha,2
+paillier cryptosystem,2
+hybrid cryptosystem,2
+intermediate language,1
+compiler,1
+impact assessment,1
+early warning system,1
+byte,1
+compressed sensing,1
+swamp,1
+anesthesiology,1
+kalman filter,2
+replay attack,1
+smart material,1
+footprint,1
+nurse education,2
+completeness (order theory),2
+reproducibility,1
+public prosecutor,1
+deregulation,1
+swarm intelligence,1
+firefly algorithm,1
+artificial bee colony algorithm,1
+grassroots,1
+nature versus nurture,2
+parallels,2
+jaccard index,1
+sørensen–dice coefficient,1
+external auditor,1
+internal audit,3
+ideal solution,1
+oblivious transfer,1
+security parameter,1
+accelerometer,1
+acceleration,1
+service system,1
+service innovation,1
+cloud service provider,1
+collective responsibility,1
+responsibility to protect,1
+record linkage,1
+thriving,1
+fragmentation (computing),2
+black swan theory,1
+variable renewable energy,2
+twin cities,1
+context awareness,1
+the right to privacy,1
+advisory committee,1
+immunization,1
+antigen,1
+simplicity,1
+fault injection,1
+regression testing,1
+maintenance engineering,1
+clinical practice,2
+risk prevention,1
+checksum,1
+pixel,2
+system usability scale,1
+heuristic evaluation,1
+technical journalism,1
+terminal (telecommunication),1
+remote control,1
+independence (probability theory),1
+population ageing,2
+healthy aging,1
+independent living,1
+notation,1
+project commissioning,2
+applied linguistics,1
+theoretical linguistics,1
+quantitative linguistics,1
+project governance,1
+theme (computing),1
+speculation,2
+consciousness,1
+heaven,1
+english language,1
+reflexivity,2
+information technology audit,2
+internal control,1
+joint audit,2
+breast imaging,1
+mammography,1
+xbrl,1
+integrated reporting,1
+enculturation,1
+web analytics,1
+food chain,1
+global value chain,1
+food systems,3
+comparative advantage,1
+chat room,1
+online chat,1
+aging in place,1
+stateless protocol,1
+event study,1
+distancing,1
+cash transfers,1
+social exclusion,1
+social protection,1
+data link layer,1
+bloom filter,1
+informatization,2
+modernization theory,2
+immigration,1
+islamic finance,1
+conflation,1
+shareholder,1
+comparative effectiveness research,1
+performance metric,1
+maritime security,1
+hazardous waste,1
+seborrheic keratosis,1
+vitiligo,1
+data redundancy,1
+initialization,1
+centroid,1
+k-means clustering,1
+dual purpose,1
+loyalty business model,1
+customer delight,1
+service quality,2
+customer advocacy,1
+customer retention,1
+customer to customer,1
+customer intelligence,1
+program management,1
+distributed power generation,1
+flood control,1
+flood forecasting,1
+voltage optimisation,1
+volt-ampere reactive,1
+voltage regulation,1
+power control,1
+power factor,1
+payment card,1
+solubility,1
+escherichia coli,1
+protein sequencing,1
+test set,1
+protein expression,1
+peptide sequence,1
+residual,1
+mendelian inheritance,1
+medical genetics,1
+human genome,1
+sanger sequencing,1
+formal learning,1
+language assessment,1
+vocabulary,1
+coursework,1
+padding,1
+oak ridge national laboratory,1
+national laboratory,1
+housekeeping,1
+gateway (web page),2
+processor scheduling,1
+thread (computing),1
+shipyard,1
+shipbuilding,1
+variation (astronomy),1
+contextual image classification,1
+flagging,1
+lattice-based cryptography,1
+post-quantum cryptography,1
+quantum algorithm,1
+lattice problem,1
+biosignal,1
+legal psychology,1
+customer service,1
+customer experience,1
+spectrogram,1
+a priori and a posteriori,1
+public key certificate,1
+third party,1
+service recovery,1
+compensation (psychology),1
+information management,2
+knowledge-based systems,1
+vectorization (mathematics),1
+root (linguistics),1
+psychosocial,1
+applications of nanotechnology,1
+expert elicitation,1
+global challenges,1
+medical physicist,1
+sorting,1
+electricity retailing,1
+natural resource,1
+heart rhythm,1
+use of force,1
+public security,1
+deadly force,1
+pier,1
+payment service provider,1
+hash tree,1
+friendship,1
+loneliness,1
+sustainable growth rate,1
+bankruptcy,1
+transaction data,1
+artifact-centric business process model,1
+business rule,1
+business process modeling,1
+acknowledgement,1
+missing data,2
+imputation (statistics),1
+life course approach,1
+early childhood,1
+liberation,1
+in vitro,1
+gait,1
+physiology,3
+life-critical system,1
+busbar,1
+differential protection,1
+trusted network connect,1
+join (topology),1
+peacekeeping,1
+human security,1
+intermittent energy source,1
+alarm,1
+unscented transform,1
+extended kalman filter,1
+moving horizon estimation,1
+health psychology,1
+climate change adaptation,1
+neologism,1
+firepower,1
+legal pluralism,1
+pluralism (philosophy),1
+deference,1
+prerogative,1
+communism,1
+medical services,1
+group method of data handling,1
+mass customization,1
+critical mass (sociodynamics),1
+it risk,1
+electronic materials,1
+judicial reform,1
+open domain,1
+liberian dollar,1
+cash,1
+obesity,1
+association (psychology),1
+management of obesity,1
+weight loss,1
+graph theory,1
+power graph analysis,1
+complex network,1
+tissue bank,1
+social learning,1
+self-governance,1
+policy learning,1
+universe,1
+property insurance,1
+casualty insurance,1
+closeness,1
+markov chain,1
+ecological footprint,1
+host-based intrusion detection system,1
+hyperspace,1
+spectacle,1
+ethnic group,1
+exhibition,1
+visitor pattern,1
+museology,1
+mergers and acquisitions,1
+public sphere,1
+domestic violence,1
+risk society,1
+refugee,1
+observability,1
+gold standard (test),1
+power-system protection,1
+multi-agent system,1
+elliptic curve digital signature algorithm,1
+library management,1
+public–private partnership,1
+entrepreneurship,1
+jury,1
+rules of evidence,1
+admissible evidence,1
+sports science,1
+endogeneity,1
+financial distress,1
+financial fragility,1
+crash,1
+soft systems methodology,1
+contradiction,1
+strategic information system,1
+absolute zero,1
+absolute (philosophy),1
+open peer review,1
+plant biology,1
+middle power,1
+democratic governance,1
+destiny (iss module),1
+self-efficacy,1
+lpwan,2
+scram,1
+offender profiling,1
+non-line-of-sight propagation,1
+erosion,1
+geomorphology,1
+open_access publishing,1
+visual impairment,1
+financial statement,1
+audit plan,1
+boilerplate text,1
+corporate finance,1
+transgender,1
+gender identity,1
+gender diversity,1
+gender analysis,1

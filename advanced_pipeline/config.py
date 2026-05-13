@@ -1,0 +1,10 @@
+EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+OLLAMA_MODEL = "gemma3:1b"
+
+DATASET_PATH = "data/cleaned/final_dataset.csv"
+
+MIN_TOPIC_SIZE = 10
+TOP_N_TOPICS = 20
+
+YEAR_START = 2010
+YEAR_END = 2025

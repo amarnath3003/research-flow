@@ -1,0 +1,2052 @@
+Source,Target,Weight
+Maanak Gupta,Mahmoud Abdelsalam,2
+Maanak Gupta,Sajad Khorsandroo,2
+Mahmoud Abdelsalam,Sajad Khorsandroo,2
+Jaime Lloret,Omprakash Kaiwartya,2
+Ibrar Yaqoob,Muhammad Habib ur Rehman,2
+Ibrar Yaqoob,Muhammad Imran,2
+Mohammed Ali Al-Garadi,Mohsen Guizani,3
+Muhammad Habib ur Rehman,Muhammad Imran,2
+Abdelouahid Derhab,Ahmed Emam,2
+Abdelouahid Derhab,Arwa Aldweesh,2
+Ahmed Emam,Arwa Aldweesh,2
+Ara Darzi,Saira Ghafur,2
+Emilia Graß,Saira Ghafur,2
+Hao Yu,Yunyun Guo,2
+Athina P. Petropulu,Christos Masouros,2
+Athina P. Petropulu,Fan Liu,2
+Athina P. Petropulu,Nanchi Su,2
+Athina P. Petropulu,Zhongxiang Wei,2
+Christos Masouros,Fan Liu,3
+Christos Masouros,Nanchi Su,2
+Christos Masouros,Zhongxiang Wei,2
+Fan Liu,Nanchi Su,2
+Fan Liu,Zhongxiang Wei,2
+Nanchi Su,Zhongxiang Wei,2
+Danda B. Rawat,Ronald Doku,2
+Adrianna Łobodzińska,Irmina Durlik,2
+Adrianna Łobodzińska,Tymoteusz Miller,2
+Irmina Durlik,Tymoteusz Miller,3
+Benjamin Turnbull,Nour Moustafa,5
+Christos Tachtatzis,Hanan Hindy,2
+Christos Tachtatzis,Miroslav Bureš,2
+Christos Tachtatzis,Robert Atkinson,2
+Christos Tachtatzis,Xavier Bellekens,2
+Hanan Hindy,Miroslav Bureš,2
+Hanan Hindy,Robert Atkinson,2
+Hanan Hindy,Xavier Bellekens,2
+Miroslav Bureš,Robert Atkinson,2
+Miroslav Bureš,Xavier Bellekens,2
+Robert Atkinson,Xavier Bellekens,2
+Dario Stabili,Mirco Marchetti,2
+Michele Colajanni,Mirco Marchetti,2
+Khaled Salah,Mohammed Omar,2
+Khaled Salah,Raja Jayaraman,4
+Khaled Salah,Raja Wasim Ahmad,2
+Mohammed Omar,Raja Jayaraman,2
+Mohammed Omar,Raja Wasim Ahmad,2
+Raja Jayaraman,Raja Wasim Ahmad,2
+Anita S. Jwa,Russell A. Poldrack,2
+Clay Posey,Rebecca J. Bennett,2
+Joshua A. Gerlick,Stephan M. Liozu,2
+Xiaohong Guan,Zhanbo Xu,2
+Abdelouahid Derhab,Omar Cheikhrouhou,2
+Aditya Saharia,Dominik Molitor,2
+Aditya Saharia,Viju Raghupathi,2
+Aditya Saharia,Wullianallur Raghupathi,2
+Dominik Molitor,Viju Raghupathi,2
+Dominik Molitor,Wullianallur Raghupathi,2
+Viju Raghupathi,Wullianallur Raghupathi,2
+Kazım Yıldız,Şahsene Altınkaya,2
+Chris Greenhalgh,Jeni Tennison,2
+Chris Greenhalgh,Lucélia Rodrigues,2
+Chris Greenhalgh,Murray Goulden,2
+Chris Greenhalgh,Nancy Hughes,2
+Chris Greenhalgh,Roza Vasileva,2
+Jeni Tennison,Lucélia Rodrigues,2
+Jeni Tennison,Murray Goulden,2
+Jeni Tennison,Nancy Hughes,2
+Jeni Tennison,Roza Vasileva,2
+Lucélia Rodrigues,Murray Goulden,2
+Lucélia Rodrigues,Nancy Hughes,2
+Lucélia Rodrigues,Roza Vasileva,2
+Murray Goulden,Nancy Hughes,2
+Murray Goulden,Roza Vasileva,2
+Nancy Hughes,Roza Vasileva,2
+Lavanya Addepalli,Lokhande Gaurav,2
+Lavanya Addepalli,S. Sindhuja,2
+Lavanya Addepalli,Waqas Ali,2
+Lokhande Gaurav,S. Sindhuja,2
+Lokhande Gaurav,Waqas Ali,3
+S. Sindhuja,Waqas Ali,2
+Krishnashree Achuthan,Sriram Sankaran,2
+Junaid Arshad,Muhammad Ajmal Azad,2
+Habib Hamam,Mamoon M. Saeed,2
+Habib Hamam,Muhammad Amir Khan,3
+Habib Hamam,Sunawar Khan,2
+Habib Hamam,Tariq Shahzad,4
+Habib Hamam,Tehseen Mazhar,6
+Mamoon M. Saeed,Tehseen Mazhar,2
+Muhammad Amir Khan,Tariq Shahzad,3
+Muhammad Amir Khan,Tehseen Mazhar,4
+Sunawar Khan,Tehseen Mazhar,2
+Tariq Shahzad,Tehseen Mazhar,5
+Abimbola Oluwatoyin Adegbite,Aniekan Akpan Umoh,2
+Abimbola Oluwatoyin Adegbite,Ayodeji Abatan,2
+A. S. M. Kayes,Alex Ng,2
+A. S. M. Kayes,Paul Watters,3
+Alex Ng,Paul Watters,2
+Alberto Huertas Celdrán,Gregorio Martínez Pérez,2
+Alberto Huertas Celdrán,Pedro Miguel Sánchez Sánchez,2
+Gregorio Martínez Pérez,Pedro Miguel Sánchez Sánchez,2
+Glenn Cohen,Sara Gerke,2
+Glenn Cohen,Timo Minssen,2
+Sara Gerke,Timo Minssen,3
+Alvina G. Lai,Johan H. Thygesen,2
+Alvina G. Lai,Joseph Farrington,2
+Alvina G. Lai,Kezhi Li,2
+Alvina G. Lai,Thomas Keen,2
+Alvina G. Lai,Zhijun Guo,2
+Johan H. Thygesen,Joseph Farrington,2
+Johan H. Thygesen,Kezhi Li,2
+Johan H. Thygesen,Thomas Keen,2
+Johan H. Thygesen,Zhijun Guo,2
+Joseph Farrington,Kezhi Li,2
+Joseph Farrington,Thomas Keen,2
+Joseph Farrington,Zhijun Guo,2
+Kezhi Li,Thomas Keen,2
+Kezhi Li,Zhijun Guo,2
+Thomas Keen,Zhijun Guo,2
+Dinh C. Nguyen,Pubudu N. Pathirana,4
+Abdullah Ayub Khan,Asif Ali Laghari,3
+Carsten Maple,Gregory Epiphaniou,2
+Abdullah M. Baabdullah,Alex Koohang,2
+Abdullah M. Baabdullah,Arpan Kumar Kar,3
+Abdullah M. Baabdullah,Frantz Rowe,2
+Abdullah M. Baabdullah,Gareth H. Davies,2
+Abdullah M. Baabdullah,Giampaolo Viglia,2
+Abdullah M. Baabdullah,Janarthanan Balakrishnan,2
+Abdullah M. Baabdullah,Laurie Hughes,3
+Abdullah M. Baabdullah,Michael Wade,2
+Abdullah M. Baabdullah,Neeraj Pandey,2
+Abdullah M. Baabdullah,Nir Kshetri,2
+Abdullah M. Baabdullah,Nripendra P. Rana,3
+Abdullah M. Baabdullah,Rahul Dé,2
+Abdullah M. Baabdullah,Ramakrishnan Raman,3
+Abdullah M. Baabdullah,Rameshwar Dubey,2
+Abdullah M. Baabdullah,Robert M. Davison,2
+Abdullah M. Baabdullah,Rohita Dwivedi,2
+Abdullah M. Baabdullah,Samuel Ribeiro‐Navarrete,2
+Abdullah M. Baabdullah,Savvas Papagiannidis,2
+Abdullah M. Baabdullah,Sriparna Basu,2
+Abdullah M. Baabdullah,Suprateek Sarker,2
+Abdullah M. Baabdullah,Yogesh K. Dwivedi,3
+Abdullah M. Baabdullah,Yves Barlette,2
+Alex Koohang,Arpan Kumar Kar,2
+Alex Koohang,Gareth H. Davies,2
+Alex Koohang,Giampaolo Viglia,2
+Alex Koohang,Janarthanan Balakrishnan,2
+Alex Koohang,Laurie Hughes,2
+Alex Koohang,Neeraj Pandey,2
+Alex Koohang,Nir Kshetri,2
+Alex Koohang,Nripendra P. Rana,2
+Alex Koohang,Ramakrishnan Raman,2
+Alex Koohang,Rohita Dwivedi,2
+Alex Koohang,Samuel Ribeiro‐Navarrete,2
+Alex Koohang,Savvas Papagiannidis,2
+Alex Koohang,Sriparna Basu,2
+Alex Koohang,Yogesh K. Dwivedi,2
+Arpan Kumar Kar,Frantz Rowe,2
+Arpan Kumar Kar,Gareth H. Davies,2
+Arpan Kumar Kar,Giampaolo Viglia,2
+Arpan Kumar Kar,Janarthanan Balakrishnan,2
+Arpan Kumar Kar,Laurie Hughes,3
+Arpan Kumar Kar,Marijn Janssen,3
+Arpan Kumar Kar,Michael Wade,2
+Arpan Kumar Kar,Neeraj Pandey,2
+Arpan Kumar Kar,Nir Kshetri,2
+Arpan Kumar Kar,Nripendra P. Rana,3
+Arpan Kumar Kar,Rahul Dé,2
+Arpan Kumar Kar,Ramakrishnan Raman,3
+Arpan Kumar Kar,Rameshwar Dubey,2
+Arpan Kumar Kar,Robert M. Davison,2
+Arpan Kumar Kar,Rohita Dwivedi,2
+Arpan Kumar Kar,Samuel Ribeiro‐Navarrete,2
+Arpan Kumar Kar,Savvas Papagiannidis,2
+Arpan Kumar Kar,Sriparna Basu,2
+Arpan Kumar Kar,Suprateek Sarker,2
+Arpan Kumar Kar,Yogesh K. Dwivedi,3
+Arpan Kumar Kar,Yves Barlette,2
+Bernd Carsten Stahl,Laurence Brooks,3
+Dimitrios Buhalis,Giampaolo Viglia,2
+Dimitrios Buhalis,Yogesh K. Dwivedi,2
+Frantz Rowe,Laurie Hughes,2
+Frantz Rowe,Michael Wade,2
+Frantz Rowe,Nripendra P. Rana,2
+Frantz Rowe,Rahul Dé,2
+Frantz Rowe,Ramakrishnan Raman,2
+Frantz Rowe,Rameshwar Dubey,2
+Frantz Rowe,Robert M. Davison,2
+Frantz Rowe,Suprateek Sarker,2
+Frantz Rowe,Yogesh K. Dwivedi,2
+Frantz Rowe,Yves Barlette,2
+Gareth H. Davies,Giampaolo Viglia,2
+Gareth H. Davies,Janarthanan Balakrishnan,2
+Gareth H. Davies,Laurie Hughes,2
+Gareth H. Davies,Neeraj Pandey,2
+Gareth H. Davies,Nir Kshetri,2
+Gareth H. Davies,Nripendra P. Rana,2
+Gareth H. Davies,Ramakrishnan Raman,2
+Gareth H. Davies,Rohita Dwivedi,2
+Gareth H. Davies,Samuel Ribeiro‐Navarrete,2
+Gareth H. Davies,Savvas Papagiannidis,2
+Gareth H. Davies,Sriparna Basu,2
+Gareth H. Davies,Yogesh K. Dwivedi,2
+Giampaolo Viglia,Janarthanan Balakrishnan,2
+Giampaolo Viglia,Laurie Hughes,2
+Giampaolo Viglia,Neeraj Pandey,2
+Giampaolo Viglia,Nir Kshetri,2
+Giampaolo Viglia,Nripendra P. Rana,2
+Giampaolo Viglia,Ramakrishnan Raman,2
+Giampaolo Viglia,Rohita Dwivedi,2
+Giampaolo Viglia,Samuel Ribeiro‐Navarrete,2
+Giampaolo Viglia,Savvas Papagiannidis,2
+Giampaolo Viglia,Sriparna Basu,2
+Giampaolo Viglia,Yogesh K. Dwivedi,2
+Janarthanan Balakrishnan,Laurie Hughes,2
+Janarthanan Balakrishnan,Neeraj Pandey,2
+Janarthanan Balakrishnan,Nir Kshetri,2
+Janarthanan Balakrishnan,Nripendra P. Rana,2
+Janarthanan Balakrishnan,Ramakrishnan Raman,2
+Janarthanan Balakrishnan,Rohita Dwivedi,2
+Janarthanan Balakrishnan,Samuel Ribeiro‐Navarrete,2
+Janarthanan Balakrishnan,Savvas Papagiannidis,2
+Janarthanan Balakrishnan,Sriparna Basu,2
+Janarthanan Balakrishnan,Yogesh K. Dwivedi,2
+Laurie Hughes,Michael Wade,2
+Laurie Hughes,Neeraj Pandey,2
+Laurie Hughes,Nir Kshetri,2
+Laurie Hughes,Nripendra P. Rana,4
+Laurie Hughes,Rahul Dé,2
+Laurie Hughes,Ramakrishnan Raman,3
+Laurie Hughes,Rameshwar Dubey,2
+Laurie Hughes,Robert M. Davison,2
+Laurie Hughes,Rohita Dwivedi,2
+Laurie Hughes,Samuel Ribeiro‐Navarrete,2
+Laurie Hughes,Savvas Papagiannidis,2
+Laurie Hughes,Sriparna Basu,2
+Laurie Hughes,Suprateek Sarker,2
+Laurie Hughes,Yogesh K. Dwivedi,4
+Laurie Hughes,Yves Barlette,2
+Michael Wade,Nripendra P. Rana,2
+Michael Wade,Rahul Dé,2
+Michael Wade,Ramakrishnan Raman,2
+Michael Wade,Rameshwar Dubey,2
+Michael Wade,Robert M. Davison,2
+Michael Wade,Suprateek Sarker,2
+Michael Wade,Yogesh K. Dwivedi,2
+Michael Wade,Yves Barlette,2
+Neeraj Pandey,Nir Kshetri,2
+Neeraj Pandey,Nripendra P. Rana,2
+Neeraj Pandey,Ramakrishnan Raman,2
+Neeraj Pandey,Rohita Dwivedi,2
+Neeraj Pandey,Samuel Ribeiro‐Navarrete,2
+Neeraj Pandey,Savvas Papagiannidis,2
+Neeraj Pandey,Sriparna Basu,2
+Neeraj Pandey,Yogesh K. Dwivedi,2
+Nir Kshetri,Nripendra P. Rana,2
+Nir Kshetri,Ramakrishnan Raman,2
+Nir Kshetri,Rohita Dwivedi,2
+Nir Kshetri,Samuel Ribeiro‐Navarrete,2
+Nir Kshetri,Savvas Papagiannidis,2
+Nir Kshetri,Sriparna Basu,2
+Nir Kshetri,Yogesh K. Dwivedi,2
+Nripendra P. Rana,Rahul Dé,2
+Nripendra P. Rana,Ramakrishnan Raman,3
+Nripendra P. Rana,Rameshwar Dubey,2
+Nripendra P. Rana,Robert M. Davison,2
+Nripendra P. Rana,Rohita Dwivedi,2
+Nripendra P. Rana,Samuel Ribeiro‐Navarrete,2
+Nripendra P. Rana,Savvas Papagiannidis,2
+Nripendra P. Rana,Sriparna Basu,2
+Nripendra P. Rana,Suprateek Sarker,2
+Nripendra P. Rana,Yogesh K. Dwivedi,6
+Nripendra P. Rana,Yves Barlette,2
+Paul Jones,Sascha Kraus,2
+Paul Jones,Yogesh K. Dwivedi,2
+Rahul Dé,Ramakrishnan Raman,2
+Rahul Dé,Rameshwar Dubey,2
+Rahul Dé,Robert M. Davison,2
+Rahul Dé,Suprateek Sarker,2
+Rahul Dé,Yogesh K. Dwivedi,2
+Rahul Dé,Yves Barlette,2
+Ramakrishnan Raman,Rameshwar Dubey,2
+Ramakrishnan Raman,Robert M. Davison,2
+Ramakrishnan Raman,Rohita Dwivedi,2
+Ramakrishnan Raman,Samuel Ribeiro‐Navarrete,2
+Ramakrishnan Raman,Savvas Papagiannidis,2
+Ramakrishnan Raman,Sriparna Basu,2
+Ramakrishnan Raman,Suprateek Sarker,2
+Ramakrishnan Raman,Yogesh K. Dwivedi,4
+Ramakrishnan Raman,Yves Barlette,2
+Rameshwar Dubey,Robert M. Davison,2
+Rameshwar Dubey,Suprateek Sarker,2
+Rameshwar Dubey,Yogesh K. Dwivedi,2
+Rameshwar Dubey,Yves Barlette,2
+Robert M. Davison,Suprateek Sarker,2
+Robert M. Davison,Yogesh K. Dwivedi,2
+Robert M. Davison,Yves Barlette,2
+Rohita Dwivedi,Samuel Ribeiro‐Navarrete,2
+Rohita Dwivedi,Savvas Papagiannidis,2
+Rohita Dwivedi,Sriparna Basu,2
+Rohita Dwivedi,Yogesh K. Dwivedi,2
+Samuel Ribeiro‐Navarrete,Savvas Papagiannidis,2
+Samuel Ribeiro‐Navarrete,Sriparna Basu,2
+Samuel Ribeiro‐Navarrete,Yogesh K. Dwivedi,2
+Sascha Kraus,Yogesh K. Dwivedi,2
+Savvas Papagiannidis,Soumyadeb Chowdhury,2
+Savvas Papagiannidis,Sriparna Basu,2
+Savvas Papagiannidis,Yogesh K. Dwivedi,2
+Sriparna Basu,Yogesh K. Dwivedi,2
+Suprateek Sarker,Yogesh K. Dwivedi,2
+Suprateek Sarker,Yves Barlette,2
+Yogesh K. Dwivedi,Yves Barlette,2
+Alika Guchua,Thornike Zedelashvili,3
+Daniel Molina,Francisco Herrera,3
+Daniel Molina,Javier Del Ser,2
+Francisco Herrera,Javier Del Ser,5
+Francisco Herrera,Natalia Díaz-Rodríguez,3
+Francisco Herrera,Salvador García,2
+Javier Del Ser,Natalia Díaz-Rodríguez,4
+Abdelouahid Derhab,Farrukh Aslam Khan,2
+Abdelouahid Derhab,Mohamed Amine Ferrag,3
+Abdelouahid Derhab,Λέανδρος Μαγλαράς,3
+Mohamed Amine Ferrag,Λέανδρος Μαγλαράς,7
+Muhammad Anshari,Muhammad Syafrudin,2
+Muhammad Anshari,Norma Latif Fitriyani,2
+Muhammad Syafrudin,Norma Latif Fitriyani,2
+Ali Dehghantanha,Kim‐Kwang Raymond Choo,2
+Kim‐Kwang Raymond Choo,Reza M. Parizi,2
+Lewis Golightly,Victor Chang,4
+Edima David Etim,Ehimah Obuse,2
+Edima David Etim,Emmanuel Cadet,2
+Edima David Etim,Eseoghene Daniel Erigha,2
+Edima David Etim,Iboro Akpan Essien,2
+Edima David Etim,Joshua Oluwagbenga Ajayi,2
+Edima David Etim,Lawal Abdulmutalib Babatunde,2
+Ehimah Obuse,Emmanuel Cadet,2
+Ehimah Obuse,Eseoghene Daniel Erigha,2
+Ehimah Obuse,Iboro Akpan Essien,2
+Ehimah Obuse,Joshua Oluwagbenga Ajayi,2
+Ehimah Obuse,Lawal Abdulmutalib Babatunde,2
+Emmanuel Cadet,Eseoghene Daniel Erigha,2
+Emmanuel Cadet,Iboro Akpan Essien,2
+Emmanuel Cadet,Joshua Oluwagbenga Ajayi,2
+Emmanuel Cadet,Lawal Abdulmutalib Babatunde,2
+Eseoghene Daniel Erigha,Iboro Akpan Essien,2
+Eseoghene Daniel Erigha,Joshua Oluwagbenga Ajayi,2
+Eseoghene Daniel Erigha,Lawal Abdulmutalib Babatunde,2
+Iboro Akpan Essien,Joshua Oluwagbenga Ajayi,2
+Iboro Akpan Essien,Lawal Abdulmutalib Babatunde,2
+Joshua Oluwagbenga Ajayi,Lawal Abdulmutalib Babatunde,2
+Angsana A. Techatassanasoontorn,Robert M. Davison,2
+Niki Panteli,Robert M. Davison,2
+Asadullah Tariq,Ezedin Barka,2
+Asadullah Tariq,Farag Sallabi,2
+Asadullah Tariq,Khaled Shuaib,2
+Asadullah Tariq,Mohamed Adel Serhani,2
+Asadullah Tariq,Tariq Qayyum,2
+Ezedin Barka,Farag Sallabi,2
+Ezedin Barka,Khaled Shuaib,2
+Ezedin Barka,Mohamed Adel Serhani,2
+Ezedin Barka,Tariq Qayyum,2
+Farag Sallabi,Khaled Shuaib,2
+Farag Sallabi,Mohamed Adel Serhani,2
+Farag Sallabi,Tariq Qayyum,2
+Khaled Shuaib,Mohamed Adel Serhani,2
+Khaled Shuaib,Tariq Qayyum,2
+Mohamed Adel Serhani,Tariq Qayyum,2
+Aasim Zafar,Khushnaseeb Roshan,2
+David Flynn,Valentin Robu,2
+Faizan Qamar,Kashif Nisar,3
+Faizan Qamar,Mohammed Azmi Al‐Betar,2
+Faizan Qamar,Rosilah Hassan,6
+Faizan Qamar,Syed Hussain Ali Kazmi,4
+Kashif Nisar,Mohammed Azmi Al‐Betar,2
+Kashif Nisar,Rosilah Hassan,3
+Kashif Nisar,Syed Hussain Ali Kazmi,3
+Mohammed Azmi Al‐Betar,Rosilah Hassan,2
+Mohammed Azmi Al‐Betar,Syed Hussain Ali Kazmi,2
+Rosilah Hassan,Syed Hussain Ali Kazmi,4
+Chunhua Su,Mehrin Anannya,2
+Chunhua Su,Rashed Mazumder,2
+Chunhua Su,Samrat Kumar Dey,2
+Mehrin Anannya,Rashed Mazumder,2
+Mehrin Anannya,Samrat Kumar Dey,2
+Rashed Mazumder,Samrat Kumar Dey,2
+Yuntao Wang,Zhou Su,4
+Asadullah Shaikh,Hani Alshahrani,2
+Dusit Niyato,Han Yu,2
+Dusit Niyato,Huihui Zhu,2
+Dusit Niyato,L. C. Kwek,2
+Dusit Niyato,Minrui Xu,2
+Dusit Niyato,Rudai Yan,2
+Dusit Niyato,Zhao Yang Dong,2
+Han Yu,Huihui Zhu,2
+Han Yu,L. C. Kwek,2
+Han Yu,Minrui Xu,2
+Han Yu,Rudai Yan,2
+Han Yu,Zhao Yang Dong,2
+Huihui Zhu,L. C. Kwek,2
+Huihui Zhu,Minrui Xu,2
+Huihui Zhu,Rudai Yan,2
+Huihui Zhu,Zhao Yang Dong,2
+L. C. Kwek,Minrui Xu,2
+L. C. Kwek,Rudai Yan,2
+L. C. Kwek,Zhao Yang Dong,2
+Minrui Xu,Rudai Yan,2
+Minrui Xu,Zhao Yang Dong,2
+Rudai Yan,Zhao Yang Dong,2
+Bikash Saha,Nanda Rani,3
+Bikash Saha,Sandeep K. Shukla,3
+Nanda Rani,Sandeep K. Shukla,3
+Ben Garfinkel,Sebastian Farquhar,2
+Ben Garfinkel,Shahar Avin,2
+Dario Amodei,Miles Brundage,2
+Miles Brundage,Shahar Avin,2
+Sebastian Farquhar,Shahar Avin,2
+Bartha Maria Knoppers,John Wilbanks,2
+Ambikesh Jayal,Chaminda Hewage,2
+Ambikesh Jayal,Edmond Prakash,3
+Ambikesh Jayal,Nisha Rawindaran,3
+Chaminda Hewage,Edmond Prakash,2
+Chaminda Hewage,Imtiaz Khan,2
+Chaminda Hewage,Nisha Rawindaran,3
+Edmond Prakash,Nisha Rawindaran,3
+Benjamin Collins,Bradley Malin,2
+Benjamin Collins,Chao Yan,2
+Benjamin Collins,Ellen Wright Clayton,2
+Benjamin Collins,Katherine Brown,2
+Benjamin Collins,Murat Kantarcıoğlu,2
+Benjamin Collins,Xinmeng Zhang,2
+Benjamin Collins,Yevgeniy Vorobeychik,2
+Benjamin Collins,You Chen,2
+Benjamin Collins,Zhuohang Li,2
+Bradley Malin,Chao Yan,2
+Bradley Malin,Ellen Wright Clayton,3
+Bradley Malin,Katherine Brown,2
+Bradley Malin,Murat Kantarcıoğlu,3
+Bradley Malin,Xinmeng Zhang,2
+Bradley Malin,Yevgeniy Vorobeychik,3
+Bradley Malin,You Chen,2
+Bradley Malin,Zhuohang Li,2
+Chao Yan,Ellen Wright Clayton,2
+Chao Yan,Katherine Brown,2
+Chao Yan,Murat Kantarcıoğlu,2
+Chao Yan,Xinmeng Zhang,2
+Chao Yan,Yevgeniy Vorobeychik,2
+Chao Yan,You Chen,2
+Chao Yan,Zhuohang Li,2
+Ellen Wright Clayton,Katherine Brown,2
+Ellen Wright Clayton,Murat Kantarcıoğlu,3
+Ellen Wright Clayton,Xinmeng Zhang,2
+Ellen Wright Clayton,Yevgeniy Vorobeychik,3
+Ellen Wright Clayton,You Chen,2
+Ellen Wright Clayton,Zhuohang Li,2
+Katherine Brown,Murat Kantarcıoğlu,2
+Katherine Brown,Xinmeng Zhang,2
+Katherine Brown,Yevgeniy Vorobeychik,2
+Katherine Brown,You Chen,2
+Katherine Brown,Zhuohang Li,2
+Murat Kantarcıoğlu,Xinmeng Zhang,2
+Murat Kantarcıoğlu,Yevgeniy Vorobeychik,3
+Murat Kantarcıoğlu,You Chen,2
+Murat Kantarcıoğlu,Zhuohang Li,2
+Xinmeng Zhang,Yevgeniy Vorobeychik,2
+Xinmeng Zhang,You Chen,2
+Xinmeng Zhang,Zhuohang Li,2
+Yevgeniy Vorobeychik,You Chen,2
+Yevgeniy Vorobeychik,Zhuohang Li,2
+You Chen,Zhuohang Li,2
+Chan Yeob Yeun,Ernesto Damiani,2
+Emmanouil Panaousis,Krishna Chandramouli,2
+Emmanouil Panaousis,Panagiotis Papachristou,2
+Emmanouil Panaousis,Sokratis Nifakos,2
+Emmanouil Panaousis,Stefano Bonacina,2
+Krishna Chandramouli,Panagiotis Papachristou,2
+Krishna Chandramouli,Sokratis Nifakos,2
+Krishna Chandramouli,Stefano Bonacina,2
+Panagiotis Papachristou,Sokratis Nifakos,2
+Panagiotis Papachristou,Stefano Bonacina,2
+Sokratis Nifakos,Stefano Bonacina,2
+Daguang Xu,Micah Sheller,2
+Daguang Xu,Spyridon Bakas,2
+Micah Sheller,Spyridon Bakas,3
+Ahmet E. Topcu,Anis Yazidi,2
+Ahmet E. Topcu,Ashish Rauniyar,2
+Ahmet E. Topcu,Debesh Jha,2
+Ahmet E. Topcu,Desta Haileselassie Hagos,2
+Ahmet E. Topcu,Elif Keleş,2
+Ahmet E. Topcu,Nikhil Kumar Tomar,2
+Ahmet E. Topcu,Ulaş Bağcı,2
+Ahmet E. Topcu,Vanshali Sharma,2
+Ahmet E. Topcu,Zheyuan Zhang,2
+Anis Yazidi,Ashish Rauniyar,2
+Anis Yazidi,Debesh Jha,2
+Anis Yazidi,Desta Haileselassie Hagos,2
+Anis Yazidi,Elif Keleş,2
+Anis Yazidi,Nikhil Kumar Tomar,2
+Anis Yazidi,Ulaş Bağcı,2
+Anis Yazidi,Vanshali Sharma,2
+Anis Yazidi,Zheyuan Zhang,2
+Ashish Rauniyar,Debesh Jha,2
+Ashish Rauniyar,Desta Haileselassie Hagos,2
+Ashish Rauniyar,Elif Keleş,2
+Ashish Rauniyar,Nikhil Kumar Tomar,2
+Ashish Rauniyar,Ulaş Bağcı,2
+Ashish Rauniyar,Vanshali Sharma,2
+Ashish Rauniyar,Zheyuan Zhang,2
+Debesh Jha,Desta Haileselassie Hagos,2
+Debesh Jha,Elif Keleş,2
+Debesh Jha,Nikhil Kumar Tomar,2
+Debesh Jha,Ulaş Bağcı,2
+Debesh Jha,Vanshali Sharma,2
+Debesh Jha,Zheyuan Zhang,2
+Desta Haileselassie Hagos,Elif Keleş,2
+Desta Haileselassie Hagos,Nikhil Kumar Tomar,2
+Desta Haileselassie Hagos,Ulaş Bağcı,2
+Desta Haileselassie Hagos,Vanshali Sharma,2
+Desta Haileselassie Hagos,Zheyuan Zhang,2
+Elif Keleş,Nikhil Kumar Tomar,2
+Elif Keleş,Ulaş Bağcı,2
+Elif Keleş,Vanshali Sharma,2
+Elif Keleş,Zheyuan Zhang,2
+Nikhil Kumar Tomar,Ulaş Bağcı,2
+Nikhil Kumar Tomar,Vanshali Sharma,2
+Nikhil Kumar Tomar,Zheyuan Zhang,2
+Ulaş Bağcı,Vanshali Sharma,2
+Ulaş Bağcı,Zheyuan Zhang,2
+Vanshali Sharma,Zheyuan Zhang,2
+Gengchen Mai,Tianming Liu,2
+Gengchen Mai,Zhengliang Liu,2
+Tianming Liu,Zhengliang Liu,3
+Kai‐Kristian Kemell,Pekka Abrahamsson,2
+Kai‐Kristian Kemell,Ville Vakkuri,2
+Pekka Abrahamsson,Ville Vakkuri,2
+Helge Janicke,Mohamed Amine Ferrag,3
+Helge Janicke,Λέανδρος Μαγλαράς,5
+Shaswata Mitra,Subash Neupane,2
+Shaswata Mitra,Sudip Mittal,2
+Subash Neupane,Sudip Mittal,3
+Diaa‐Eldin A. Mansour,Geofrey Mugerwa,2
+Diaa‐Eldin A. Mansour,Jeremiah Amissah,2
+Diaa‐Eldin A. Mansour,Sammy Kinga,2
+Diaa‐Eldin A. Mansour,Sobhy M. Abdelkader,2
+Geofrey Mugerwa,Jeremiah Amissah,2
+Geofrey Mugerwa,Sammy Kinga,2
+Geofrey Mugerwa,Sobhy M. Abdelkader,2
+Jeremiah Amissah,Sammy Kinga,2
+Jeremiah Amissah,Sobhy M. Abdelkader,3
+Sammy Kinga,Sobhy M. Abdelkader,2
+Elvira Ismagilova,Yogesh K. Dwivedi,2
+Philipp A. Rauschnabel,Ramakrishnan Raman,2
+Philipp A. Rauschnabel,Yichuan Wang,2
+Philipp A. Rauschnabel,Yogesh K. Dwivedi,2
+Ramakrishnan Raman,Yichuan Wang,2
+Yichuan Wang,Yogesh K. Dwivedi,2
+Ali Anıl Sınacı,Carlos Luís Parra-Calderón,2
+Ali Anıl Sınacı,Mert Gençtürk,2
+Carlos Luís Parra-Calderón,Mert Gençtürk,2
+Christian Lovis,Christophe Gaudet-Blavignac,3
+Mohit Bajaj,Vojtěch Blažek,2
+Sokratis Katsikas,Vasileios Gkioulos,2
+Aanuoluwapo Clement David-Olawade,David B. Olawade,3
+Imran Makhdoom,Mehran Abolhasan,2
+Niki O’Brien,Saira Ghafur,2
+Prema Nedungadi,Raghu Raman,2
+Tom H. Luan,Yanghe Pan,2
+Tom H. Luan,Yuntao Wang,2
+Tom H. Luan,Zhou Su,3
+Yanghe Pan,Yuntao Wang,2
+Yanghe Pan,Zhou Su,2
+Abdullah Baz,Hosam Alhakami,2
+Abdullah Baz,Raees Ahmad Khan,2
+Abdullah Baz,Wajdi Alhakami,2
+Hosam Alhakami,Raees Ahmad Khan,2
+Hosam Alhakami,Wajdi Alhakami,2
+Raees Ahmad Khan,Wajdi Alhakami,2
+Hsinchun Chen,Mohammadreza Ebrahimi,2
+Ammar Alazab,Ansam Khraisat,2
+Malek Al‐Zewairi,Moussa Ayyash,2
+Malek Al‐Zewairi,Sufyan Almajali,2
+Moussa Ayyash,Sufyan Almajali,2
+Xiaohu You,Yongming Huang,2
+Karen Renaud,Marc Dupuis,3
+Karen Renaud,Rosalind Searle,2
+Marc Dupuis,Rosalind Searle,2
+Elías Mossialos,Michael Anderson,3
+Biplab Sikdar,Vikas Hassija,3
+Biplab Sikdar,Vinay Chamola,3
+Vikas Hassija,Vinay Chamola,5
+Kudirat Bukola Adeusi,Prisca Amajuoyi,2
+B. Pannalal,K. Samunnisa,2
+B. Pannalal,M Bhavsingh,2
+K. Samunnisa,M Bhavsingh,2
+Dunna Nikitha Rao,G Prathyusha,3
+Dunna Nikitha Rao,Kaipa Chandana Sree,3
+G Prathyusha,Kaipa Chandana Sree,3
+Hussein Ibrahim,Mehdi Adda,4
+Ana Goulart,Karen L. Butler-Purry,2
+Ana Goulart,Kumpanat Thongmai,2
+Ana Goulart,Vinicius Bobato,2
+Karen L. Butler-Purry,Kumpanat Thongmai,2
+Karen L. Butler-Purry,Vinicius Bobato,2
+Kumpanat Thongmai,Vinicius Bobato,2
+José Barata,Ricardo Silva Peres,2
+Jian Liu,Jiaxin Zhang,2
+Jian Liu,Luyang Liu,2
+Jian Liu,Syed Irfan Ali Meerza,2
+Jiaxin Zhang,Luyang Liu,2
+Jiaxin Zhang,Syed Irfan Ali Meerza,2
+Luyang Liu,Syed Irfan Ali Meerza,2
+Benedikt Obermayer,Clemens Messerschmidt,2
+Benedikt Obermayer,Dieter Beule,2
+Benedikt Obermayer,Manuel Holtgrewe,2
+Benedikt Obermayer,Mikko Nieminen,2
+Clemens Messerschmidt,Dieter Beule,2
+Clemens Messerschmidt,Manuel Holtgrewe,2
+Clemens Messerschmidt,Mikko Nieminen,2
+Dieter Beule,Manuel Holtgrewe,2
+Dieter Beule,Mikko Nieminen,2
+Manuel Holtgrewe,Mikko Nieminen,2
+Madhusanka Liyanage,Pardeep Kumar,2
+Abhijeet Sahu,Ana Goulart,2
+Abhijeet Sahu,Katherine Davis,2
+Abhijeet Sahu,Patrick Wlazlo,2
+Abhijeet Sahu,Saman Zonouz,2
+Ana Goulart,Katherine Davis,2
+Ana Goulart,Patrick Wlazlo,2
+Ana Goulart,Saman Zonouz,2
+Katherine Davis,Patrick Wlazlo,2
+Katherine Davis,Saman Zonouz,2
+Patrick Wlazlo,Saman Zonouz,2
+A. S. M. Kayes,Mamoun Alazab,2
+A. S. M. Kayes,Mohammad Jabed Morshed Chowdhury,2
+A. S. M. Kayes,Raza Nowrozy,2
+Mamoun Alazab,Mohammad Jabed Morshed Chowdhury,2
+Mamoun Alazab,Paul Watters,3
+Mohammad Jabed Morshed Chowdhury,Paul Watters,2
+Paul Watters,Raza Nowrozy,2
+Don van Ravenzwaaij,Rink Hoekstra,2
+Andrei Gurtov,Diana Pamela Moya Osorio,2
+Andrei Gurtov,Pawani Porambage,2
+Diana Pamela Moya Osorio,Gürkan Gür,2
+Diana Pamela Moya Osorio,Mika Ylianttila,2
+Diana Pamela Moya Osorio,Pawani Porambage,3
+Gürkan Gür,Mika Ylianttila,2
+Gürkan Gür,Pawani Porambage,2
+Madhusanka Liyanage,Mika Ylianttila,3
+Madhusanka Liyanage,Pawani Porambage,3
+Mika Ylianttila,Pawani Porambage,3
+Krishnashree Achuthan,Sethuraman Srinivas,2
+Koen Tange,Michele De Donno,2
+Koen Tange,Nicola Dragoni,2
+Michele De Donno,Nicola Dragoni,2
+Ahmed Anwar,Tatjana Legler,2
+Ahmed Anwar,Vinit Hegiste,2
+Tatjana Legler,Vinit Hegiste,2
+Ion Stoica,Matei Zaharia,2
+Huw Roberts,Jessica Morley,3
+Huw Roberts,Josh Cowls,5
+Huw Roberts,Luciano Floridi,6
+Huw Roberts,Mariarosaria Taddeo,5
+Jessica Morley,Josh Cowls,3
+Jessica Morley,Luciano Floridi,5
+Jessica Morley,Mariarosaria Taddeo,3
+Josh Cowls,Luciano Floridi,7
+Josh Cowls,Mariarosaria Taddeo,6
+Luciano Floridi,Mariarosaria Taddeo,12
+A.M.S. Hamouda,Abdulaziz Aldoseri,3
+A.M.S. Hamouda,Khalifa N. Al‐Khalifa,3
+Abdulaziz Aldoseri,Khalifa N. Al‐Khalifa,3
+Bin Han,Mohammad Asif Habibi,2
+A.K.M. Najmul Islam,Amandeep Dhir,2
+A.K.M. Najmul Islam,Matti Mäntymäki,2
+Amandeep Dhir,Matti Mäntymäki,2
+Anushree Tandon,Matti Mäntymäki,2
+Kevin C. Desouza,Luke Butler,2
+Kevin C. Desouza,Tan Yiğitcanlar,4
+Luke Butler,Tan Yiğitcanlar,2
+Peter Warrian,Raymond G. Gosine,2
+Ibrahim Ghafir,Mohammad Hammoudeh,2
+Ibrahim Ghafir,Thar Baker,2
+Jibran Saleem,Mohammad Hammoudeh,2
+Mohammad Hammoudeh,Thar Baker,2
+Ajay Kumar Shrestha,Amir Jaberzadeh,2
+Ajay Kumar Shrestha,Faijan Ahamad Khan,2
+Ajay Kumar Shrestha,Jason Geng,2
+Ajay Kumar Shrestha,Mohammed Afaan Shaikh,2
+Amir Jaberzadeh,Faijan Ahamad Khan,2
+Amir Jaberzadeh,Jason Geng,2
+Amir Jaberzadeh,Mohammed Afaan Shaikh,2
+Faijan Ahamad Khan,Jason Geng,2
+Faijan Ahamad Khan,Mohammed Afaan Shaikh,2
+Jason Geng,Mohammed Afaan Shaikh,2
+Antonis Michalas,Khoa Nguyen,2
+Antonis Michalas,Mindaugas Budzys,2
+Khoa Nguyen,Mindaugas Budzys,2
+Georgios Kaissis,Marcus R. Makowski,2
+Georgios Kaissis,Rickmer Braren,2
+Marcus R. Makowski,Rickmer Braren,2
+Ashwin Verma,Deepti Saraswat,2
+Ashwin Verma,Gulshan Sharma,2
+Ashwin Verma,Pitshou N. Bokoro,2
+Ashwin Verma,Pronaya Bhattacharya,2
+Ashwin Verma,Ravi Sharma,2
+Ashwin Verma,Sudeep Tanwar,2
+Deepti Saraswat,Gulshan Sharma,2
+Deepti Saraswat,Pitshou N. Bokoro,2
+Deepti Saraswat,Pronaya Bhattacharya,2
+Deepti Saraswat,Ravi Sharma,2
+Deepti Saraswat,Sudeep Tanwar,2
+Gulshan Sharma,Pitshou N. Bokoro,5
+Gulshan Sharma,Pronaya Bhattacharya,3
+Gulshan Sharma,Ravi Sharma,4
+Gulshan Sharma,Sudeep Tanwar,5
+Pitshou N. Bokoro,Pronaya Bhattacharya,3
+Pitshou N. Bokoro,Ravi Sharma,4
+Pitshou N. Bokoro,Sudeep Tanwar,4
+Pronaya Bhattacharya,Ravi Sharma,3
+Pronaya Bhattacharya,Sudeep Tanwar,4
+Ravi Sharma,Sudeep Tanwar,5
+Lei Shu,Mohamed Amine Ferrag,2
+Lei Shu,Λέανδρος Μαγλαράς,2
+Helge Janicke,Iqbal H. Sarker,2
+Iqbal H. Sarker,Λέανδρος Μαγλαράς,2
+Nickolaos Koroniotis,Nour Moustafa,2
+Mousa Al-kfairy,Omar Alfandi,2
+Ahmad Karim,Attia Qammar,2
+Ahmad Karim,Huansheng Ning,2
+Ahmad Karim,Jianguo Ding,2
+Attia Qammar,Huansheng Ning,2
+Attia Qammar,Jianguo Ding,2
+Huansheng Ning,Jianguo Ding,2
+Ali Selamat,Ondřej Krejcar,3
+Jayesh Rane,Nitin Liladhar Rane,4
+Constantine Stephanidis,Gavriel Salvendy,2
+Constantine Stephanidis,Margherita Antona,2
+Gavriel Salvendy,Margherita Antona,2
+Lewis Golightly,Paolo Modesti,2
+Lewis Golightly,Qianwen Xu,2
+Paolo Modesti,Victor Chang,2
+Qianwen Xu,Victor Chang,3
+Aamir Rasool,Abdul Rehman Javed,2
+Aamir Rasool,Zunera Jalil,2
+Abdul Rehman Javed,Thar Baker,2
+Abdul Rehman Javed,Zunera Jalil,3
+Harikumar Pallthadka,Rajesh P. Chinchewadi,4
+Harikumar Pallthadka,Sushma Jaiswal,4
+Harikumar Pallthadka,Tarun Jaiswal,4
+Rajesh P. Chinchewadi,Sushma Jaiswal,4
+Rajesh P. Chinchewadi,Tarun Jaiswal,4
+Sushma Jaiswal,Tarun Jaiswal,4
+Frank Whittaker,Hua Wang,2
+Frank Whittaker,Khandakar Ahmed,2
+Frank Whittaker,Shekha Chenthara,2
+Hua Wang,Khandakar Ahmed,4
+Hua Wang,Shekha Chenthara,2
+Khandakar Ahmed,Shekha Chenthara,2
+Demetris Avraam,Paul R. Burton,2
+Paula Fraga‐Lamas,Tiago M. Fernández‐Caramés,6
+Ibrar Yaqoob,Khaled Salah,2
+Khaled Salah,Muhammad Habib ur Rehman,4
+Mohamed Amine Ferrag,Norbert Tihanyi,2
+John Geddes,Michael Bauer,2
+John Geddes,Peter C. Whybrow,2
+John Geddes,Scott Monteith,2
+John Geddes,Tasha Glenn,2
+Michael Bauer,Peter C. Whybrow,2
+Michael Bauer,Scott Monteith,2
+Michael Bauer,Tasha Glenn,2
+Peter C. Whybrow,Scott Monteith,2
+Peter C. Whybrow,Tasha Glenn,2
+Scott Monteith,Tasha Glenn,2
+Fabian Böhm,Günther Pernul,2
+Luca Caviglione,Wojciech Mazurczyk,2
+Marek Pawlicki,Michał Choraś,3
+Marius Portmann,Mohanad Sarhan,3
+Marius Portmann,Siamak Layeghy,3
+Mohanad Sarhan,Siamak Layeghy,3
+Antonios Sarigiannidis,Panagiotis Sarigiannidis,3
+Antonios Sarigiannidis,Θωμάς Λάγκας,3
+Panagiotis Sarigiannidis,Θωμάς Λάγκας,5
+Raza Nowrozy,Timothy R. McIntosh,2
+Aditya Kuppa,Nhien‐An Le‐Khac,2
+Dilek Fraisl,Gerid Hager,2
+Dilek Fraisl,Margaret M. Gold,2
+Dilek Fraisl,Muki Haklay,2
+Gerid Hager,Margaret M. Gold,2
+Gerid Hager,Muki Haklay,2
+Margaret M. Gold,Muki Haklay,2
+Malka N. Halgamuge,Paul Watters,3
+Malka N. Halgamuge,Teo Sušnjak,3
+Malka N. Halgamuge,Timothy R. McIntosh,3
+Malka N. Halgamuge,Tong Liu,3
+Paul Watters,Teo Sušnjak,3
+Paul Watters,Timothy R. McIntosh,3
+Paul Watters,Tong Liu,3
+Teo Sušnjak,Timothy R. McIntosh,3
+Teo Sušnjak,Tong Liu,3
+Timothy R. McIntosh,Tong Liu,3
+Abdullah Alharbi,Hashem Alyami,2
+Abdullah Alharbi,Wael Alosaimi,2
+Hashem Alyami,Wael Alosaimi,2
+Abraham Ayodeji Abayomi,Jeffrey Chidera Ogeawuchi,2
+Fang Fang,Quoc‐Viet Pham,2
+Quoc‐Viet Pham,Won‐Joo Hwang,3
+Anna Cartwright,Edward Cartwright,3
+Anna Cartwright,Gareth Mott,2
+Anna Cartwright,James Sullivan,2
+Anna Cartwright,Jamie MacColl,2
+Anna Cartwright,Jason R. C. Nurse,2
+Anna Cartwright,Sarah Turner,2
+Edward Cartwright,Gareth Mott,2
+Edward Cartwright,James Sullivan,2
+Edward Cartwright,Jamie MacColl,2
+Edward Cartwright,Jason R. C. Nurse,2
+Edward Cartwright,Sarah Turner,2
+Gareth Mott,James Sullivan,3
+Gareth Mott,Jamie MacColl,3
+Gareth Mott,Jason R. C. Nurse,3
+Gareth Mott,Sarah Turner,3
+James Sullivan,Jamie MacColl,3
+James Sullivan,Jason R. C. Nurse,3
+James Sullivan,Sarah Turner,3
+Jamie MacColl,Jason R. C. Nurse,3
+Jamie MacColl,Sarah Turner,3
+Jason R. C. Nurse,Sarah Turner,3
+Félix Gómez Mármol,Pantaleone Nespoli,2
+Gokul Yenduri,Praveen Kumar Reddy Maddikunta,2
+Gokul Yenduri,Thippa Reddy Gadekallu,2
+Kandaraj Piamrat,Ons Aouedi,2
+Mamoun Alazab,Praveen Kumar Reddy Maddikunta,3
+Mamoun Alazab,Sweta Bhattacharya,2
+Mamoun Alazab,Thippa Reddy Gadekallu,3
+Praveen Kumar Reddy Maddikunta,Sweta Bhattacharya,3
+Praveen Kumar Reddy Maddikunta,Thippa Reddy Gadekallu,5
+Sweta Bhattacharya,Thippa Reddy Gadekallu,3
+Azana Hafizah Mohd Aman,Mohammad Kamrul Hasan,2
+Mohammad Kamrul Hasan,Shayla Islam,3
+Andy Nguyen,Belle Dang,2
+Andy Nguyen,Yvonne Hong,2
+Belle Dang,Yvonne Hong,2
+Anushka Singh,Biplab Sikdar,2
+Anushka Singh,Vikas Hassija,2
+Anushka Singh,Vinay Chamola,2
+Kangfeng Zheng,Xiujuan Wang,2
+Kangfeng Zheng,Yanqing Yang,2
+Xiujuan Wang,Yanqing Yang,2
+Inayatul Haq,Tehseen Mazhar,2
+Indu Bala,Maad M. Mıjwıl,2
+Mahir R. Khan,Maryam Roshanaei,2
+Mahir R. Khan,Natalie N. Sylvester,2
+Maryam Roshanaei,Natalie N. Sylvester,2
+Abdul Rehman Javed,Gautam Srivastava,2
+Abdul Rehman Javed,Muhammad Rizwan,2
+Abdul Rehman Javed,Thippa Reddy Gadekallu,5
+Gautam Srivastava,Thippa Reddy Gadekallu,3
+Georgios Efstathopoulos,Panagiotis Radoglou‐Grammatikis,3
+Georgios Efstathopoulos,Panagiotis Sarigiannidis,3
+Panagiotis Radoglou‐Grammatikis,Panagiotis Sarigiannidis,5
+Andrew Ifesinachi Daraojimba,Bright Chibunna Ubanadu,2
+Federico Cugurullo,Tan Yiğitcanlar,2
+Francisco Herrera,Riccardo Guidotti,2
+Francisco Herrera,Roberto Confalonieri,2
+Javier Del Ser,Khan Muhammad,2
+Javier Del Ser,Riccardo Guidotti,2
+Javier Del Ser,Roberto Confalonieri,2
+Riccardo Guidotti,Roberto Confalonieri,2
+Shaker El–Sappagh,Tamer Abuhmed,2
+Alexandre Alahi,John Krogstie,2
+Alexandre Alahi,Simon Elias Bibri,2
+John Krogstie,Simon Elias Bibri,6
+Mohamed Benbouzid,Muhammad Fahad Zia,2
+Liming Zhu,Qinghua Lu,2
+Lars Vedel Kessing,Maria Faurholt‐Jepsen,2
+Federico Casolari,Luciano Floridi,2
+Amir Hussain,Mufti Mahmud,2
+Juan M. Corchado,Rashid Mehmood,5
+Guma Ali,Maad M. Mıjwıl,2
+Andrew Miller,Ari Juels,2
+Andrew Miller,Fan Zhang,2
+Ari Juels,Fan Zhang,2
+Dawn Song,Warren He,2
+Harsha Kalutarage,M. Omar Al-Kadri,2
+Abdallah Khreishah,Issa Khalil,2
+Bernd Carsten Stahl,Kevin Macnish,3
+Bernd Carsten Stahl,Mark Ryan,4
+Kevin Macnish,Mark Ryan,3
+A. S. Albahri,Aiman Al-Sabaawi,2
+A. S. Albahri,Amin Abbosh,2
+A. S. Albahri,Ashish Gupta,3
+A. S. Albahri,Jinglan Zhang,2
+A. S. Albahri,Jinshuai Bai,2
+A. S. Albahri,José Santamaría,2
+A. S. Albahri,Laith Alzubaidi,3
+A. S. Albahri,Mohamed Manoufali,2
+A. S. Albahri,Mohammed A. Fadhel,3
+A. S. Albahri,Ye Duan,2
+A. S. Albahri,Yuantong Gu,3
+Aiman Al-Sabaawi,Amin Abbosh,2
+Aiman Al-Sabaawi,Ashish Gupta,2
+Aiman Al-Sabaawi,Jinglan Zhang,2
+Aiman Al-Sabaawi,Jinshuai Bai,2
+Aiman Al-Sabaawi,José Santamaría,2
+Aiman Al-Sabaawi,Laith Alzubaidi,2
+Aiman Al-Sabaawi,Mohamed Manoufali,2
+Aiman Al-Sabaawi,Mohammed A. Fadhel,2
+Aiman Al-Sabaawi,Ye Duan,2
+Aiman Al-Sabaawi,Yuantong Gu,2
+Amin Abbosh,Ashish Gupta,2
+Amin Abbosh,Jinglan Zhang,2
+Amin Abbosh,Jinshuai Bai,2
+Amin Abbosh,José Santamaría,2
+Amin Abbosh,Laith Alzubaidi,2
+Amin Abbosh,Mohamed Manoufali,2
+Amin Abbosh,Mohammed A. Fadhel,2
+Amin Abbosh,Ye Duan,2
+Amin Abbosh,Yuantong Gu,2
+Ashish Gupta,Jinglan Zhang,2
+Ashish Gupta,Jinshuai Bai,2
+Ashish Gupta,José Santamaría,2
+Ashish Gupta,Laith Alzubaidi,3
+Ashish Gupta,Mohamed Manoufali,2
+Ashish Gupta,Mohammed A. Fadhel,3
+Ashish Gupta,Ye Duan,2
+Ashish Gupta,Yuantong Gu,3
+Jinglan Zhang,Jinshuai Bai,2
+Jinglan Zhang,José Santamaría,2
+Jinglan Zhang,Laith Alzubaidi,2
+Jinglan Zhang,Mohamed Manoufali,2
+Jinglan Zhang,Mohammed A. Fadhel,2
+Jinglan Zhang,Ye Duan,2
+Jinglan Zhang,Yuantong Gu,2
+Jinshuai Bai,José Santamaría,2
+Jinshuai Bai,Laith Alzubaidi,2
+Jinshuai Bai,Mohamed Manoufali,2
+Jinshuai Bai,Mohammed A. Fadhel,2
+Jinshuai Bai,Ye Duan,2
+Jinshuai Bai,Yuantong Gu,2
+José Santamaría,Laith Alzubaidi,2
+José Santamaría,Mohamed Manoufali,2
+José Santamaría,Mohammed A. Fadhel,2
+José Santamaría,Ye Duan,2
+José Santamaría,Yuantong Gu,2
+Laith Alzubaidi,Mohamed Manoufali,2
+Laith Alzubaidi,Mohammed A. Fadhel,3
+Laith Alzubaidi,Ye Duan,2
+Laith Alzubaidi,Yuantong Gu,3
+Mohamed Manoufali,Mohammed A. Fadhel,2
+Mohamed Manoufali,Ye Duan,2
+Mohamed Manoufali,Yuantong Gu,2
+Mohammed A. Fadhel,Ye Duan,2
+Mohammed A. Fadhel,Yuantong Gu,3
+Ye Duan,Yuantong Gu,2
+Libby Hepburn,Muki Haklay,2
+Libby Hepburn,Uta Wehn,2
+Linda See,Steffen Fritz,2
+Muki Haklay,Uta Wehn,2
+Antonio Skármeta,Jorge Bernal Bernabé,3
+Miloud Bagaa,Tarik Taleb,2
+Chidiogo Uzoamaka Akpuokwe,Nkechi Emmanuella Eneh,2
+Chidiogo Uzoamaka Akpuokwe,Seun Solomon Bakare,2
+Nkechi Emmanuella Eneh,Seun Solomon Bakare,2
+Hsinchun Chen,Sagar Samtani,3
+Arjen Boin,Magnus Ekengren,2
+Arjen Boin,Mark Rhinard,2
+Magnus Ekengren,Mark Rhinard,2
+Ilhaam A. Omar,Khaled Salah,2
+Ilhaam A. Omar,Raja Jayaraman,2
+Khaled Salah,Mazin Debe,2
+Andrew I.R. Maas,Guido Bertolini,2
+Anat Elhalal,Jessica Morley,2
+Anat Elhalal,Libby Kinsey,2
+Anat Elhalal,Luciano Floridi,2
+Jessica Morley,Libby Kinsey,2
+Libby Kinsey,Luciano Floridi,2
+Maria Bada,Steven Furnell,2
+Christian Ohmann,Steve Canham,2
+Christian Ohmann,Wolfgang Kuchinke,2
+Gabriella Casalino,Gautami Tripathi,3
+Gabriella Casalino,Mohd Abdul Ahad,3
+Gautami Tripathi,Mohd Abdul Ahad,3
+Gautam Srivastava,Praveen Kumar Reddy Maddikunta,2
+B. M. Zeeshan Hameed,Bhaskar Somani,2
+B. M. Zeeshan Hameed,Dasharathraj K Shetty,2
+B. M. Zeeshan Hameed,Komal Smriti,2
+B. M. Zeeshan Hameed,Nithesh Naik,2
+B. M. Zeeshan Hameed,Rahul Paul,2
+B. M. Zeeshan Hameed,Vathsala Patil,2
+Bhaskar Somani,Dasharathraj K Shetty,2
+Bhaskar Somani,Komal Smriti,2
+Bhaskar Somani,Nithesh Naik,2
+Bhaskar Somani,Rahul Paul,2
+Bhaskar Somani,Vathsala Patil,2
+Dasharathraj K Shetty,Komal Smriti,2
+Dasharathraj K Shetty,Nithesh Naik,2
+Dasharathraj K Shetty,Rahul Paul,2
+Dasharathraj K Shetty,Vathsala Patil,2
+Komal Smriti,Nithesh Naik,2
+Komal Smriti,Rahul Paul,2
+Komal Smriti,Vathsala Patil,2
+Nithesh Naik,Rahul Paul,2
+Nithesh Naik,Vathsala Patil,2
+Rahul Paul,Vathsala Patil,2
+Cosmas Ifeanyi Nwakanma,Dong‐Seong Kim,3
+Cosmas Ifeanyi Nwakanma,Judith Nkechinyere Njoku,2
+Cosmas Ifeanyi Nwakanma,Love Allen Chijioke Ahakonye,2
+Dong‐Seong Kim,Judith Nkechinyere Njoku,2
+Dong‐Seong Kim,Love Allen Chijioke Ahakonye,2
+Muhammad Irshad,Sayed Fayaz Ahmad,2
+Dennis Broeders,Fábio Cristiano,2
+Karel Lenc,Roman Ring,2
+Emmanouil Panaousis,Sakshyam Panda,3
+Jiankun Hu,Xuefei Yin,2
+Aitizaz Ali,Fahima Hajjej,2
+Aitizaz Ali,Mohammed Amin Almaiah,3
+Aitizaz Ali,Muhammad Fermi Pasha,3
+Fahima Hajjej,Mohammed Amin Almaiah,2
+Fahima Hajjej,Muhammad Fermi Pasha,2
+Mohammed Amin Almaiah,Muhammad Fermi Pasha,2
+Fabian Reuschling,Kelly Burke,2
+Fabian Reuschling,Nils Carstengerdes,2
+Fabian Reuschling,Tim H. Stelkens-Kobsch,2
+Kelly Burke,Nils Carstengerdes,2
+Kelly Burke,Tim H. Stelkens-Kobsch,2
+Nils Carstengerdes,Tim H. Stelkens-Kobsch,2
+Kaśka Porayska‐Pomsta,W. Holmes,2
+Konstantinos Demertzis,Stavros Demertzis,2
+Konstantinos Demertzis,Vasiliki Demertzi,2
+Stavros Demertzis,Vasiliki Demertzi,2
+Carsten Maple,David De Roure,4
+Carsten Maple,Petar Radanliev,4
+Carsten Maple,Uchenna Ani,2
+David De Roure,Petar Radanliev,10
+David De Roure,Uchenna Ani,2
+Petar Radanliev,Uchenna Ani,3
+Milena Vučinić,Radoica Luburić,2
+Andrea Coravos,Eric Perakslis,2
+Andrea Coravos,Jennifer C. Goldsack,2
+Philip S. Yu,Tianqing Zhu,2
+Philip S. Yu,Wanlei Zhou,2
+Tianqing Zhu,Wanlei Zhou,2
+Fred Prior,Luis Martí‐Bonmatí,2
+Fred Prior,Sandy Napel,2
+Luis Martí‐Bonmatí,Sandy Napel,2
+Blaine Hoffman,Char Sample,2
+Carsten Maple,Jason R. C. Nurse,2
+David De Roure,Jason R. C. Nurse,2
+David De Roure,Răzvan Nicolescu,2
+Jason R. C. Nurse,Petar Radanliev,2
+Petar Radanliev,Răzvan Nicolescu,2
+Shuang Ren,Stephanie Decker,2
+Mortaza S. Bargh,Sunil Choenni,2
+Dinh Thai Hoang,Dusit Niyato,2
+Dong In Kim,Dusit Niyato,2
+Dong In Kim,Ping Wang,2
+Dong In Kim,Wenbo Wang,2
+Dusit Niyato,Ping Wang,2
+Dusit Niyato,Wenbo Wang,2
+Dusit Niyato,Zehui Xiong,2
+Ping Wang,Wenbo Wang,2
+Adnan Anwar,Robin Doss,2
+Chris L. Greer,David A. Wollman,3
+Cuong Nguyen,David A. Wollman,2
+Chamitha de Alwis,Kapal Dev,2
+Chamitha de Alwis,Madhusanka Liyanage,2
+Kapal Dev,Madhusanka Liyanage,2
+Aashray Gupta,Brandon Stretton,2
+Aashray Gupta,Guy J. Maddern,2
+Aashray Gupta,Joshua G. Kovoor,2
+Aashray Gupta,Stephen Bacchi,2
+Brandon Stretton,Guy J. Maddern,2
+Brandon Stretton,Joshua G. Kovoor,2
+Brandon Stretton,Stephen Bacchi,2
+Guy J. Maddern,Joshua G. Kovoor,2
+Guy J. Maddern,Stephen Bacchi,2
+Joshua G. Kovoor,Stephen Bacchi,2
+Agustí Solanas,Constantinos Patsakis,2
+Agustí Solanas,Fran Casino,2
+Constantinos Patsakis,Fran Casino,2
+Gabriela Zeller,Matthias Scherer,2
+Angelos Angelopoulos,Panagiotis Trakadas,2
+Samuel Onimisi Dawodu,Sarah Kuzankah Ewuga,2
+Davy Preuveneers,Wouter Joosen,2
+Azeez Olanipekun Hassan,Prisca Ugomma Uwaoma,3
+Azeez Olanipekun Hassan,Samuel Onimisi Dawodu,2
+Azeez Olanipekun Hassan,Simon Kaggwa,3
+Azeez Olanipekun Hassan,Temitayo Oluwaseun Abrahams,2
+Prisca Ugomma Uwaoma,Samuel Onimisi Dawodu,2
+Prisca Ugomma Uwaoma,Simon Kaggwa,3
+Prisca Ugomma Uwaoma,Temitayo Oluwaseun Abrahams,2
+Samuel Onimisi Dawodu,Simon Kaggwa,2
+Samuel Onimisi Dawodu,Temitayo Oluwaseun Abrahams,2
+Simon Kaggwa,Temitayo Oluwaseun Abrahams,2
+Alka Agrawal,Raees Ahmad Khan,4
+Alka Agrawal,Rajeev Kumar,5
+Raees Ahmad Khan,Rajeev Kumar,4
+Huawei Huang,Zibin Zheng,3
+Jiawen Kang,Zehui Xiong,2
+Markus Christen,Michele Loi,2
+Yagmur Yigit,Λέανδρος Μαγλαράς,2
+Aitizaz Ali,Ting Tin Tin,2
+Bander Ali Saleh Al‐rimy,Faisal Saeed,2
+Angelica Pazurek,Aras Bozkurt,2
+Angelica Pazurek,Junhong Xiao,2
+Angelica Pazurek,Maha Bali,2
+Angelica Pazurek,Melissa Bond,2
+Angelica Pazurek,Tutaleni I. Asino,2
+Aras Bozkurt,Juliana Elisa Raffaghelli,2
+Aras Bozkurt,Junhong Xiao,2
+Aras Bozkurt,Maha Bali,4
+Aras Bozkurt,Melissa Bond,3
+Aras Bozkurt,Tutaleni I. Asino,2
+Juliana Elisa Raffaghelli,Maha Bali,2
+Juliana Elisa Raffaghelli,Melissa Bond,2
+Junhong Xiao,Maha Bali,2
+Junhong Xiao,Melissa Bond,2
+Junhong Xiao,Tutaleni I. Asino,2
+Maha Bali,Melissa Bond,3
+Maha Bali,Tutaleni I. Asino,2
+Melissa Bond,Tutaleni I. Asino,2
+David De Roure,Omar Santos,6
+Omar Santos,Petar Radanliev,8
+Don Eliseo Lucero‐Prisno,Olalekan John Okesanya,2
+Antonio Skármeta,José L. Hernández-Ramos,2
+Andrej Zwitter,Oskar Josef Gstrein,4
+Juan M. Corchado,Kevin C. Desouza,3
+Juan M. Corchado,Rita Yi Man Li,2
+Juan M. Corchado,Tan Yiğitcanlar,4
+Kevin C. Desouza,Rashid Mehmood,3
+Kevin C. Desouza,Rita Yi Man Li,2
+Massimo Regona,Tan Yiğitcanlar,2
+Rashid Mehmood,Rita Yi Man Li,2
+Rashid Mehmood,Tan Yiğitcanlar,4
+Rita Yi Man Li,Tan Yiğitcanlar,2
+Abid Mehmood,Moatsum Alawida,2
+Dina A. Alabbad,Mudassar Aslam,2
+Dina A. Alabbad,Rizwan Ahmad,2
+Dina A. Alabbad,Saqib Saeed,2
+Dina A. Alabbad,Subhan Ullah,2
+Dina A. Alabbad,Tahir Ahmad,2
+Mudassar Aslam,Rizwan Ahmad,2
+Mudassar Aslam,Saqib Saeed,2
+Mudassar Aslam,Subhan Ullah,2
+Mudassar Aslam,Tahir Ahmad,2
+Rizwan Ahmad,Saqib Saeed,2
+Rizwan Ahmad,Subhan Ullah,2
+Rizwan Ahmad,Tahir Ahmad,2
+Saqib Saeed,Subhan Ullah,2
+Saqib Saeed,Tahir Ahmad,2
+Subhan Ullah,Tahir Ahmad,2
+Akoh Atadoga,Benjamin Samson Ayinla,4
+Akoh Atadoga,Femi Osasona,4
+Akoh Atadoga,Olukunle Oladipupo Amoo,5
+Akoh Atadoga,Oluwatoyin Ajoke Farayola,4
+Akoh Atadoga,Temitayo Oluwaseun Abrahams,4
+Benjamin Samson Ayinla,Femi Osasona,4
+Benjamin Samson Ayinla,Olukunle Oladipupo Amoo,4
+Benjamin Samson Ayinla,Oluwatoyin Ajoke Farayola,4
+Benjamin Samson Ayinla,Temitayo Oluwaseun Abrahams,4
+Femi Osasona,Olukunle Oladipupo Amoo,4
+Femi Osasona,Oluwatoyin Ajoke Farayola,4
+Femi Osasona,Temitayo Oluwaseun Abrahams,4
+Olukunle Oladipupo Amoo,Oluwatoyin Ajoke Farayola,4
+Olukunle Oladipupo Amoo,Temitayo Oluwaseun Abrahams,4
+Oluwatoyin Ajoke Farayola,Temitayo Oluwaseun Abrahams,5
+Arpan Kumar Kar,Purva Grover,2
+Katina Michael,Yogesh K. Dwivedi,2
+Matti Mäntymäki,Yogesh K. Dwivedi,2
+Ahmet E. Topcu,Yehia Ibrahim Alzoubi,2
+Alok Mishra,Yehia Ibrahim Alzoubi,2
+Carsten Maple,La’Treall Maddox,2
+Carsten Maple,Omar Santos,2
+Carsten Maple,Pete Burnap,2
+David De Roure,La’Treall Maddox,3
+David De Roure,Pete Burnap,3
+David De Roure,Rafael Mantilla Montalvo,2
+David De Roure,Stacy Cannady,2
+La’Treall Maddox,Omar Santos,3
+La’Treall Maddox,Petar Radanliev,3
+La’Treall Maddox,Pete Burnap,2
+La’Treall Maddox,Rafael Mantilla Montalvo,2
+La’Treall Maddox,Stacy Cannady,2
+Omar Santos,Pete Burnap,3
+Omar Santos,Rafael Mantilla Montalvo,2
+Omar Santos,Stacy Cannady,2
+Petar Radanliev,Pete Burnap,3
+Petar Radanliev,Rafael Mantilla Montalvo,2
+Petar Radanliev,Stacy Cannady,2
+Rafael Mantilla Montalvo,Stacy Cannady,2
+Bharanidharan Shanmugam,Farida Habib Semantha,3
+Bharanidharan Shanmugam,Kheng Cher Yeo,3
+Bharanidharan Shanmugam,Sami Azam,5
+Farida Habib Semantha,Kheng Cher Yeo,3
+Farida Habib Semantha,Sami Azam,3
+Kheng Cher Yeo,Sami Azam,3
+Khushnood Abbas,Shi Dong,2
+Daniel Shu Wei Ting,Jasmine Chiat Ling Ong,2
+Constantinos Halkiopoulos,Leonidas Theodorakopoulos,2
+Leo Anthony Celi,X. Borrat,2
+Arvind Selwal,Pooja Anand,2
+Arvind Selwal,Yashwant Singh,2
+Pooja Anand,Yashwant Singh,2
+Alexander Bernier,Melissa Cline,2
+David Glazer,Heidi L. Rehm,2
+David Glazer,Robert Cook‐Deegan,2
+David Haussler,Melissa Cline,2
+Edward S. Dove,Yann Joly,2
+Heidi L. Rehm,Robert Cook‐Deegan,2
+Mallory Freeberg,Petr Holub,2
+Abid Mehmood,Mourad Elhadef,2
+Dragan Gašević,Lixiang Yan,3
+Dragan Gašević,Roberto Martínez‐Maldonado,2
+Dragan Gašević,Yueqiao Jin,2
+Lixiang Yan,Roberto Martínez‐Maldonado,2
+Lixiang Yan,Yueqiao Jin,2
+Roberto Martínez‐Maldonado,Yueqiao Jin,2
+Elena Sitnikova,Nour Moustafa,2
+Igor Kozine,Mary Ann Lundteigen,2
+Igor Kozine,Nelson H. Carreras Guzman,2
+Mary Ann Lundteigen,Nelson H. Carreras Guzman,2
+Dusit Niyato,Nguyen Cong Luong,2
+Dusit Niyato,Ying‐Chang Liang,2
+Nguyen Cong Luong,Ying‐Chang Liang,2
+Timothy Jung,Yogesh K. Dwivedi,2
+Paulo Simões,Tiago Cruz,3
+André Dekker,Michel Dumontier,2
+Sandra Grabowska,Sebastian Saniuk,2
+Aaron Lee,Daniel Shu Wei Ting,2
+Beatriz Otero,Eva Rodríguez,2
+Beatriz Otero,Ramón Canal,2
+Eva Rodríguez,Ramón Canal,2
+David Ford,Kerina Jones,2
+Mohammad Hosseini,Serge P. J. M. Horbach,2
+Mohammed Mohammed Sadeeq,Subhi R. M. Zeebaree,2
+I. Glenn Cohen,Sara Gerke,2
+Md. Firoj Ali,Md. Hafiz Ahamed,2
+Md. Firoj Ali,Md. Manirul Islam,2
+Md. Firoj Ali,Md. Mehedi Hasan,2
+Md. Firoj Ali,Prangon Das,2
+Md. Firoj Ali,Sarafat Hussain Abhi,2
+Md. Firoj Ali,Subrata K. Sarker,2
+Md. Hafiz Ahamed,Md. Manirul Islam,2
+Md. Hafiz Ahamed,Md. Mehedi Hasan,2
+Md. Hafiz Ahamed,Prangon Das,2
+Md. Hafiz Ahamed,Sarafat Hussain Abhi,2
+Md. Hafiz Ahamed,Subrata K. Sarker,2
+Md. Manirul Islam,Md. Mehedi Hasan,2
+Md. Manirul Islam,Prangon Das,2
+Md. Manirul Islam,Sarafat Hussain Abhi,2
+Md. Manirul Islam,Subrata K. Sarker,2
+Md. Mehedi Hasan,Prangon Das,2
+Md. Mehedi Hasan,Sarafat Hussain Abhi,2
+Md. Mehedi Hasan,Subrata K. Sarker,2
+Prangon Das,Sarafat Hussain Abhi,2
+Prangon Das,Subrata K. Sarker,2
+Sarafat Hussain Abhi,Subrata K. Sarker,2
+Mohsen Guizani,Muhammad Khurram Khan,2
+Fatima Al‐Quayed,Mamoona Humayun,2
+Krishnashree Achuthan,Raghu Raman,2
+Katina Michael,Shahriar Akter,2
+Katina Michael,Shahriar Sajib,2
+Shahriar Akter,Shahriar Sajib,2
+Adefolake Olachi Adewusi,Etinosa Igbinenikaro,3
+Hadjar Ould Slimane,Naima Kaabouch,2
+Hadjar Ould Slimane,Tala Talaei Khoei,2
+Naima Kaabouch,Tala Talaei Khoei,2
+James C. L. Chow,Kay Li,2
+Micah Sheller,Sarthak Pati,2
+Sarthak Pati,Spyridon Bakas,2
+Neeraj Kumar,Sudeep Tanwar,2
+Abdul Rehman Javed,Mamoun Alazab,2
+Abdul Rehman Javed,Praveen Kumar Reddy Maddikunta,2
+Abdul Rehman Javed,Waqas Ahmed,3
+Thippa Reddy Gadekallu,Waqas Ahmed,3
+Iason Gabriel,Will Hawkins,2
+Matti Minkkinen,Matti Mäntymäki,2
+Luciano Floridi,Thomas C. King,2
+Mariarosaria Taddeo,Thomas C. King,2
+Aurelia Tamò‐Larrieux,Christoph Lutz,2
+Aurelia Tamò‐Larrieux,Eduard Fosch‐Villaronga,2
+Aurelia Tamò‐Larrieux,Heike Felzmann,2
+Christoph Lutz,Eduard Fosch‐Villaronga,2
+Christoph Lutz,Heike Felzmann,2
+Eduard Fosch‐Villaronga,Heike Felzmann,2
+Anish Kurien,Karim Djouani,2
+Bamidele Adebisi,Mohammad Hammoudeh,2
+Aras Bozkurt,Chrissi Nerantzi,2
+Aras Bozkurt,Christian M. Stracke,2
+Aras Bozkurt,Eamon Costello,2
+Aras Bozkurt,Jon Dron,2
+Aras Bozkurt,Kyungmee Lee,3
+Aras Bozkurt,Mark Nichols,2
+Aras Bozkurt,Petar Jandrić,2
+Aras Bozkurt,Robert Farrow,2
+Aras Bozkurt,Stefan Hrastinski,3
+Chrissi Nerantzi,Christian M. Stracke,2
+Chrissi Nerantzi,Eamon Costello,2
+Chrissi Nerantzi,Jon Dron,2
+Chrissi Nerantzi,Kyungmee Lee,2
+Chrissi Nerantzi,Maha Bali,2
+Chrissi Nerantzi,Mark Nichols,2
+Chrissi Nerantzi,Melissa Bond,2
+Chrissi Nerantzi,Petar Jandrić,2
+Chrissi Nerantzi,Robert Farrow,2
+Chrissi Nerantzi,Stefan Hrastinski,2
+Christian M. Stracke,Eamon Costello,2
+Christian M. Stracke,Jon Dron,2
+Christian M. Stracke,Kyungmee Lee,2
+Christian M. Stracke,Maha Bali,2
+Christian M. Stracke,Mark Nichols,2
+Christian M. Stracke,Melissa Bond,2
+Christian M. Stracke,Petar Jandrić,2
+Christian M. Stracke,Robert Farrow,2
+Christian M. Stracke,Stefan Hrastinski,2
+Eamon Costello,Jon Dron,2
+Eamon Costello,Kyungmee Lee,2
+Eamon Costello,Maha Bali,2
+Eamon Costello,Mark Nichols,2
+Eamon Costello,Melissa Bond,2
+Eamon Costello,Petar Jandrić,2
+Eamon Costello,Robert Farrow,2
+Eamon Costello,Stefan Hrastinski,2
+Jon Dron,Kyungmee Lee,2
+Jon Dron,Maha Bali,2
+Jon Dron,Mark Nichols,2
+Jon Dron,Melissa Bond,2
+Jon Dron,Petar Jandrić,2
+Jon Dron,Robert Farrow,2
+Jon Dron,Stefan Hrastinski,2
+Kyungmee Lee,Maha Bali,3
+Kyungmee Lee,Mark Nichols,2
+Kyungmee Lee,Melissa Bond,2
+Kyungmee Lee,Petar Jandrić,2
+Kyungmee Lee,Robert Farrow,2
+Kyungmee Lee,Stefan Hrastinski,3
+Maha Bali,Mark Nichols,2
+Maha Bali,Petar Jandrić,2
+Maha Bali,Robert Farrow,2
+Maha Bali,Stefan Hrastinski,3
+Mark Nichols,Melissa Bond,2
+Mark Nichols,Petar Jandrić,2
+Mark Nichols,Robert Farrow,2
+Mark Nichols,Stefan Hrastinski,2
+Melissa Bond,Petar Jandrić,2
+Melissa Bond,Robert Farrow,2
+Melissa Bond,Stefan Hrastinski,2
+Petar Jandrić,Robert Farrow,2
+Petar Jandrić,Stefan Hrastinski,2
+Robert Farrow,Stefan Hrastinski,2
+Richard A. Ikuesan,Victor R. Kebande,2
+Abdullatif Albaseer,Mohamed Abdallah,2
+Abdullatif Albaseer,Saif Al‐Kuwari,2
+Hamid Menouar,Muhammad Asif Khan,2
+Mohamed Abdallah,Saif Al‐Kuwari,2
+Foysal Mahmud,Shuchona Malek Orthi,2
+Mahmaod Alrawad,Mohammed Amin Almaiah,2
+Shadi Atalla,Wathiq Mansoor,2
+Shadi Atalla,Yassine Himeur,2
+Wathiq Mansoor,Yassine Himeur,2
+Chan Yeob Yeun,Kamal Taha,2
+Chan Yeob Yeun,Paul D. Yoo,2
+Kamal Taha,Paul D. Yoo,2
+David Novillo-Ortiz,Stefan Buttigieg,2
+Elías Mossialos,Robin van Kessel,3
+Michael Anderson,Robin van Kessel,2
+Benedicta Ehimuan,Oluwatosin Reis,2
+Andreas Tsamados,Huw Roberts,3
+Andreas Tsamados,Josh Cowls,3
+Andreas Tsamados,Luciano Floridi,3
+Andreas Tsamados,Mariarosaria Taddeo,3
+Luciano Floridi,Nikita Aggarwal,2
+Mariarosaria Taddeo,Nikita Aggarwal,2
+Anichur Rahman,Dipanjali Kundu,2
+Munivel Devan -,Samir Vinayak Bayani,2
+Emmanouel T. Michailidis,Νικόλαος Νομικός,2
+Benjamin Turnbull,Dinusha Vatsalan,2
+Benjamin Turnbull,Marwa Keshk,2
+Dinusha Vatsalan,Marwa Keshk,2
+Dinusha Vatsalan,Nour Moustafa,2
+Marwa Keshk,Nour Moustafa,2
+Eduardo Fidalgo,Enrique Alegre,2
+Eduardo Fidalgo,V́ıctor González-Castro,2
+Enrique Alegre,V́ıctor González-Castro,2
+Ammar Hawbani,Liang Zhao,2
+Ammar Hawbani,Saeed Hamood Alsamhi,3
+Ammar Hawbani,Santosh Kumar,2
+Liang Zhao,Saeed Hamood Alsamhi,2
+Saeed Hamood Alsamhi,Santosh Kumar,2
+Nasib Singh Gill,Preeti Gulia,2
+Ashutosh Kumar Singh,Ishu Gupta,2
+Frederick T. Sheldon,Khalid Albulayhi,2
+Kejiang Xiao,Sdenka Zobeida Salas‐Pilco,2
+Byeong Ho Kang,Wenli Yang,2
+Alla Anohina-Naumeca,Debora Weber-Wulff,2
+Alla Anohina-Naumeca,Jean Guerrero-Dib,2
+Alla Anohina-Naumeca,Tomáš Foltýnek,2
+Debora Weber-Wulff,Jean Guerrero-Dib,2
+Debora Weber-Wulff,Tomáš Foltýnek,2
+Jean Guerrero-Dib,Tomáš Foltýnek,2
+Huaglory Tianfield,Riccardo Lazzarini,2
+Huaglory Tianfield,Vassilis Charissis,2
+Riccardo Lazzarini,Vassilis Charissis,2
+Kyung Sup Kwak,S. M. Riazul Islam,2
+Maurice Jakesch,Mor Naaman,2
+Ahmed Tajbiul Rawol,Zarif Bin Akhtar,2
+Frede Blaabjerg,Tomislav Dragičević,2
+Huawei Huang,Jiajing Wu,2
+Jiajing Wu,Zibin Zheng,2
+Sakir Sezer,Suleiman Y. Yerima,2
+Chibuike Daraojimba,Okeoma Onunka,2
+Chibuike Daraojimba,Tochukwu Onunka,2
+Okeoma Onunka,Tochukwu Onunka,2
+Asif Irshad Khan,Yoosef B. Abushark,2
+Mohammad Ghiasi,Moslem Dehghani,2
+Mohammad Ghiasi,Taher Niknam,2
+Moslem Dehghani,Taher Niknam,2
+José M. de Fuentes,Lorena González‐Manzano,2
+Ammar Ahmed Alkahtani,Redhwan Al-amri,2
+Shahram Rahimi,Subash Neupane,2
+Shahram Rahimi,Sudip Mittal,2
+Abderahman Rejeb,Karim Rejeb,4
+Constantinos Halkiopoulos,Hera Antonopoulou,2
+Awais Rashid,Muhammad Ali Babar,2
+Hongjian Sun,Jing Jiang,2
+Andrew D. Selbst,Solon Barocas,2
+Habib Hamam,Yazeed Yasin Ghadi,2
+Muhammad Amir Khan,Yazeed Yasin Ghadi,2
+Tariq Shahzad,Yazeed Yasin Ghadi,3
+Tehseen Mazhar,Yazeed Yasin Ghadi,3
+Babawale Patrick Okare,Daniel Ajiga,2
+Babawale Patrick Okare,Jeanette Uddoh,2
+Babawale Patrick Okare,Tope David Aduloju,2
+Daniel Ajiga,Jeanette Uddoh,2
+Daniel Ajiga,Tope David Aduloju,2
+Jeanette Uddoh,Tope David Aduloju,2
+Habib Ullah Khan,Muhammad Zain Malik,2
+Esraa Eldesouky,Tarek Gaber,2
+Olalekan Jamiu Okunleye,Olubukola Omolara Adebiyi,2
+Olalekan Jamiu Okunleye,Oluwaseun Oladeji Olaniyi,5
+Olalekan Jamiu Okunleye,Samuel Oladiipo Olabanji,3
+Olalekan Jamiu Okunleye,Tunbosun Oyewale Oladoyinbo,3
+Olubukola Omolara Adebiyi,Oluwaseun Oladeji Olaniyi,2
+Olubukola Omolara Adebiyi,Tunbosun Oyewale Oladoyinbo,2
+Oluwaseun Oladeji Olaniyi,Samuel Oladiipo Olabanji,5
+Oluwaseun Oladeji Olaniyi,Tunbosun Oyewale Oladoyinbo,4
+Samuel Oladiipo Olabanji,Tunbosun Oyewale Oladoyinbo,3
+Abdulla Osman,Abrar Hamdi Ahmed,2
+Abid Mehmood,Arslan Shafique,2
+Florian Schaub,Norman Sadeh,2
+Florian Schaub,Pedro Giovanni Leon,2
+Florian Schaub,Shomir Wilson,2
+Norman Sadeh,Pedro Giovanni Leon,2
+Norman Sadeh,Shomir Wilson,2
+Pedro Giovanni Leon,Shomir Wilson,2
+Douglas C. Schmidt,Jules White,2
+Jayesh Rane,Saurabh P. Choudhary,4
+Nitin Liladhar Rane,Saurabh P. Choudhary,2
+Ammar Almomani,Brij B. Gupta,2
+Brij B. Gupta,Kwok Tai Chui,2
+Brij B. Gupta,Varsha Arya,2
+Kwok Tai Chui,Varsha Arya,2
+Arash Heidari,Nima Jafari Navimipour,2
+Aditya Sundararajan,Arif I. Sarwat,2
+Tejasvi Alladi,Vinay Chamola,2
+Bartha Maria Knoppers,Edward S. Dove,3
+Battista Biggio,Fabio Roli,2
+Joffrey L. Leevy,Taghi M. Khoshgoftaar,2
+Amruth N. Kumar,Brett A. Becker,2
+Azween Abdullah,N. Z. Jhanjhi,2
+Panagiotis Sarigiannidis,Vasileios Argyriou,2
+Vasileios Argyriou,Θωμάς Λάγκας,2
+Filipe Caldeira,João Henriques,2
+Filipe Caldeira,Paulo Simões,2
+Filipe Caldeira,Tiago Cruz,2
+João Henriques,Paulo Simões,2
+João Henriques,Tiago Cruz,2
+Daniel Díaz López,Pantaleone Nespoli,2
+Gulshan Kumar,Rahul Saha,2
+Gulshan Kumar,Tai-hoon Kim,2
+Rahul Saha,Tai-hoon Kim,2
+Effy Vayena,Marcello Ienca,3
+Abdelhakim Hafid,Nabil Benamar,2
+Mamoona Humayun,Noshina Tariq,3
+Kimberlyn McGrail,Michael J. Schull,2
+Amjad Rehman,Tanzila Saba,2
+Roshani Raut,Rutvij H. Jhaveri,2
+Cristina Bosco,Fabio Poletto,2
+Cristina Bosco,Manuela Sanguinetti,2
+Cristina Bosco,Viviana Patti,2
+Fabio Poletto,Manuela Sanguinetti,2
+Fabio Poletto,Viviana Patti,2
+Manuela Sanguinetti,Viviana Patti,2
+I. Glenn Cohen,Timo Minssen,2
+Abdenour Bouzouane,Ali Raad,2
+Abdenour Bouzouane,Hussein Ibrahim,2
+Abdenour Bouzouane,Mehdi Adda,2
+Abdenour Bouzouane,Mohammad Moshawrab,2
+Ali Raad,Hussein Ibrahim,2
+Ali Raad,Mehdi Adda,2
+Ali Raad,Mohammad Moshawrab,2
+Hussein Ibrahim,Mohammad Moshawrab,2
+Mehdi Adda,Mohammad Moshawrab,2
+Aviad Cohen,Nir Nissim,2
+Aviad Cohen,Yuval Elovici,2
+Nir Nissim,Yuval Elovici,2
+Brian Craft,Melissa Cline,2
+David Haussler,Mark Diekhans,2
+Chrysanthos Maraveas,Konstantinos G. Arvanitis,2
+Abdulla Al‐Ali,Amr Mohamed,2
+Abdulla Al‐Ali,Mohammed Ali Al-Garadi,2
+Abdulla Al‐Ali,Mohsen Guizani,2
+Abdulla Al‐Ali,Xiaojiang Du,2
+Amr Mohamed,Mohammed Ali Al-Garadi,2
+Amr Mohamed,Mohsen Guizani,2
+Amr Mohamed,Xiaojiang Du,2
+Mohammed Ali Al-Garadi,Xiaojiang Du,2
+Mohsen Guizani,Xiaojiang Du,3
+Aitizaz Ali,Ong Huey Fang,2
+Muhammad Fermi Pasha,Ong Huey Fang,2
+Angela Daly,Monique Mann,2
+Chris L. Greer,Edward Griffor,2
+Chris L. Greer,Martin Burns,2
+David A. Wollman,Edward Griffor,2
+David A. Wollman,Martin Burns,2
+Edward Griffor,Martin Burns,2
+Md. Rezaul Karim,Oya Beyan,2
+Md. Rezaul Karim,Stefan Decker,2
+Oya Beyan,Stefan Decker,2
+Madhusanka Liyanage,Thippa Reddy Gadekallu,2
+Azeez Olanipekun Hassan,Oluwatoyin Ajoke Farayola,2
+Oluwatoyin Ajoke Farayola,Prisca Ugomma Uwaoma,2
+Oluwatoyin Ajoke Farayola,Simon Kaggwa,2
+Antonio José Calderón,Isaías González,2
+Ayyoob Sharifi,John Krogstie,2
+Ayyoob Sharifi,Simon Elias Bibri,2
+Avi Goldfarb,Catherine E. Tucker,3
+Adedoyin Tolulope Oyewole,Chinwe Chinazo Okoye,3
+Adedoyin Tolulope Oyewole,Onyeka Chrisanctus Ofodile,5
+Chinwe Chinazo Okoye,Onyeka Chrisanctus Ofodile,6
+Clinton Ronjon Barikdar,Jahid Hassan,2
+Clinton Ronjon Barikdar,Jobanpreet Kaur,2
+Clinton Ronjon Barikdar,Mohammad Abdul Goffer,2
+Clinton Ronjon Barikdar,Niropam Das,2
+Clinton Ronjon Barikdar,Rakibul Hasan,2
+Clinton Ronjon Barikdar,Syed Nazmul Hasan,2
+Jahid Hassan,Jobanpreet Kaur,2
+Jahid Hassan,Mohammad Abdul Goffer,2
+Jahid Hassan,Niropam Das,2
+Jahid Hassan,Rakibul Hasan,2
+Jahid Hassan,Syed Nazmul Hasan,2
+Jobanpreet Kaur,Mohammad Abdul Goffer,2
+Jobanpreet Kaur,Niropam Das,2
+Jobanpreet Kaur,Rakibul Hasan,2
+Jobanpreet Kaur,Syed Nazmul Hasan,2
+Mohammad Abdul Goffer,Niropam Das,2
+Mohammad Abdul Goffer,Rakibul Hasan,2
+Mohammad Abdul Goffer,Syed Nazmul Hasan,2
+Niropam Das,Rakibul Hasan,2
+Niropam Das,Syed Nazmul Hasan,2
+Rakibul Hasan,Syed Nazmul Hasan,2
+Anup Pradhan,Charles Mbohwa,2
+Anup Pradhan,Peter Onu,2
+Charles Mbohwa,Peter Onu,2
+Frede Blaabjerg,Subham Sahoo,3
+Alexander Obaigbena,Boma Sonimitiem Jacks,2
+Alexander Obaigbena,Ejike David Ugwuanyi,2
+Alexander Obaigbena,Enoch Oluwademilade Sodiya,2
+Alexander Obaigbena,Obinna Donald Daraojimba,2
+Alexander Obaigbena,Oluwaseun Augustine Lottu,2
+Boma Sonimitiem Jacks,Ejike David Ugwuanyi,2
+Boma Sonimitiem Jacks,Enoch Oluwademilade Sodiya,2
+Boma Sonimitiem Jacks,Obinna Donald Daraojimba,2
+Boma Sonimitiem Jacks,Oluwaseun Augustine Lottu,2
+Ejike David Ugwuanyi,Enoch Oluwademilade Sodiya,2
+Ejike David Ugwuanyi,Obinna Donald Daraojimba,2
+Ejike David Ugwuanyi,Oluwaseun Augustine Lottu,2
+Enoch Oluwademilade Sodiya,Obinna Donald Daraojimba,2
+Enoch Oluwademilade Sodiya,Oluwaseun Augustine Lottu,2
+Enoch Oluwademilade Sodiya,Uchenna Joseph Umoga,2
+Obinna Donald Daraojimba,Oluwaseun Augustine Lottu,2
+Emmie Hine,Huw Roberts,2
+Emmie Hine,Luciano Floridi,3
+Emmie Hine,Mariarosaria Taddeo,2
+Abdul Rehman Javed,Faisal Shahzad,2
+Adnan Akhunzada,Ahmad Sami Al‐Shamayleh,2
+François-Xavier Lescure,Nathan Peiffer‐Smadja,2
+Kitty Kioskli,Nineta Polemi,2
+Jinhua She,Kevin I‐Kai Wang,2
+Jinhua She,Wei Liang,2
+Jinhua She,Xiaokang Zhou,2
+Jinhua She,Zheng Yan,2
+Kevin I‐Kai Wang,Wei Liang,2
+Kevin I‐Kai Wang,Xiaokang Zhou,2
+Kevin I‐Kai Wang,Zheng Yan,2
+Wei Liang,Xiaokang Zhou,2
+Wei Liang,Zheng Yan,2
+Xiaokang Zhou,Zheng Yan,2
+David De Roure,Max Van Kleek,2
+La’Treall Maddox,Max Van Kleek,2
+Max Van Kleek,Omar Santos,2
+Max Van Kleek,Petar Radanliev,2
+Muhammad Burhan,Rana Asif Rehman,2
+Antonios Sarigiannidis,Panagiotis Radoglou‐Grammatikis,2
+Panagiotis Radoglou‐Grammatikis,Θωμάς Λάγκας,2
+Muhammad Ishfaq,Syed Waqas Ali Shah,2
+Enrico Coiera,Ian Scott,3
+Enrico Coiera,Stacy M. Carter,2
+Ian Scott,Stacy M. Carter,2
+Mina Tajvidi,Nick Hajli,2
+Gulshan Sharma,Rajesh Gupta,2
+Rajesh Gupta,Sudeep Tanwar,2
+Adebunmi Okechukwu Adewusi,Donald Obinna Daraojimba,2
+Adebunmi Okechukwu Adewusi,Ejuma Martha Adaga,2
+Adebunmi Okechukwu Adewusi,Temidayo Olorunsogo,2
+Adebunmi Okechukwu Adewusi,Ugochukwu Ikechukwu Okoli,2
+Donald Obinna Daraojimba,Ejuma Martha Adaga,2
+Donald Obinna Daraojimba,Temidayo Olorunsogo,2
+Donald Obinna Daraojimba,Ugochukwu Ikechukwu Okoli,2
+Ejuma Martha Adaga,Temidayo Olorunsogo,2
+Ejuma Martha Adaga,Ugochukwu Ikechukwu Okoli,2
+Onyeka Franca Asuzu,Temidayo Olorunsogo,2
+Temidayo Olorunsogo,Ugochukwu Ikechukwu Okoli,2
+Chinasa Susan Adigwe,Olalekan Jamiu Okunleye,2
+Chinasa Susan Adigwe,Oluwaseun Oladeji Olaniyi,2
+Mohammad Iranmanesh,Morteza Ghobakhloo,3
+Raja Jurdak,Rasheed Hussain,2
+Raja Jurdak,Sabah Suhail,2
+Rasheed Hussain,Sabah Suhail,2
+Davor Svetinović,Khaled Salah,2
+Davor Svetinović,Muhammad Habib ur Rehman,2
+Borko Furht,Connor Shorten,2
+Borko Furht,Taghi M. Khoshgoftaar,2
+Connor Shorten,Taghi M. Khoshgoftaar,2
+Khalifa AL-Dosari,Noora Fetais,3
+Leonardo Horn Iwaya,Muhammad Ali Babar,2
+Ian Zhou,Justin Lipman,2
+Ian Zhou,Mehran Abolhasan,2
+Justin Lipman,Mehran Abolhasan,2
+Ewelina Kostecka,Irmina Durlik,2
+Ewelina Kostecka,Tymoteusz Miller,2
+Simon Elias Bibri,Tan Yiğitcanlar,2
+Andrius Grybauskas,Azlan Amran,2
+Andrius Grybauskas,Mohammad Iranmanesh,2
+Andrius Grybauskas,Morteza Ghobakhloo,2
+Azlan Amran,Mohammad Iranmanesh,2
+Azlan Amran,Morteza Ghobakhloo,2
+Radhya Sahal,Saeed Hamood Alsamhi,2
+Adeola Olusola Ajayi-Nifise,Chinwe Chinazo Okoye,2
+Adeola Olusola Ajayi-Nifise,Olubusola Odeyemi,4
+Adeola Olusola Ajayi-Nifise,Omotayo Bukola Adeoye,2
+Adeola Olusola Ajayi-Nifise,Onyeka Chrisanctus Ofodile,2
+Adeola Olusola Ajayi-Nifise,Wilhelmina Afua Addy,4
+Chinwe Chinazo Okoye,Olubusola Odeyemi,3
+Chinwe Chinazo Okoye,Omotayo Bukola Adeoye,3
+Chinwe Chinazo Okoye,Wilhelmina Afua Addy,3
+Olubusola Odeyemi,Omotayo Bukola Adeoye,2
+Olubusola Odeyemi,Onyeka Chrisanctus Ofodile,3
+Olubusola Odeyemi,Wilhelmina Afua Addy,4
+Omotayo Bukola Adeoye,Onyeka Chrisanctus Ofodile,3
+Omotayo Bukola Adeoye,Wilhelmina Afua Addy,3
+Onyeka Chrisanctus Ofodile,Wilhelmina Afua Addy,5
+Nikolaos Pitropakis,William J. Buchanan,2
+David Lo,Li Li,2
+David Lo,Yue Liu,2
+Li Li,Yue Liu,2
+Antonio Estepa,Jesús E. Dı́az-Verdejo,2
+Antonio Estepa,Rafael Estepa,2
+Jesús E. Dı́az-Verdejo,Rafael Estepa,2
+Alexandra Wood,Micah Altman,2
+Ηλίας Δρίτσας,Μαρία Τρίγκα,3
+Maha Abdelhaq,Raed Alsaqour,2
+Abdalwali Lutfi,Mohammed Amin Almaiah,2
+Chang‐Tsun Li,Hin Chan,2
+Chang‐Tsun Li,Md Zahidul Islam,2
+Chang‐Tsun Li,Nan Sun,2
+Chang‐Tsun Li,Rafiqul Islam,2
+Chang‐Tsun Li,Warren Armstrong,2
+Hin Chan,Md Zahidul Islam,2
+Hin Chan,Nan Sun,2
+Hin Chan,Rafiqul Islam,2
+Hin Chan,Warren Armstrong,2
+Md Zahidul Islam,Nan Sun,2
+Md Zahidul Islam,Rafiqul Islam,3
+Md Zahidul Islam,Warren Armstrong,2
+Nan Sun,Rafiqul Islam,2
+Nan Sun,Warren Armstrong,2
+Rafiqul Islam,Warren Armstrong,2
+Carlos Fernández-Llatas,Jorge Muñoz-Gama,2
+Maryam Tayefi,Phuong Dinh Ngo,2
+Maryam Tayefi,Taridzo Chomutare,2
+Phuong Dinh Ngo,Taridzo Chomutare,2
+Adeola Olusola Ajayi-Nifise,Binaebi Gloria Bello,2
+Adeola Olusola Ajayi-Nifise,Sunday Tubokirifuruar Tula,2
+Adeola Olusola Ajayi-Nifise,Titilola Falaiye,2
+Binaebi Gloria Bello,Olubusola Odeyemi,2
+Binaebi Gloria Bello,Sunday Tubokirifuruar Tula,2
+Binaebi Gloria Bello,Titilola Falaiye,2
+Binaebi Gloria Bello,Wilhelmina Afua Addy,2
+Olubusola Odeyemi,Sunday Tubokirifuruar Tula,2
+Olubusola Odeyemi,Titilola Falaiye,2
+Sunday Tubokirifuruar Tula,Titilola Falaiye,2
+Sunday Tubokirifuruar Tula,Wilhelmina Afua Addy,2
+Titilola Falaiye,Wilhelmina Afua Addy,2
+Dana Moukheiber,Leo Anthony Celi,2
+Leo Anthony Celi,Nicole Martinez‐Martin,2
+Mohammad Kamrul Hasan,Rosilah Hassan,2
+Jung Taek Seo,Seungho Jeon,2
+Amir H. Gandomi,Md. Sakib Bin Alam,2
+Amir H. Gandomi,Shams Forruque Ahmed,2
+Md. Sakib Bin Alam,Shams Forruque Ahmed,2
+Opeyemi Abayomi Odejide,Tolulope Esther Edunjobi,2
+Georgios Feretzakis,Vassilios S. Verykios,2
+Dasom Lee,David J. Hess,2
+Anand Nayyar,Eklas Hossain,2
+Mateo Aboy,Timo Minssen,2
+George Liontos,Vasiliki Liagkou,2
+George Liontos,Αναστάσιος Παπαθανασίου,2
+Vasiliki Liagkou,Αναστάσιος Παπαθανασίου,2
+Dimitrios Tzovaras,Erol Gelenbe,2
+Dezhi Han,Dun Li,2
+Dezhi Han,Han Liu,2
+Dun Li,Han Liu,2
+Erfan Aghasian,Saurabh Garg,2
+Dinh C. Nguyen,Quoc‐Viet Pham,2
+Pubudu N. Pathirana,Quoc‐Viet Pham,2
+Bernd Carsten Stahl,Josephina Antoniou,2
+Bernd Carsten Stahl,Tilimbe Jiya,2
+Josephina Antoniou,Kevin Macnish,2
+Josephina Antoniou,Laurence Brooks,2
+Josephina Antoniou,Mark Ryan,2
+Josephina Antoniou,Tilimbe Jiya,2
+Kevin Macnish,Laurence Brooks,2
+Kevin Macnish,Tilimbe Jiya,2
+Laurence Brooks,Mark Ryan,2
+Laurence Brooks,Tilimbe Jiya,2
+Mark Ryan,Tilimbe Jiya,2
+Joseph Bamidele Awotunde,Sakinat Oluwabukonla Folorunso,2
+Joseph Bamidele Awotunde,Tarek Gaber,2
+Sakinat Oluwabukonla Folorunso,Tarek Gaber,2
+Fazlullah Khan,Ryan Alturki,2
+Fazlullah Khan,Spyridon Mastorakis,2
+Mohammad Kamrul Hasan,Nazmus Shaker Nafi,2
+Mohammad Kamrul Hasan,Rashid A. Saeed,2
+Nazmus Shaker Nafi,Shayla Islam,2
+Aras Bozkurt,Chryssa Themelis,2
+Chryssa Themelis,Kyungmee Lee,2
+Chryssa Themelis,Maha Bali,2
+Chryssa Themelis,Stefan Hrastinski,2
+Kenan Degirmenci,Tan Yiğitcanlar,2
+John Krogstie,Zaheer Allam,2
+Simon Elias Bibri,Zaheer Allam,3
+Angela Ballantyne,Cameron Stewart,2
+Angela Ballantyne,E Shyong Tai,2
+Angela Ballantyne,G. Owen Schaefer,2
+Angela Ballantyne,Tamra Lysaght,2
+Angela Ballantyne,Vicki Xafis,2
+E Shyong Tai,G. Owen Schaefer,2
+E Shyong Tai,Tamra Lysaght,2
+E Shyong Tai,Vicki Xafis,2
+G. Owen Schaefer,Tamra Lysaght,2
+G. Owen Schaefer,Vicki Xafis,2
+Tamra Lysaght,Vicki Xafis,2
+Christoph Busch,Marta Gomez‐Barrero,2
+Christian Ohmann,Guido Bertolini,2
+Christian Ohmann,Isabelle Perseil,2
+Christian Ohmann,Niklas Blomberg,2
+Isabelle Perseil,Niklas Blomberg,2
+Adnan M. Abu‐Mahfouz,Gerhard P. Hancke,2
+Abdullah Alabdulatif,Navod Neranjan Thilakarathne,2
+Abdullah Alabdulatif,Zaharaddeen Karami Lawal,2
+Navod Neranjan Thilakarathne,Zaharaddeen Karami Lawal,2
+Funmilola Olatundun Olatoye,Oluwatoyin Ajoke Farayola,2
+Geert Poels,Georgios Georgiadis,2
+Raghava Rao Mukkamala,Ravi Vatrapu,2
+Andreas Holzinger,Javier Del Ser,2
+Andreas Holzinger,Wojciech Samek,2
+Javier Del Ser,Wojciech Samek,2
+Christian Ohmann,Uğis Sarkans,2
+Helmut Spengler,Klaus A. Kuhn,2
+Helmut Spengler,Raffael Bild,2
+Klaus A. Kuhn,Raffael Bild,2
+Luciano Floridi,Marta Ziosi,3
+Luciano Floridi,Prathm Juneja,2
+Mariarosaria Taddeo,Marta Ziosi,2
+Mariarosaria Taddeo,Prathm Juneja,2
+Marta Ziosi,Prathm Juneja,2
+Leo Anthony Celi,Paul Elbers,2
+Amitava Banerjee,Benoît Tyl,2
+Amitava Banerjee,Ghislaine J. M. W. van Thiel,2
+Benoît Tyl,Ghislaine J. M. W. van Thiel,2
+Ghislaine J. M. W. van Thiel,Menno Mostert,2
+Ghislaine J. M. W. van Thiel,Shona Kalkman,2
+Menno Mostert,Shona Kalkman,2
+Jin Ye,Wen‐Zhan Song,2
+Ayon Roy,Imtiaz Ahmed,2
+Ayon Roy,Mashrafi Kajol,2
+Ayon Roy,Md. Rokonuzzaman Reza,2
+Ayon Roy,Partha Protim Datta,2
+Ayon Roy,Uzma Hasan,2
+Imtiaz Ahmed,Mashrafi Kajol,2
+Imtiaz Ahmed,Md. Rokonuzzaman Reza,2
+Imtiaz Ahmed,Partha Protim Datta,2
+Imtiaz Ahmed,Uzma Hasan,2
+Mashrafi Kajol,Md. Rokonuzzaman Reza,2
+Mashrafi Kajol,Partha Protim Datta,2
+Mashrafi Kajol,Uzma Hasan,2
+Md. Rokonuzzaman Reza,Partha Protim Datta,2
+Md. Rokonuzzaman Reza,Uzma Hasan,2
+Partha Protim Datta,Uzma Hasan,2
+Andrew Luxton-Reilly,Brett A. Becker,2
+Andrew Luxton-Reilly,Ibrahim Albluwi,2
+Brett A. Becker,Ibrahim Albluwi,2
+Imran Imran,Jeonghwan Gwak,2
+Imran Imran,Muhammad Fayaz,2
+Imran Imran,Umar Zaman,2
+Jeonghwan Gwak,Muhammad Fayaz,2
+Antonino Nocera,Marco Arazzi,2
+Antonino Nocera,Serena Nicolazzo,2
+Marco Arazzi,Serena Nicolazzo,2
+Ing-Ray Chen,Jin-Hee Cho,2
+Hong‐Kong T. Nguyen,Quan‐Hoang Vuong,2
+Adel Binbusayyis,Thavavel Vaiyapuri,2
+Charat Thongprayoon,Jing Miao,2
+Charat Thongprayoon,Oscar A. Garcia Valencia,2
+Charat Thongprayoon,Supawadee Suppadungsuk,2
+Charat Thongprayoon,Wisit Cheungpasitporn,2
+Jing Miao,Oscar A. Garcia Valencia,2
+Jing Miao,Supawadee Suppadungsuk,2
+Jing Miao,Wisit Cheungpasitporn,2
+Oscar A. Garcia Valencia,Supawadee Suppadungsuk,2
+Oscar A. Garcia Valencia,Wisit Cheungpasitporn,2
+Supawadee Suppadungsuk,Wisit Cheungpasitporn,2
+Jack Gallifant,Judy Wawira Gichoya,2
+Jack Gallifant,Leo Anthony Celi,2
+Judy Wawira Gichoya,Leo Anthony Celi,2
+Abderahman Rejeb,John G. Keogh,2
+John G. Keogh,Karim Rejeb,2
+Anna Neya Kazanskaia,Neya Global,2
+Björn Bergh,Björn Schreiweis,2
+P. S. Aithal,Shubhrajyotsna Aithal,2
+Claudio Novelli,Luciano Floridi,2
+Bong Jun Choi,Neetesh Saxena,2
+Adekunle Oyeyemi Adeniyi,Chioma Anthonia Okolo,2
+Adekunle Oyeyemi Adeniyi,Jeremiah Olawumi Arowoogun,2
+Adekunle Oyeyemi Adeniyi,Oloruntoba Babawarun,2
+Adekunle Oyeyemi Adeniyi,Rawlings Chidi,2
+Chioma Anthonia Okolo,Jeremiah Olawumi Arowoogun,2
+Chioma Anthonia Okolo,Oloruntoba Babawarun,3
+Chioma Anthonia Okolo,Rawlings Chidi,2
+Jeremiah Olawumi Arowoogun,Oloruntoba Babawarun,2
+Jeremiah Olawumi Arowoogun,Rawlings Chidi,2
+Oloruntoba Babawarun,Rawlings Chidi,2
+Ambika Pawar,Prathamesh Churi,2
+Mario D. Schultz,Peter Seele,3
+Annika Jacobsen,Marco Roos,2
+Manish Raghavan,Solon Barocas,2
+Kamanashis Biswas,Mohammad Jabed Morshed Chowdhury,2
+Erkki Harjula,Gaolei Li,2
+Erkki Harjula,Ijaz Ahmad,2
+Erkki Harjula,Jyrki Huusko,2
+Erkki Harjula,Tanesh Kumar,2
+Erkki Harjula,Zeeshan Asghar,2
+Gaolei Li,Ijaz Ahmad,2
+Gaolei Li,Jyrki Huusko,2
+Gaolei Li,Tanesh Kumar,2
+Gaolei Li,Zeeshan Asghar,2
+Ijaz Ahmad,Jyrki Huusko,2
+Ijaz Ahmad,Tanesh Kumar,2
+Ijaz Ahmad,Zeeshan Asghar,2
+Jyrki Huusko,Tanesh Kumar,2
+Jyrki Huusko,Zeeshan Asghar,2
+Tanesh Kumar,Zeeshan Asghar,2
+Akhil P. Joseph,Anithamol Babu,2
+Chukwuekem David Okeke,Cynthia Chizoba Ekechi,2
+Chukwuekem David Okeke,Michael Oladipo Akinsanya,2
+Cynthia Chizoba Ekechi,Michael Oladipo Akinsanya,2
+Emeka Chukwu,Lalit Garg,2
+Octavian Fratu,Răzvan Crăciunescu,2
+Octavian Fratu,Seyed Salar Sefati,2
+Octavian Fratu,Simona Halunga,2
+Răzvan Crăciunescu,Seyed Salar Sefati,2
+Răzvan Crăciunescu,Simona Halunga,2
+Seyed Salar Sefati,Simona Halunga,2
+Alastair K. Denniston,Xiaoxuan Liu,2
+Nguyễn Minh Quý,Nguyễn Tiến Ban,2
+Nguyễn Minh Quý,Vũ Khánh Quý,2
+Nguyễn Tiến Ban,Vũ Khánh Quý,2
+Leonie Maria Tanczer,Madeline Carr,2
+Tianming Liu,Zihao Wu,2
+Zhengliang Liu,Zihao Wu,2
+Karen Renaud,Verena Zimmermann,2
+Kalamullah Ramli,Teddy Surya Gunawan,2
+Amy L. McGuire,Bartha Maria Knoppers,2
+Naurin Farooq Khan,Naveed Ikram,2
+Naurin Farooq Khan,Sumera Saleem,2
+Naveed Ikram,Sumera Saleem,2
+Mahmoud M. Badr,Mohamed Mahmoud,2
+Carlos Serôdio,Frederico Branco,2
+Carlos Serôdio,Rafael Abreu,2
+Frederico Branco,Rafael Abreu,2
+Joy Onma Enyejo,Martina Ononiwu,2
+Joy Onma Enyejo,Onum Friday Okoh,2
+Joy Onma Enyejo,Tony Isioma Azonuche,2
+Martina Ononiwu,Onum Friday Okoh,2
+Martina Ononiwu,Tony Isioma Azonuche,2
+Onum Friday Okoh,Tony Isioma Azonuche,2
+Fabian Praßer,Klaus A. Kuhn,2
+Anastasia Kozyreva,Ralph Hertwig,2
+Anastasia Kozyreva,Stephan Lewandowsky,2
+Ralph Hertwig,Stephan Lewandowsky,2
+Imdad Ullah,Usman Tariq,2
+Anne van Dongen,Dominika Kwaśnicka,2
+Anne van Dongen,Gill A. ten Hoor,2
+Anne van Dongen,Matti T. J. Heino,2
+Dominika Kwaśnicka,Gill A. ten Hoor,2
+Dominika Kwaśnicka,Matti T. J. Heino,2
+Gill A. ten Hoor,Matti T. J. Heino,2
+Ana Cristina Barros,Jaime Bonnín Roca,2
+Ana Cristina Barros,Pedro Pinho Senna,2
+Jaime Bonnín Roca,Pedro Pinho Senna,2
+Bo Shen,Zidong Wang,2
+Eric Medvet,Fabio Martinelli,2
+Eric Medvet,Francesco Mercaldo,2
+Fabio Martinelli,Francesco Mercaldo,2
+Charles Chukwudalu Ebulue,Chukwunonso Sylvester Ekesiobi,2
+Charles Chukwudalu Ebulue,Francisca Chibugo Udegbe,2
+Charles Chukwudalu Ebulue,Ogochukwu Roseline Ebulue,2
+Chukwunonso Sylvester Ekesiobi,Francisca Chibugo Udegbe,2
+Chukwunonso Sylvester Ekesiobi,Ogochukwu Roseline Ebulue,2
+Francisca Chibugo Udegbe,Ogochukwu Roseline Ebulue,2
+Christian Ohmann,Harald Wagener,2
+Christian Ohmann,Jan‐Willem Boiten,2
+Christian Ohmann,Maria Panagiotopoulou,2
+Christian Ohmann,Michaela Th. Mayrhofer,2
+Christian Ohmann,Petr Holub,2
+Christian Ohmann,Romain David,2
+Christian Ohmann,Álex Sánchez‐Pla,2
+Harald Wagener,Jan‐Willem Boiten,2
+Harald Wagener,Maria Panagiotopoulou,2
+Harald Wagener,Michaela Th. Mayrhofer,2
+Harald Wagener,Petr Holub,2
+Harald Wagener,Romain David,2
+Harald Wagener,Álex Sánchez‐Pla,2
+Jan‐Willem Boiten,Maria Panagiotopoulou,2
+Jan‐Willem Boiten,Michaela Th. Mayrhofer,2
+Jan‐Willem Boiten,Petr Holub,2
+Jan‐Willem Boiten,Romain David,2
+Jan‐Willem Boiten,Álex Sánchez‐Pla,2
+Maria Panagiotopoulou,Michaela Th. Mayrhofer,2
+Maria Panagiotopoulou,Petr Holub,2
+Maria Panagiotopoulou,Romain David,2
+Maria Panagiotopoulou,Álex Sánchez‐Pla,2
+Michaela Th. Mayrhofer,Petr Holub,3
+Michaela Th. Mayrhofer,Romain David,2
+Michaela Th. Mayrhofer,Álex Sánchez‐Pla,2
+Petr Holub,Romain David,2
+Petr Holub,Álex Sánchez‐Pla,2
+Romain David,Álex Sánchez‐Pla,2
+Adedoyin Tolulope Oyewole,Hameedat Bukola Olodo,2
+Adedoyin Tolulope Oyewole,Mustafa Ayobami Raji,2
+Adedoyin Tolulope Oyewole,Timothy Tolulope Oke,2
+Adedoyin Tolulope Oyewole,Wilhelmina Afua Addy,3
+Hameedat Bukola Olodo,Mustafa Ayobami Raji,2
+Hameedat Bukola Olodo,Onyeka Chrisanctus Ofodile,2
+Hameedat Bukola Olodo,Timothy Tolulope Oke,2
+Hameedat Bukola Olodo,Wilhelmina Afua Addy,2
+Mustafa Ayobami Raji,Onyeka Chrisanctus Ofodile,2
+Mustafa Ayobami Raji,Timothy Tolulope Oke,2
+Mustafa Ayobami Raji,Wilhelmina Afua Addy,2
+Onyeka Chrisanctus Ofodile,Timothy Tolulope Oke,2
+Timothy Tolulope Oke,Wilhelmina Afua Addy,2
+Jayesh Rane,Nitin Rane,2
+Nitin Rane,Saurabh P. Choudhary,2
+Hong‐Ning Dai,Muhammad Imran,2
+Dorjan Hitaj,Fabio De Gaspari,2
+Dorjan Hitaj,Giulio Pagnotta,2
+Dorjan Hitaj,Lorenzo De Carli,2
+Dorjan Hitaj,Luigi V. Mancini,2
+Fabio De Gaspari,Giulio Pagnotta,2
+Fabio De Gaspari,Lorenzo De Carli,2
+Fabio De Gaspari,Luigi V. Mancini,2
+Giulio Pagnotta,Lorenzo De Carli,2
+Giulio Pagnotta,Luigi V. Mancini,2
+Lorenzo De Carli,Luigi V. Mancini,2
+Jameela Al‐Jaroodi,Nader Mohamed,2
+Adnan Khalid,Zeeshan Aziz,2
+Huned Materwala,Leila Ismail,2
+Oya Y. Rieger,Roger Schonfeld,2
+Abdul Majeed,Seong Oun Hwang,3
+Darshana Upadhyay,Marzia Zaman,2
+Divya Siddarth,Jade Leung,2
+Divya Siddarth,Jess Whittlestone,2
+Divya Siddarth,L. Lawrence Ho,2
+Divya Siddarth,Markus Anderljung,2
+Divya Siddarth,Noam Kolt,2
+Divya Siddarth,Shahar Avin,2
+Jade Leung,Jess Whittlestone,2
+Jade Leung,L. Lawrence Ho,2
+Jade Leung,Markus Anderljung,2
+Jade Leung,Noam Kolt,2
+Jade Leung,Shahar Avin,2
+Jess Whittlestone,L. Lawrence Ho,2
+Jess Whittlestone,Markus Anderljung,2
+Jess Whittlestone,Noam Kolt,2
+Jess Whittlestone,Shahar Avin,2
+L. Lawrence Ho,Markus Anderljung,2
+L. Lawrence Ho,Noam Kolt,2
+L. Lawrence Ho,Shahar Avin,2
+Markus Anderljung,Noam Kolt,2
+Markus Anderljung,Shahar Avin,2
+Noam Kolt,Shahar Avin,2
+Chukwuekem David Okeke,Henry Ejiga Adama,2
+Aleksandra Pawlicka,Marek Pawlicki,2
+Aleksandra Pawlicka,Michał Choraś,2
+Abimbola Eunice Ajayi,Ajao Ebenezer Taiwo,2
+Abimbola Eunice Ajayi,Amardas Tuboalabo,2
+Abimbola Eunice Ajayi,Sylvester Tafirenyika,2
+Abimbola Eunice Ajayi,Tahir Tayor Bukhari,2
+Abimbola Eunice Ajayi,Thembani Moyo,2
+Ajao Ebenezer Taiwo,Amardas Tuboalabo,2
+Ajao Ebenezer Taiwo,Sylvester Tafirenyika,2
+Ajao Ebenezer Taiwo,Tahir Tayor Bukhari,2
+Ajao Ebenezer Taiwo,Thembani Moyo,2
+Amardas Tuboalabo,Sylvester Tafirenyika,2
+Amardas Tuboalabo,Tahir Tayor Bukhari,2
+Amardas Tuboalabo,Thembani Moyo,2
+Sylvester Tafirenyika,Tahir Tayor Bukhari,2
+Sylvester Tafirenyika,Thembani Moyo,2
+Tahir Tayor Bukhari,Thembani Moyo,2
+Mahsa Shabani,Pascal Borry,2
+Madiha Haider Syed,Semeen Rehman,2
+Anca Delia Jurcut,Furqan Rustam,3
+Ijaz Ahmad,Syed Attique Shah,2
+Elizabeth Davidson,Jenifer Sunrise Winter,2
+Bartha Maria Knoppers,Yann Joly,2
+Ajayi Abisoye,Joshua Idowu Akerele,2
+Patience Okpeke Paul,Toluwalase Vanessa Iyelolu,2
+Michaela Th. Mayrhofer,Łukasz Kozera,2
+Elisabetta Biasin,Erik Kamenjašević,2
+Anca Delia Jurcut,Mahmoud Said Elsayed,2
+Bruno Volckaert,Filip De Turck,2
+Bruno Volckaert,Tim Wauters,2
+Filip De Turck,Tim Wauters,2
+Anil Kumar,Jose Arturo Garza‐Reyes,2
+Aude Géry,Frédérick Douzet,2
+Luis Castedo,Manuel Suárez-Albela,2
+Luis Castedo,Paula Fraga‐Lamas,2
+Luis Castedo,Tiago M. Fernández‐Caramés,2
+Manuel Suárez-Albela,Paula Fraga‐Lamas,2
+Manuel Suárez-Albela,Tiago M. Fernández‐Caramés,2
+Sung Won Kim,Yousaf Bin Zikria,2
