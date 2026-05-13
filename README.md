@@ -46,6 +46,15 @@ This will perform the base data fetch, cleaning, and generate initial topic clas
 - `phase5_visualizations/`: Generation of all charts and maps.
 - `FinalOutputs/`: Directory containing all generated reports and data.
 
+## Configuration
+
+The pipeline's behavior can be customized by editing the `config.py` files in each pipeline directory. Key parameters include:
+- Search queries for data retrieval.
+- Clustering parameters for BERTopic.
+- Exclusion keywords for domain-specific filtering.
+- AI model selection and prompt templates.
+
+
 
 
 
