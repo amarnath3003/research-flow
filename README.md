@@ -81,6 +81,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any questions or inquiries, please reach out to **Amarnath** at [amarnath@example.com](mailto:amarnath@example.com) or open an issue on GitHub.
 
+## Future Roadmap
+
+- [ ] Support for Scopus and Web of Science data formats.
+- [ ] Integration with cloud-based LLM providers (OpenAI, Anthropic).
+- [ ] Real-time visualization dashboard.
+- [ ] Automated citation network extraction.
+
+
 
 
 
