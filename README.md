@@ -105,6 +105,20 @@ For any questions or inquiries, please reach out to **Amarnath** at [amarnath@ex
 - Special thanks to the open-source community for providing the foundational libraries (Scikit-learn, BERTopic, etc.).
 - Inspired by the need for more transparent and reproducible scientometric research.
 
+## Citation
+
+If you use this tool in your research, please cite it as:
+
+```bibtex
+@software{amarnath_research_flow_2026,
+  author = {Amarnath},
+  title = {Research Flow Pipeline: A Generalized Framework for Scientometric Analysis},
+  year = {2026},
+  url = {https://github.com/amarnath3003/research-flow}
+}
+```
+
+
 
 
 
