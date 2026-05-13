@@ -35,5 +35,17 @@ python run_research_pipeline.py all-auto
 
 This will perform the base data fetch, cleaning, and generate initial topic classifications.
 
+## Project Structure
+
+- `scientometric_pipeline/`: Core scripts for bibliometric analysis.
+- `advanced_pipeline/`: AI-driven interpretation and complex analytics.
+- `phase1_refinement/`: Topic classification and data cleaning.
+- `phase2_validation/`: Manual curation and theme merging logic.
+- `phase3_analysis/`: Quantitative metrics and trend detection.
+- `phase4_interpretation/`: LLM-assisted qualitative analysis.
+- `phase5_visualizations/`: Generation of all charts and maps.
+- `FinalOutputs/`: Directory containing all generated reports and data.
+
+
 
 
