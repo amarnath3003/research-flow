@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Play, CheckCircle2, Circle, Loader2, ChevronDown, ChevronRight,
   Database, Brain, FileText, Tags, Layers, GitMerge, BarChart3,
-  TrendingUp, ImageIcon, FileCheck, Clock, AlertCircle, Terminal,
+  TrendingUp, ImageIcon, FileCheck, Clock, AlertCircle, Terminal, Edit3,
 } from 'lucide-react';
 import { fetchStatus, runStage, subscribeLogs, fetchStats, fetchTopics, fetchFigures } from '../api';
 import { useProjects } from '../context/ProjectContext';
+import CsvEditor from '../components/CsvEditor';
 
 type StageId = typeof STAGE_ORDER[number];
 const STAGE_ORDER = ['scientometric', 'advanced', 'phase1-export', 'phase1-refine', 'phase2-prepare', 'phase2-merge', 'phase3', 'phase4', 'phase5', 'finalize'] as const;
@@ -104,6 +105,7 @@ const Workflow = () => {
   const [running, setRunning] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [showRawLogs, setShowRawLogs] = useState(false);
+  const [csvEditorOpen, setCsvEditorOpen] = useState<string | null>(null);
   const [liveStats, setLiveStats] = useState<any>({});
   const [topicsCount, setTopicsCount] = useState(0);
   const [figuresCount, setFiguresCount] = useState(0);
@@ -304,9 +306,25 @@ const Workflow = () => {
                                 <li key={idx}>{inst}</li>
                               ))}
                             </ol>
-                            <div style={{ marginTop: '0.5rem', fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--text-muted)' }}>
-                              File: {stage.manualStep.fileLabel}
+                            <div style={{ marginTop: '0.75rem', display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+                              <button className="btn btn-outline" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
+                                onClick={() => setCsvEditorOpen(csvEditorOpen === stage.id ? null : stage.id)}>
+                                <Edit3 size={14} style={{ marginRight: '0.3rem' }} />
+                                {csvEditorOpen === stage.id ? 'Close Editor' : 'Edit CSV in Browser'}
+                              </button>
+                              <span style={{ fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--text-muted)' }}>
+                                {stage.manualStep.fileLabel}
+                              </span>
                             </div>
+                            {csvEditorOpen === stage.id && activeProject && (
+                              <div style={{ marginTop: '1rem' }}>
+                                <CsvEditor
+                                  projectId={activeProject.id}
+                                  filename={stage.manualStep.fileLabel}
+                                  onSaved={() => setCsvEditorOpen(null)}
+                                />
+                              </div>
+                            )}
                           </div>
                         )}
 
