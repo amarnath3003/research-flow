@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Check, Eye, Edit3 } from 'lucide-react';
-import { fetchConfig, saveConfig as apiSaveConfig } from '../api';
+import { Save, Check, Eye, Edit3, Target, Globe, Layers, TrendingUp, Users, GitBranch, Search } from 'lucide-react';
+import { fetchConfig, saveConfig as apiSaveConfig, listGoals } from '../api';
 import { useProjects } from '../context/ProjectContext';
 import TagInput from '../components/TagInput';
+
+const GOAL_ICONS: Record<string, any> = {
+  Globe, Layers, TrendingUp, Users, GitBranch, Search,
+};
 
 const Config = () => {
   const { activeProject } = useProjects();
@@ -13,6 +17,8 @@ const Config = () => {
   const [error, setError] = useState('');
   const [showRaw, setShowRaw] = useState(false);
   const [rawQuery, setRawQuery] = useState('');
+  const [goals, setGoals] = useState<any[]>([]);
+  const [selectedGoal, setSelectedGoal] = useState<string>('landscape');
 
   const [includeTerms, setIncludeTerms] = useState<string[]>([]);
   const [excludeTerms, setExcludeTerms] = useState<string[]>([]);
@@ -20,9 +26,13 @@ const Config = () => {
   useEffect(() => {
     if (!activeProject) return;
     setLoading(true);
-    fetchConfig(activeProject.id)
-      .then(data => {
+    Promise.all([
+      fetchConfig(activeProject.id),
+      listGoals(activeProject.id),
+    ])
+      .then(([data, goalList]) => {
         setConfig(data);
+        setGoals(goalList);
         setLoading(false);
         // Use stored arrays if available, otherwise parse from query string
         if (data.includeTerms?.length) {
@@ -72,10 +82,47 @@ const Config = () => {
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-      <header style={{ marginBottom: '2.5rem' }}>
-        <h1>{activeProject.name} — Configuration</h1>
-        <p>Type keywords as capsules. The system builds the boolean query automatically.</p>
+      <header style={{ marginBottom: '2rem' }}>
+        <h1>{activeProject.name} — Research Setup</h1>
+        <p>Configure your search strategy and select a research goal.</p>
       </header>
+
+      {/* Goal Selector */}
+      {goals.length > 0 && (
+        <div className="card" style={{ marginBottom: '2rem' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
+            <Target size={18} color="var(--accent-primary)" /> Research Goal
+          </h3>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            {goals.map((g) => {
+              const Icon = GOAL_ICONS[g.icon] || Target;
+              const isSelected = selectedGoal === g.id;
+              return (
+                <button
+                  key={g.id}
+                  onClick={() => setSelectedGoal(g.id)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.5rem',
+                    padding: '0.6rem 1rem', borderRadius: '8px', border: isSelected ? `2px solid ${g.color}` : '1px solid var(--border-color)',
+                    background: isSelected ? `${g.color}10` : 'var(--bg-secondary)',
+                    color: isSelected ? g.color : 'var(--text-primary)',
+                    cursor: 'pointer', fontSize: '0.85rem', fontWeight: isSelected ? 600 : 400,
+                    transition: 'all 0.2s',
+                  }}
+                >
+                  <Icon size={16} />
+                  {g.name}
+                </button>
+              );
+            })}
+          </div>
+          {selectedGoal && goals.find(g => g.id === selectedGoal) && (
+            <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.75rem', lineHeight: 1.5 }}>
+              {goals.find(g => g.id === selectedGoal)?.description}
+            </p>
+          )}
+        </div>
+      )}
 
       <div className="grid-2">
         {/* LEFT: Search Strategy */}

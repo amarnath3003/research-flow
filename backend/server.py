@@ -19,6 +19,8 @@ sys.path.insert(0, str(BASE_DIR))
 
 from db import init_db, create_project as cp, get_project, get_project_dir, get_project_config_path, get_default_project, Project, SessionLocal, PROJECTS_DIR
 from settings import load as load_cfg, clear_cache as clear_cfg_cache
+from core.orchestrator import run_goal as _orchestrate, MODULE_INFO
+from goals import GOALS
 
 # ── Init ───────────────────────────────────────────────────────────
 init_db()
@@ -30,6 +32,11 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
 # ── Per-project pipeline state ─────────────────────────────────────
 _pipeline_tasks: dict[str, subprocess.Popen] = {}
 _pipeline_logs: dict[str, list[str]] = {}
+
+# ── Per-project goal state ─────────────────────────────────────────
+_goal_tasks: dict[str, dict] = {}
+_goal_logs: dict[str, list[str]] = {}
+_goal_results: dict[str, list[dict]] = {}
 
 
 def _active_project_dir(pid: str) -> Path:
@@ -677,6 +684,260 @@ def get_data(pid: str, data_type: str):
         with open(path) as f:
             return {"content": f.read()}
     raise HTTPException(404, f"Unknown data type: {data_type}")
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  GOALS (goal-oriented research endpoints)
+# ═══════════════════════════════════════════════════════════════════
+
+
+@app.get("/api/{pid}/goals")
+def list_goal_definitions(pid: str):
+    """List available research goals with metadata (no module_chain)."""
+    return [
+        {
+            "id": gid,
+            "name": g["name"],
+            "description": g["description"],
+            "icon": g["icon"],
+            "color": g.get("color", "#6366f1"),
+            "outputs": g["outputs"],
+            "supportsRefinement": g.get("supports_refinement", False),
+            "estimatedMinutes": g.get("estimated_minutes", ""),
+            "numSteps": len(g["module_chain"]),
+        }
+        for gid, g in GOALS.items()
+    ]
+
+
+@app.post("/api/{pid}/run-goal/{goal_id}")
+async def run_goal_endpoint(pid: str, goal_id: str, background_tasks: BackgroundTasks):
+    """Execute a research goal asynchronously."""
+    if goal_id not in GOALS:
+        raise HTTPException(400, f"Unknown goal: {goal_id}. Available: {list(GOALS.keys())}")
+
+    pdir = _active_project_dir(pid)
+    cfg_path = get_project_config_path(pid)
+
+    if not cfg_path.exists():
+        raise HTTPException(400, "No configuration found. Set up your research config first.")
+
+    # Check for search query
+    cfg = _read_config(pid)
+    sq = cfg.get("research", {}).get("search_query", "").strip()
+    if not sq:
+        raise HTTPException(400, "Search query is empty. Go to Configuration and set a boolean search query first.")
+
+    def _run():
+        _goal_logs[pid] = []
+        _goal_results[pid] = []
+
+        def _progress(current, total, message, status):
+            entry = {"current": current, "total": total, "message": message, "status": status}
+            _goal_logs.setdefault(pid, []).append(entry)
+
+        try:
+            results = _orchestrate(goal_id, pdir, cfg_path, progress_callback=_progress)
+            _goal_results[pid] = results
+            db = SessionLocal()
+            try:
+                p = db.query(Project).filter(Project.id == pid).first()
+                if p:
+                    all_ok = all(r["status"] == "completed" for r in results)
+                    p.status = "completed" if all_ok else "failed"
+                    db.commit()
+            finally:
+                db.close()
+        except Exception as e:
+            _goal_results[pid] = [{"module": "orchestrator", "status": "failed", "error": str(e)}]
+
+        if pid in _goal_tasks:
+            del _goal_tasks[pid]
+
+    _goal_tasks[pid] = {"goal_id": goal_id, "running": True}
+    db = SessionLocal()
+    try:
+        p = db.query(Project).filter(Project.id == pid).first()
+        if p:
+            p.status = "running"
+            db.commit()
+    finally:
+        db.close()
+
+    background_tasks.add_task(_run)
+    return {"success": True, "goal": goal_id, "project": pid, "message": f"Started goal '{GOALS[goal_id]['name']}'"}
+
+
+@app.get("/api/{pid}/goal-status")
+def get_goal_status(pid: str):
+    """Get completion status for all goals by checking output file existence."""
+    pdir = get_project_dir(pid)
+    if not pdir.exists():
+        raise HTTPException(404, "Project directory not found")
+
+    running_goal = _goal_tasks.get(pid, {}).get("goal_id") if _goal_tasks.get(pid, {}).get("running") else None
+    statuses = {}
+
+    for gid, goal in GOALS.items():
+        chain = goal["module_chain"]
+        def _check(mid):
+            p = _product_path_for_module(mid, pdir)
+            return p is not None and p.exists()
+        done = sum(1 for mid in chain if _check(mid))
+        statuses[gid] = {
+            "done": done,
+            "total": len(chain),
+            "complete": done == len(chain),
+            "running": running_goal == gid,
+        }
+
+    return statuses
+
+
+def _product_path_for_module(module_id: str, pdir: Path) -> Optional[Path]:
+    """Map a module ID to its primary output file for status detection."""
+    mapping = {
+        "acquisition": "data/cleaned/final_dataset.csv",
+        "topic_modeling": "data/processed/topic_dataset.csv",
+        "trends": "outputs/trends/trend_summary.csv",
+        "sources": "outputs/sources/top_sources.csv",
+        "geopolitical": "outputs/geopolitical/country_collaboration.csv",
+        "networks": "outputs/networks/keyword_cooccurrence_edges.csv",
+        "authors": "outputs/stats/top_authors.csv",
+        "evolution": "outputs/evolution/theme_evolution.csv",
+        "bursts": "outputs/bursts/burst_detection.csv",
+        "narrative": "outputs/narrative/discussion_draft.md",
+        "growth_figure": "outputs/figures/figure1_growth_timeline.png",
+        "keyword_network_figure": "outputs/figures/figure2_keyword_network.png",
+        "collaboration_figure": "outputs/figures/figure3_collaboration_map.png",
+        "thematic_evolution_figure": "outputs/figures/figure4_thematic_evolution.png",
+        "landscape_figure": "outputs/figures/figure5_cluster_landscape.png",
+        "report": "FINAL_RESEARCH_REPORT.md",
+        "gather": "FinalOutputs/MANIFEST.txt",
+    }
+    rel = mapping.get(module_id)
+    if rel:
+        path = pdir / rel
+        return path
+    return None
+
+
+@app.get("/api/{pid}/goal-logs/stream")
+async def stream_goal_logs(pid: str):
+    """SSE stream of goal execution progress events."""
+    async def event_generator():
+        sent = 0
+        while True:
+            log = _goal_logs.get(pid, [])
+            while sent < len(log):
+                yield f"data: {json.dumps(log[sent])}\n\n"
+                sent += 1
+            is_done = pid not in _goal_tasks or not _goal_tasks[pid].get("running")
+            if is_done and sent >= len(log):
+                yield f"data: {json.dumps({'done': True})}\n\n"
+                break
+            await asyncio.sleep(0.15)
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+
+@app.get("/api/{pid}/goal-results")
+def get_goal_results(pid: str):
+    """Get the results of the last goal execution."""
+    return {"results": _goal_results.get(pid, [])}
+
+
+# ═══════════════════════════════════════════════════════════════════
+#  REFINEMENT (post-hoc curation after seeing results)
+# ═══════════════════════════════════════════════════════════════════
+
+
+REFINEMENT_STEPS = {
+    "classify": {
+        "name": "Topic Classification",
+        "description": "Export classification CSV, apply manual labels to filter dataset, and regenerate validation report.",
+        "steps": ["export_classification", "refine_dataset", "validate_semantics"],
+    },
+    "merge": {
+        "name": "Theme Merging",
+        "description": "Apply manual theme merges to consolidate topics into major themes.",
+        "steps": ["apply_merges"],
+    },
+}
+
+
+@app.get("/api/{pid}/refinement-options")
+def get_refinement_options(pid: str):
+    """List available refinement steps based on what data exists."""
+    pdir = get_project_dir(pid)
+    if not pdir.exists():
+        raise HTTPException(404, "Project directory not found")
+
+    options = []
+    # classify: available if topic_modeling has been run
+    has_topics = (pdir / "data" / "processed" / "topic_dataset.csv").exists()
+    # merge: available if validation report already exists
+    has_validation = (pdir / "outputs" / "stats" / "topic_merging_map.csv").exists()
+
+    if has_topics:
+        options.append({
+            "id": "classify",
+            "name": "Classify Topics",
+            "description": "Tag topics as CORE, SUPPORTING, or NOISE to filter your dataset",
+            "csvFile": "topic_classification.csv",
+            "steps": REFINEMENT_STEPS["classify"]["steps"],
+        })
+    if has_topics:
+        options.append({
+            "id": "merge",
+            "name": "Merge into Themes",
+            "description": "Group similar topics into major research themes (requires classification first)",
+            "csvFile": "topic_merging_map.csv",
+            "steps": REFINEMENT_STEPS["merge"]["steps"],
+        })
+
+    return options
+
+
+@app.post("/api/{pid}/refine/{refinement_id}")
+async def run_refinement(pid: str, refinement_id: str, background_tasks: BackgroundTasks):
+    """Run a post-hoc refinement step (classification or theme merging)."""
+    if refinement_id not in REFINEMENT_STEPS:
+        raise HTTPException(400, f"Unknown refinement: {refinement_id}")
+
+    pdir = _active_project_dir(pid)
+    cfg_path = get_project_config_path(pid)
+    ref = REFINEMENT_STEPS[refinement_id]
+
+    def _run():
+        _goal_logs[pid] = []  # reuse goal log streaming
+        _goal_results[pid] = []
+
+        def _progress(current, total, message, status):
+            _goal_logs.setdefault(pid, []).append({
+                "current": current, "total": total, "message": message, "status": status,
+            })
+
+        results = []
+        for i, mid in enumerate(ref["steps"]):
+            info = MODULE_INFO.get(mid, {})
+            name = info.get("name", mid)
+            msg = f"({i+1}/{len(ref['steps'])}) {name}"
+            _progress(i, len(ref["steps"]), msg, "running")
+            try:
+                from core.orchestrator import run_module as _rm
+                _rm(mid, pdir, cfg_path)
+                results.append({"module": mid, "status": "completed"})
+                _progress(i + 1, len(ref["steps"]), msg, "completed")
+            except Exception as e:
+                err = f"{type(e).__name__}: {e}"
+                results.append({"module": mid, "status": "failed", "error": err})
+                _progress(i + 1, len(ref["steps"]), f"{name} FAILED: {err}", "failed")
+                break
+
+        _goal_results[pid] = results
+
+    background_tasks.add_task(_run)
+    return {"success": True, "refinement": refinement_id, "steps": ref["steps"]}
 
 
 # ═══════════════════════════════════════════════════════════════════

@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Config from './pages/Config';
-import Workflow from './pages/Workflow';
+import Research from './pages/Research';
 import Explorer from './pages/Explorer';
 import Results from './pages/Results';
 import ProjectsPage from './pages/ProjectsPage';
@@ -19,7 +19,8 @@ function AppRoutes() {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/:pid/dashboard" element={<Dashboard />} />
           <Route path="/:pid/config" element={<Config />} />
-          <Route path="/:pid/workflow" element={<Workflow />} />
+          <Route path="/:pid/research" element={<Research />} />
+          <Route path="/:pid/workflow" element={<Navigate to="./research" replace />} />
           <Route path="/:pid/explorer" element={<Explorer />} />
           <Route path="/:pid/results" element={<Results />} />
           <Route path="*" element={

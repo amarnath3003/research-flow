@@ -110,6 +110,7 @@ const Workflow = () => {
   const [topicsCount, setTopicsCount] = useState(0);
   const [figuresCount, setFiguresCount] = useState(0);
   const logEndRef = useRef<HTMLDivElement>(null);
+  const rawLogEndRef = useRef<HTMLDivElement>(null);
 
   const pollStatus = useCallback(() => {
     if (!activeProject) return;
@@ -166,8 +167,16 @@ const Workflow = () => {
   };
 
   useEffect(() => {
-    logEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (logEndRef.current) {
+      logEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   }, [events]);
+
+  useEffect(() => {
+    if (showRawLogs && rawLogEndRef.current) {
+      rawLogEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [logs, showRawLogs]);
 
   if (!activeProject) return <div className="card"><p>Select a project first.</p></div>;
 
@@ -406,7 +415,8 @@ const Workflow = () => {
                       {showRawLogs && (
                         <div style={{ marginTop: '0.75rem' }}>
                           <div style={{ background: '#000', borderRadius: '8px', padding: '0.75rem', fontFamily: 'monospace', fontSize: '0.75rem', color: '#10b981', height: '150px', overflowY: 'auto' }}>
-                            {logs.slice(-100).map((line, i) => <div key={i}>{line}</div>)}
+                            {logs.slice(-100).map((line, i) => <div key={i}>{line}</div>) }
+                            <div ref={rawLogEndRef} />
                           </div>
                         </div>
                       )}

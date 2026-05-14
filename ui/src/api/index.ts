@@ -31,11 +31,38 @@ export const fetchConfig = (pid: string) => req<any>(`/api/${pid}/config`);
 export const saveConfig = (pid: string, config: any) =>
   req<any>(`/api/${pid}/config`, { method: 'POST', body: JSON.stringify(config) });
 
-// ── Pipeline ────────────────────────────────────────────────────
+// ── Pipeline (legacy — kept for backward compat) ────────────────
 export const runStage = (pid: string, stage: string) =>
   req<any>(`/api/${pid}/run/${stage}`, { method: 'POST' });
 export const fetchStatus = (pid: string) => req<any>(`/api/${pid}/status`);
 export const fetchLogs = (pid: string) => req<any>(`/api/${pid}/logs`);
+
+// ── Goals (new) ─────────────────────────────────────────────────
+export const listGoals = (pid: string) => req<any[]>(`/api/${pid}/goals`);
+export const runGoal = (pid: string, goalId: string) =>
+  req<any>(`/api/${pid}/run-goal/${goalId}`, { method: 'POST' });
+export const fetchGoalStatus = (pid: string) => req<any>(`/api/${pid}/goal-status`);
+export const fetchGoalResults = (pid: string) => req<any>(`/api/${pid}/goal-results`);
+
+export function subscribeGoalLogs(
+  pid: string,
+  onEvent: (ev: any) => void,
+  onDone?: () => void,
+): () => void {
+  const es = new EventSource(`/api/${pid}/goal-logs/stream`);
+  es.onmessage = (ev) => {
+    const data = JSON.parse(ev.data);
+    if (data.done) { onDone?.(); es.close(); return; }
+    onEvent(data);
+  };
+  es.onerror = () => es.close();
+  return () => es.close();
+}
+
+// ── Refinement ─────────────────────────────────────────────────
+export const fetchRefinementOptions = (pid: string) => req<any[]>(`/api/${pid}/refinement-options`);
+export const runRefinement = (pid: string, refinementId: string) =>
+  req<any>(`/api/${pid}/refine/${refinementId}`, { method: 'POST' });
 
 // ── Data ────────────────────────────────────────────────────────
 export const fetchStats = (pid: string) => req<any>(`/api/${pid}/stats`);

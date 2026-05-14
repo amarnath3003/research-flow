@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Settings, PlayCircle, Database, FileText, Beaker, FolderKanban, ChevronDown } from 'lucide-react';
-import { fetchStatus } from '../api';
+import { LayoutDashboard, Settings, Beaker, Database, FileText, FolderKanban, ChevronDown, Target, CheckCircle2, Loader2 } from 'lucide-react';
+import { fetchGoalStatus } from '../api';
 import { useProjects } from '../context/ProjectContext';
 
 import ThemeToggle from './ThemeToggle';
 
 const Sidebar = () => {
   const { projects, activeProject, setActive } = useProjects();
-  const [status, setStatus] = useState<any>({ running: false, progress: 0 });
+  const [goalStatus, setGoalStatus] = useState<Record<string, any>>({});
   const [showSelector, setShowSelector] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!activeProject) return;
     const poll = setInterval(() => {
-      fetchStatus(activeProject.id).then(setStatus).catch(() => {});
-    }, 4000);
-    fetchStatus(activeProject.id).then(setStatus).catch(() => {});
+      fetchGoalStatus(activeProject.id).then(setGoalStatus).catch(() => {});
+    }, 5000);
+    fetchGoalStatus(activeProject.id).then(setGoalStatus).catch(() => {});
     return () => clearInterval(poll);
   }, [activeProject]);
+
+  const completedGoals = Object.values(goalStatus).filter((s: any) => s?.complete).length;
+  const totalGoals = Object.keys(goalStatus).length;
+  const anyRunning = Object.values(goalStatus).some((s: any) => s?.running);
+  const progressPct = totalGoals > 0 ? Math.round((completedGoals / totalGoals) * 100) : 0;
 
   return (
     <div className="sidebar">
@@ -82,19 +87,19 @@ const Sidebar = () => {
 
       <nav>
         <NavLink to={`/${activeProject?.id ?? ''}/dashboard`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <LayoutDashboard size={18} /><span>Dashboard</span>
+          <LayoutDashboard size={18} /><span>Overview</span>
         </NavLink>
         <NavLink to={`/${activeProject?.id ?? ''}/config`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <Settings size={18} /><span>Configuration</span>
+          <Settings size={18} /><span>Research Setup</span>
         </NavLink>
-        <NavLink to={`/${activeProject?.id ?? ''}/workflow`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <PlayCircle size={18} /><span>Workflow</span>
+        <NavLink to={`/${activeProject?.id ?? ''}/research`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+          <Target size={18} /><span>Research</span>
         </NavLink>
         <NavLink to={`/${activeProject?.id ?? ''}/explorer`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <Database size={18} /><span>Data Explorer</span>
+          <Database size={18} /><span>Explore</span>
         </NavLink>
         <NavLink to={`/${activeProject?.id ?? ''}/results`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <FileText size={18} /><span>Final Results</span>
+          <FileText size={18} /><span>Results</span>
         </NavLink>
       </nav>
 
@@ -102,17 +107,19 @@ const Sidebar = () => {
         <ThemeToggle />
         <div className="card" style={{ padding: '1.25rem', marginBottom: 0, background: 'var(--bg-tertiary)', borderRadius: '4px' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-            Pipeline Status
+            Goal Status
           </p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: status.running ? 'var(--warning)' : 'var(--success)' }} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>{status.running ? 'Running' : 'Ready'}</span>
+            <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: anyRunning ? 'var(--warning)' : 'var(--success)' }} />
+            <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>
+              {anyRunning ? 'Running' : completedGoals === totalGoals && totalGoals > 0 ? 'All Complete' : 'Ready'}
+            </span>
           </div>
           <div style={{ height: 4, background: 'rgba(0,0,0,0.05)', borderRadius: 2, overflow: 'hidden' }}>
-            <div style={{ height: '100%', background: 'var(--accent-primary)', width: `${status.progress ?? 0}%`, transition: 'width 0.5s ease' }} />
+            <div style={{ height: '100%', background: 'var(--accent-primary)', width: `${progressPct}%`, transition: 'width 0.5s ease' }} />
           </div>
           <p style={{ fontSize: '0.75rem', marginTop: '0.5rem', color: 'var(--text-muted)', textAlign: 'right' }}>
-            {status.progress ?? 0}% complete
+            {completedGoals}/{totalGoals} goals
           </p>
         </div>
       </div>
