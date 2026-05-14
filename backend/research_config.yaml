@@ -1,123 +1,23 @@
 # Research Configuration
-# Edit this file to customize the pipeline for your research topic.
-# Every setting from across all pipeline stages is centralized here.
-
 research:
-  title: "Scholarly Communication & Research Security (2010-2024)"
-  description: >
-    A scientometric analysis examining the intersection of scholarly communication
-    and research security in academic contexts, including open science, data sharing,
-    and cybersecurity in research institutions.
-
+  title: "Research on 3DGS and robotics"
+  description: "Research on Guassian Splatting used in robotics"
   search_query: |
-    (
-        "open science" OR "open access publishing" OR "scholarly communication"
-        OR "research data repository" OR "open research data"
-        OR "institutional repository" OR "academic publishing"
-    )
-    AND
-    (
-        "research security" OR ransomware OR "data breach"
-        OR "cyber attack" OR "information security"
-    )
-    AND
-    (
-        university OR academia OR scholarly OR researcher
-        OR "research institution" OR library
-    )
-
-  start_year: 2010
+    3DGS Guassian Splatting
+  start_year: 2015
   end_year: 2025
   max_results: 5000
   email: "amarnathdevraj2005@gmail.com"
 
 cleaning:
   enabled: true
-
-  hard_exclusions:
-    - smart farming
-    - smart agriculture
-    - precision farming
-    - smart grid
-    - power system
-    - 6g
-    - 5g
-    - vehicular network
-    - vanet
-    - cellular network
-    - industrial iot
-    - iiot
-    - scada
-    - clinical
-    - patient data
-    - hospital security
-    - medical imaging
-    - healthcare delivery
-    - smart city
-    - smart home
-    - smart building
-    - blockchain infrastructure
-    - cryptocurrency
-    - bitcoin
-    - ethereum
-    - autonomous vehicle
-    - self-driving
-    - uav security
-    - primary education
-    - k-12
-    - school children
-    - ecommerce
-    - marketing ai
-    - consumer privacy
-
-  core_concepts:
-    - open science
-    - open access
-    - scholarly communication
-    - research security
-    - academic cybersecurity
-    - university security
-    - repository
-    - repositories
-    - digital library
-    - research integrity
-    - scientific integrity
-    - academic integrity
-    - data sharing
-    - fair data
-    - open data
-    - research data management
-    - scientometrics
-    - bibliometrics
-    - scholarly publishing
-    - peer review
-    - preprint
-    - academic publishing
-
-  context_keywords:
-    - university
-    - academia
-    - higher education
-    - scholarly
-    - researcher
-    - faculty
-    - campus
-    - academic institution
-    - scientific community
-    - research organization
-
-  high_priority_concepts:
-    - open science
-    - fair data
-    - research integrity
-    - scholarly communication
-    - repositories
-
+  hard_exclusions: []
+  core_concepts: []
+  context_keywords: []
+  high_priority_concepts: []
   security_terms:
     - security
     - cybersecurity
-    - cyber attack
-    - ransomware
     - threat
 
 embedding:
@@ -126,29 +26,15 @@ embedding:
   top_n_topics: 20
 
 llm:
-  provider: "ollama"
-  model: "gemma3:1b"
+  provider: null
+  model: null
   api_key_env: null
   base_url: null
 
 tracking:
-  themes:
-    - name: "Research Security"
-      pattern: "research security|safeguarding research|national security"
-    - name: "AI Governance"
-      pattern: "ai governance|ai ethics|artificial intelligence governance|generative ai"
-    - name: "Ransomware"
-      pattern: "ransomware|cyber extortion|malware"
-    - name: "Open Science"
-      pattern: "open science|fair data|open access|scholarly communication"
-    - name: "Cybersecurity"
-      pattern: "cybersecurity|information security|cyber attack"
+  themes: []
 
 visualizations:
   annotations:
     enabled: true
-    custom:
-      - year: 2020
-        label: "COVID-19 Pandemic"
-      - year: 2022
-        label: "Generative AI Boom"
+    custom: []

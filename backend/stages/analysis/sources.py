@@ -13,7 +13,10 @@ OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
 def run():
     df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv"))
 
-    # Calculate H-index per source
+    # Drop NaN journals and fill NaN citations with 0
+    df = df.dropna(subset=["journal"])
+    df["citations"] = df["citations"].fillna(0)
+
     def h_index(citations):
         c = sorted(citations, reverse=True)
         h = 0

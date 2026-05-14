@@ -21,6 +21,9 @@ def _cagr(start_val, end_val, years):
 
 def run():
     df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv"))
+    df["year"] = pd.to_numeric(df["year"], errors="coerce")
+    df = df.dropna(subset=["year"])
+    df["year"] = df["year"].astype(int)
     trend = df.groupby("year").size().reset_index(name="count").sort_values("year")
 
     start_yr = int(trend["year"].min())

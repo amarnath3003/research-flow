@@ -32,7 +32,11 @@ def run():
     start = cfg["research"]["start_year"]
     end = cfg["research"]["end_year"]
     df = df[(df["year"] >= start) & (df["year"] <= end)]
-    df["text_corpus"] = (df["title"].fillna("") + " " + df["abstract"].fillna("") + " " + df["keywords"].fillna("")).str.lower()
+    df["text_corpus"] = (
+        df["title"].fillna("").astype(str) + " " +
+        df["abstract"].fillna("").astype(str) + " " +
+        df["keywords"].fillna("").astype(str)
+    ).str.lower()
 
     themes = {}
     if CONFIG_THEMES:

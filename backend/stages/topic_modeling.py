@@ -19,10 +19,19 @@ SHARE_DIR = os.path.join(BASE_DIR, "data", "share")
 
 # ── Embeddings ────────────────────────────────────────────────────
 
+def _build_texts(df):
+    """Build clean string list from title+abstract, handling NaN safely."""
+    titles = df["title"].fillna("").astype(str)
+    abstracts = df["abstract"].fillna("").astype(str)
+    combined = (titles + " " + abstracts).str.strip()
+    # Ensure only non-empty strings are returned
+    return [str(t) for t in combined.tolist() if isinstance(t, str) and t.strip()]
+
+
 def generate_embeddings():
     from sentence_transformers import SentenceTransformer
     df = pd.read_csv(os.path.join(DATA_DIR, "cleaned", "final_dataset.csv"))
-    texts = (df["title"].fillna("") + " " + df["abstract"].fillna("")).tolist()
+    texts = _build_texts(df)
     model_name = cfg["embedding"]["model"]
     print(f"Loading embedding model: {model_name}")
     model = SentenceTransformer(model_name)
@@ -40,7 +49,7 @@ def generate_embeddings():
 def run_topic_modeling():
     from bertopic import BERTopic
     df = pd.read_csv(os.path.join(DATA_DIR, "cleaned", "final_dataset.csv"))
-    texts = (df["title"].fillna("") + " " + df["abstract"].fillna("")).tolist()
+    texts = _build_texts(df)
     embeddings = np.load(os.path.join(DATA_DIR, "processed", "embeddings.npy"))
 
     print("Training BERTopic...")
@@ -199,13 +208,20 @@ def run_ai_interpretation():
 # ── Internal Report ───────────────────────────────────────────────
 
 def generate_internal_report():
-    trend_df = pd.read_csv(os.path.join(OUTPUTS_DIR, "stats", "topic_evolution.csv"))
-    interp_df = pd.read_csv(os.path.join(OUTPUTS_DIR, "reports", "topic_interpretations.csv"))
-    lines = ["# AUTOMATED SCIENTOMETRIC ANALYSIS REPORT\n", "## Topic Interpretations\n"]
-    for _, row in interp_df.iterrows():
-        lines.append(f"### {row['topic']}\n{row['interpretation']}\n")
     reports_dir = os.path.join(OUTPUTS_DIR, "reports")
     os.makedirs(reports_dir, exist_ok=True)
+
+    interp_path = os.path.join(OUTPUTS_DIR, "reports", "topic_interpretations.csv")
+    lines = ["# AUTOMATED SCIENTOMETRIC ANALYSIS REPORT\n"]
+
+    if os.path.exists(interp_path):
+        interp_df = pd.read_csv(interp_path)
+        lines.append("## Topic Interpretations\n")
+        for _, row in interp_df.iterrows():
+            lines.append(f"### {row['topic']}\n{row['interpretation']}\n")
+    else:
+        lines.append("(AI interpretations not generated yet)\n")
+
     with open(os.path.join(reports_dir, "final_report.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
     print("Internal report generated")
