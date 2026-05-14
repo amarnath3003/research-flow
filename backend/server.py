@@ -17,7 +17,7 @@ from pydantic import BaseModel
 BASE_DIR = Path(__file__).parent.resolve()
 sys.path.insert(0, str(BASE_DIR))
 
-from db import init_db, create_project, delete_project, get_project_dir, get_project_config_path, get_default_project, Project, SessionLocal, PROJECTS_DIR
+from db import init_db, create_project as cp, get_project, get_project_dir, get_project_config_path, get_default_project, Project, SessionLocal, PROJECTS_DIR
 from settings import load as load_cfg, clear_cache as clear_cfg_cache
 
 # ── Init ───────────────────────────────────────────────────────────
@@ -27,13 +27,19 @@ app = FastAPI(title="ResearchFlow API", version="2.0.0")
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
                    allow_methods=["*"], allow_headers=["*"])
 
-# ── In-memory task state (one active task at a time) ───────────────
-pipeline_task: Optional[subprocess.Popen] = None
-pipeline_log: list[str] = []
-active_project: Optional[str] = None
+# ── Per-project pipeline state ─────────────────────────────────────
+_pipeline_tasks: dict[str, subprocess.Popen] = {}
+_pipeline_logs: dict[str, list[str]] = {}
 
 
 def _active_project_dir(pid: str) -> Path:
+    db = SessionLocal()
+    try:
+        p = get_project(pid, db=db)
+        if not p:
+            raise HTTPException(404, f"Project not found: {pid}")
+    finally:
+        db.close()
     d = get_project_dir(pid)
     if not d.exists():
         raise HTTPException(404, f"Project directory not found: {pid}")
@@ -45,7 +51,8 @@ def _read_config(pid: str) -> dict:
     if not path.exists():
         raise HTTPException(404, f"Config not found for project {pid}")
     with open(path) as f:
-        return yaml.safe_load(f)
+        cfg = yaml.safe_load(f) or {}
+    return cfg
 
 
 def _write_config(pid: str, cfg: dict):
@@ -60,8 +67,11 @@ def _csv_to_json(pid: str, rel_path: str) -> list[dict]:
     abs_path = pdir / rel_path
     if not abs_path.exists():
         raise HTTPException(404, f"File not found: {rel_path}")
-    df = pd.read_csv(abs_path)
-    return df.fillna("").to_dict(orient="records")
+    try:
+        df = pd.read_csv(abs_path)
+        return df.fillna("").to_dict(orient="records")
+    except Exception as e:
+        raise HTTPException(500, f"Failed to parse {rel_path}: {e}")
 
 
 def _detect_stage_status(pid: str):
@@ -141,11 +151,12 @@ def list_projects():
 
 @app.post("/api/projects")
 def create_project_endpoint(payload: CreateProjectPayload):
-    # If this is the first project, make it default
+    if not payload.name or not payload.name.strip():
+        raise HTTPException(422, "Project name is required")
     db = SessionLocal()
     try:
         count = db.query(Project).count()
-        project = create_project(payload.name, payload.description, make_default=(count == 0))
+        project = cp(payload.name.strip(), payload.description, make_default=(count == 0), db=db)
         return {"id": project.id, "name": project.name, "description": project.description,
                 "createdAt": project.created_at.isoformat() if project.created_at else None,
                 "status": project.status, "isDefault": project.is_default}
@@ -154,10 +165,10 @@ def create_project_endpoint(payload: CreateProjectPayload):
 
 
 @app.get("/api/projects/{pid}")
-def get_project(pid: str):
+def get_project_route(pid: str):
     db = SessionLocal()
     try:
-        p = db.query(Project).filter(Project.id == pid).first()
+        p = get_project(pid, db=db)
         if not p:
             raise HTTPException(404, "Project not found")
         return {"id": p.id, "name": p.name, "description": p.description,
@@ -175,11 +186,16 @@ def update_project(pid: str, payload: UpdateProjectPayload):
         if not p:
             raise HTTPException(404, "Project not found")
         if payload.name is not None:
-            p.name = payload.name
+            if not payload.name.strip():
+                raise HTTPException(422, "Project name cannot be empty")
+            p.name = payload.name.strip()
         if payload.description is not None:
             p.description = payload.description
         db.commit()
         return {"success": True}
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()
 
@@ -193,28 +209,36 @@ def delete_project_endpoint(pid: str):
             raise HTTPException(404, "Project not found")
         if p.is_default:
             raise HTTPException(400, "Cannot delete the default project")
+
+        # Delete files BEFORE DB row to avoid orphaned data on failure
+        pdir = get_project_dir(pid)
+        if pdir.exists():
+            shutil.rmtree(pdir)
+
         db.delete(p)
         db.commit()
+        return {"success": True}
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()
-
-    pdir = get_project_dir(pid)
-    if pdir.exists():
-        shutil.rmtree(pdir)
-    return {"success": True}
 
 
 @app.post("/api/projects/{pid}/set-default")
 def set_default_project(pid: str):
     db = SessionLocal()
     try:
-        db.query(Project).update({"is_default": False})
         p = db.query(Project).filter(Project.id == pid).first()
         if not p:
             raise HTTPException(404, "Project not found")
+        db.query(Project).update({"is_default": False})
         p.is_default = True
         db.commit()
         return {"success": True}
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()
 
@@ -222,31 +246,44 @@ def set_default_project(pid: str):
 @app.post("/api/projects/{pid}/duplicate")
 def duplicate_project(pid: str, payload: CreateProjectPayload):
     """Copy an existing project's config and data to a new project."""
-    from db import create_project as cp
+    if not payload.name or not payload.name.strip():
+        raise HTTPException(422, "Project name is required")
+
     original_dir = get_project_dir(pid)
     if not original_dir.exists():
         raise HTTPException(404, "Source project data not found")
 
-    new_project = cp(payload.name, payload.description)
+    db = SessionLocal()
+    try:
+        new_project = cp(payload.name.strip(), payload.description, db=db)
+    finally:
+        db.close()
+
     new_dir = get_project_dir(new_project.id)
 
-    # Copy data directory
-    src_data = original_dir / "data"
-    dst_data = new_dir / "data"
-    if src_data.exists():
-        shutil.copytree(src_data, dst_data, dirs_exist_ok=True)
+    try:
+        # Copy data directory
+        src_data = original_dir / "data"
+        dst_data = new_dir / "data"
+        if src_data.exists():
+            shutil.copytree(src_data, dst_data, dirs_exist_ok=True)
 
-    # Copy config
-    src_cfg = original_dir / "research_config.yaml"
-    dst_cfg = new_dir / "research_config.yaml"
-    if src_cfg.exists():
-        import yaml
-        with open(src_cfg) as f:
-            cfg = yaml.safe_load(f)
-        cfg["research"]["title"] = payload.name
-        cfg["research"]["description"] = payload.description
-        with open(dst_cfg, "w") as f:
-            yaml.dump(cfg, f)
+        # Copy config
+        src_cfg = original_dir / "research_config.yaml"
+        dst_cfg = new_dir / "research_config.yaml"
+        if src_cfg.exists():
+            with open(src_cfg) as f:
+                cfg = yaml.safe_load(f) or {}
+            cfg.setdefault("research", {})
+            cfg["research"]["title"] = payload.name.strip()
+            cfg["research"]["description"] = payload.description
+            with open(dst_cfg, "w") as f:
+                yaml.dump(cfg, f, default_flow_style=False, allow_unicode=True)
+    except Exception:
+        # Cleanup on failure
+        if new_dir.exists():
+            shutil.rmtree(new_dir)
+        raise
 
     return {"id": new_project.id, "name": new_project.name}
 
@@ -290,21 +327,31 @@ def get_config(pid: str):
 
 @app.post("/api/{pid}/config")
 def update_config(pid: str, payload: ConfigPayload):
+    if payload.startYear < 1900 or payload.endYear > 2100:
+        raise HTTPException(422, "Invalid year range")
+    if payload.maxResults < 1:
+        raise HTTPException(422, "maxResults must be positive")
+    if not payload.searchQuery.strip():
+        raise HTTPException(422, "Search query is required")
+    if not payload.email.strip():
+        raise HTTPException(422, "Email is required")
+
     cfg = _read_config(pid)
     cfg.setdefault("research", {})
-    cfg["research"]["search_query"] = payload.searchQuery
+    cfg["research"]["search_query"] = payload.searchQuery.strip()
     cfg["research"]["start_year"] = payload.startYear
     cfg["research"]["end_year"] = payload.endYear
     cfg["research"]["max_results"] = payload.maxResults
-    cfg["research"]["email"] = payload.email
+    cfg["research"]["email"] = payload.email.strip()
     cfg["research"]["description"] = payload.description
     cfg.setdefault("embedding", {})
     cfg["embedding"]["model"] = payload.embeddingModel
-    cfg["embedding"]["min_topic_size"] = payload.minTopicSize
+    cfg["embedding"]["min_topic_size"] = max(1, payload.minTopicSize)
     cfg.setdefault("llm", {})
     cfg["llm"]["provider"] = payload.llmProvider
     cfg["llm"]["model"] = payload.llmModel
     _write_config(pid, cfg)
+    clear_cfg_cache()
     return {"success": True}
 
 
@@ -314,10 +361,13 @@ def update_config(pid: str, payload: ConfigPayload):
 
 @app.post("/api/{pid}/run/{stage}")
 def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
-    global pipeline_task, pipeline_log, active_project
-
     if stage not in VALID_STAGES:
         raise HTTPException(400, f"Invalid stage. Valid: {VALID_STAGES}")
+
+    if pid in _pipeline_tasks and _pipeline_tasks[pid] is not None:
+        ret = _pipeline_tasks[pid].poll()
+        if ret is None:
+            raise HTTPException(409, f"Project {pid} already has a running pipeline")
 
     pdir = _active_project_dir(pid)
     runner = BASE_DIR / "run.py"
@@ -325,15 +375,13 @@ def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
         raise HTTPException(500, "run.py not found")
 
     def _run():
-        global pipeline_task, pipeline_log, active_project
-        pipeline_log = []
-        active_project = pid
+        _pipeline_logs[pid] = []
         env = os.environ.copy()
         env["PROJECT_DIR"] = str(pdir)
         env["RESEARCH_CONFIG"] = str(pdir / "research_config.yaml")
         log_file = pdir / "pipeline_run.log"
 
-        pipeline_task = subprocess.Popen(
+        proc = subprocess.Popen(
             [sys.executable, str(runner), stage],
             cwd=str(BASE_DIR),
             env=env,
@@ -342,30 +390,32 @@ def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
             text=True,
             bufsize=1,
         )
-        for line in iter(pipeline_task.stdout.readline, ""):
-            pipeline_log.append(line)
+        _pipeline_tasks[pid] = proc
+        for line in iter(proc.stdout.readline, ""):
+            _pipeline_logs.setdefault(pid, []).append(line)
             with open(log_file, "a") as lf:
                 lf.write(line)
-        pipeline_task.wait()
-        pipeline_task = None
+        proc.wait()
 
-        # Update project status
+        if pid in _pipeline_tasks and _pipeline_tasks[pid] is proc:
+            del _pipeline_tasks[pid]
+
         db = SessionLocal()
         try:
             p = db.query(Project).filter(Project.id == pid).first()
             if p:
-                p.status = "completed"
+                p.status = "completed" if proc.returncode == 0 else "failed"
                 db.commit()
         finally:
             db.close()
 
-    # Set project status to running
     db = SessionLocal()
     try:
         p = db.query(Project).filter(Project.id == pid).first()
-        if p:
-            p.status = "running"
-            db.commit()
+        if not p:
+            raise HTTPException(404, "Project not found")
+        p.status = "running"
+        db.commit()
     finally:
         db.close()
 
@@ -382,13 +432,12 @@ async def stream_logs(pid: str):
     async def event_generator():
         sent_lines = 0
         while True:
-            while sent_lines < len(pipeline_log):
-                yield f"data: {json.dumps({'line': pipeline_log[sent_lines]})}\n\n"
+            log = _pipeline_logs.get(pid, [])
+            while sent_lines < len(log):
+                yield f"data: {json.dumps({'line': log[sent_lines]})}\n\n"
                 sent_lines += 1
-            if pipeline_task is None and active_project != pid:
-                yield f"data: {json.dumps({'line': '', 'done': True})}\n\n"
-                break
-            if pipeline_task is None and sent_lines >= len(pipeline_log):
+            proc = _pipeline_tasks.get(pid)
+            if proc is None and sent_lines >= len(log):
                 yield f"data: {json.dumps({'line': '', 'done': True})}\n\n"
                 break
             await asyncio.sleep(0.1)
@@ -397,9 +446,13 @@ async def stream_logs(pid: str):
 
 @app.get("/api/{pid}/logs")
 def get_logs(pid: str):
-    if active_project == pid:
-        return {"lines": pipeline_log[-200:]}
-    return {"lines": []}
+    log = _pipeline_logs.get(pid, [])
+    pdir = get_project_dir(pid)
+    log_file = pdir / "pipeline_run.log"
+    if not log and log_file.exists():
+        with open(log_file) as f:
+            log = f.readlines()
+    return {"lines": log[-200:]}
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -411,10 +464,12 @@ def get_status(pid: str):
     stages = _detect_stage_status(pid)
     total = len(stages)
     done = sum(1 for s in stages if s["status"] == "completed")
+    proc = _pipeline_tasks.get(pid)
+    running = proc is not None and proc.poll() is None
     return {
         "stages": stages,
         "progress": round(done / total * 100) if total else 0,
-        "running": pipeline_task is not None and active_project == pid,
+        "running": running,
         "currentStage": next((s["name"] for s in stages if s["status"] == "current"), None),
     }
 
@@ -542,15 +597,25 @@ MAPPING = {
     "networks/nodes": "outputs/networks/keyword_nodes.csv",
     "bursts": "outputs/bursts/burst_detection.csv",
     "evolution": "outputs/evolution/theme_evolution.csv",
-    "narrative": "outputs/narrative/discussion_draft.md",
 }
+
+TEXT_DATA_TYPES = {"narrative": "outputs/narrative/discussion_draft.md"}
+
+ALL_DATA_TYPES = {**MAPPING, **TEXT_DATA_TYPES}
 
 
 @app.get("/api/{pid}/data/{data_type:path}")
 def get_data(pid: str, data_type: str):
-    if data_type not in MAPPING:
-        raise HTTPException(404, f"Unknown data type: {data_type}")
-    return _csv_to_json(pid, MAPPING[data_type])
+    if data_type in MAPPING:
+        return _csv_to_json(pid, MAPPING[data_type])
+    if data_type in TEXT_DATA_TYPES:
+        pdir = _active_project_dir(pid)
+        path = pdir / TEXT_DATA_TYPES[data_type]
+        if not path.exists():
+            raise HTTPException(404, f"File not found: {TEXT_DATA_TYPES[data_type]}")
+        with open(path) as f:
+            return {"content": f.read()}
+    raise HTTPException(404, f"Unknown data type: {data_type}")
 
 
 # ═══════════════════════════════════════════════════════════════════

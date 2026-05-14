@@ -69,7 +69,7 @@ const Sidebar = () => {
               ))}
               <div
                 onClick={() => { setShowSelector(false); navigate('/projects'); }}
-                style={{ padding: '0.75rem 1rem', cursor: 'pointer', fontSize: '0.8rem', color: var(--accent-primary), textAlign: 'center', fontWeight: 600, background: 'var(--bg-tertiary)' }}
+                style={{ padding: '0.75rem 1rem', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--accent-primary)', textAlign: 'center', fontWeight: 600, background: 'var(--bg-tertiary)' }}
               >
                 + Manage Projects
               </div>

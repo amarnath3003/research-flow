@@ -43,8 +43,10 @@ def get_db():
         db.close()
 
 
-def create_project(name: str, description: str = "", make_default: bool = False) -> Project:
-    db = SessionLocal()
+def create_project(name: str, description: str = "", make_default: bool = False, db: Optional[SessionLocal] = None) -> Project:
+    close = db is None
+    if db is None:
+        db = SessionLocal()
     try:
         pid = str(uuid.uuid4())
         project = Project(id=pid, name=name, description=description, status="idle", is_default=make_default)
@@ -80,27 +82,37 @@ def create_project(name: str, description: str = "", make_default: bool = False)
             yaml.dump(default_cfg, f, default_flow_style=False, allow_unicode=True)
 
         return project
+    except Exception:
+        db.rollback()
+        raise
     finally:
-        db.close()
+        if close:
+            db.close()
 
 
-def delete_project(pid: str):
-    db = SessionLocal()
+def delete_project(pid: str, db: Optional[SessionLocal] = None):
+    close = db is None
+    if db is None:
+        db = SessionLocal()
     try:
         project = db.query(Project).filter(Project.id == pid).first()
         if not project:
             return False
-        db.delete(project)
-        db.commit()
 
-        # Remove project directory
+        # Remove files BEFORE DB row to avoid orphaned data on failure
         pdir = PROJECTS_DIR / pid
         if pdir.exists():
             shutil.rmtree(pdir)
 
+        db.delete(project)
+        db.commit()
         return True
+    except Exception:
+        db.rollback()
+        raise
     finally:
-        db.close()
+        if close:
+            db.close()
 
 
 def get_project_dir(pid: str) -> Path:
@@ -111,14 +123,27 @@ def get_project_config_path(pid: str) -> Path:
     return get_project_dir(pid) / "research_config.yaml"
 
 
-def get_default_project() -> Optional[Project]:
-    db = SessionLocal()
+def get_default_project(db: Optional[SessionLocal] = None) -> Optional[Project]:
+    close = db is None
+    if db is None:
+        db = SessionLocal()
     try:
         project = db.query(Project).filter(Project.is_default == True).first()
         if project:
             return project
-        # If no default, use the first project
         project = db.query(Project).order_by(Project.created_at).first()
         return project
     finally:
-        db.close()
+        if close:
+            db.close()
+
+
+def get_project(pid: str, db: Optional[SessionLocal] = None) -> Optional[Project]:
+    close = db is None
+    if db is None:
+        db = SessionLocal()
+    try:
+        return db.query(Project).filter(Project.id == pid).first()
+    finally:
+        if close:
+            db.close()

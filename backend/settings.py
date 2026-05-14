@@ -35,7 +35,7 @@ def load(path=None):
                 "Place it in the backend/ directory or set RESEARCH_CONFIG env var."
             )
         with open(resolved, "r", encoding="utf-8") as f:
-            cfg = yaml.safe_load(f)
+            cfg = yaml.safe_load(f) or {}
         _normalize(cfg)
         _cached = cfg
         _config_path = resolved
