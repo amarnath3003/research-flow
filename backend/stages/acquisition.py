@@ -18,6 +18,10 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 
 def fetch_openalex():
     query = " ".join(cfg["research"]["search_query"].split())
+    if not query:
+        print("[ERROR] Search query is empty. Go to Configuration and set a boolean search query first.")
+        return pd.DataFrame()
+
     max_results = cfg["research"]["max_results"]
     start = cfg["research"]["start_year"]
     end = cfg["research"]["end_year"]

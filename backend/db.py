@@ -33,6 +33,55 @@ class Project(Base):
 def init_db():
     Base.metadata.create_all(bind=engine)
     os.makedirs(PROJECTS_DIR, exist_ok=True)
+    _repair_project_state()
+
+
+def _repair_project_state():
+    """Clean orphaned dirs and fix missing configs for existing projects."""
+    db = SessionLocal()
+    try:
+        # Get all project IDs from DB
+        db_ids = {p.id for p in db.query(Project.id).all()}
+
+        # Remove orphaned directories (no DB record)
+        orphans_removed = 0
+        for d in PROJECTS_DIR.iterdir():
+            if d.is_dir() and d.name not in db_ids:
+                shutil.rmtree(d)
+                orphans_removed += 1
+        if orphans_removed:
+            print(f"  Cleaned {orphans_removed} orphaned project directories")
+
+        # Fix projects with missing directories or configs
+        from settings import _normalize
+        import yaml
+        fixed = 0
+        for p in db.query(Project).all():
+            pdir = PROJECTS_DIR / p.id
+            cfg_path = pdir / "research_config.yaml"
+
+            if not pdir.exists():
+                # Recreate full directory structure
+                for d in ["data/raw", "data/cleaned", "data/processed", "data/exports", "data/share",
+                           "outputs/figures", "outputs/stats", "outputs/reports", "outputs/networks",
+                           "outputs/trends", "outputs/sources", "outputs/geopolitical",
+                           "outputs/evolution", "outputs/bursts", "outputs/narrative", "models"]:
+                    (pdir / d).mkdir(parents=True, exist_ok=True)
+                fixed += 1
+
+            if not cfg_path.exists():
+                default_cfg = {"research": {"title": p.name, "description": p.description or ""},
+                               "cleaning": {"enabled": True}, "embedding": {}, "llm": {},
+                               "tracking": {}, "visualizations": {}}
+                _normalize(default_cfg)
+                with open(cfg_path, "w") as f:
+                    yaml.dump(default_cfg, f, default_flow_style=False, allow_unicode=True)
+                fixed += 1
+
+        if fixed:
+            print(f"  Repaired {fixed} projects with missing directories/configs")
+    finally:
+        db.close()
 
 
 def get_db():
@@ -55,10 +104,7 @@ def create_project(name: str, description: str = "", make_default: bool = False,
         if make_default:
             db.query(Project).filter(Project.id != pid).update({"is_default": False})
 
-        db.commit()
-        db.refresh(project)
-
-        # Create project directory structure
+        # Create project directory structure BEFORE commit to prevent orphaned records
         pdir = PROJECTS_DIR / pid
         for d in ["data/raw", "data/cleaned", "data/processed", "data/exports", "data/share",
                    "outputs/figures", "outputs/stats", "outputs/reports", "outputs/networks",
@@ -66,7 +112,7 @@ def create_project(name: str, description: str = "", make_default: bool = False,
                    "outputs/evolution", "outputs/bursts", "outputs/narrative", "models"]:
             (pdir / d).mkdir(parents=True, exist_ok=True)
 
-        # Copy default config
+        # Write default config
         from settings import _normalize
         import yaml
         default_cfg = {
@@ -81,9 +127,16 @@ def create_project(name: str, description: str = "", make_default: bool = False,
         with open(pdir / "research_config.yaml", "w") as f:
             yaml.dump(default_cfg, f, default_flow_style=False, allow_unicode=True)
 
+        db.commit()
+        db.refresh(project)
+
         return project
     except Exception:
         db.rollback()
+        # Clean up any partially-created directory
+        pdir = PROJECTS_DIR / pid
+        if pdir.exists():
+            shutil.rmtree(pdir)
         raise
     finally:
         if close:

@@ -294,8 +294,8 @@ def duplicate_project(pid: str, payload: CreateProjectPayload):
 
 class ConfigPayload(BaseModel):
     searchQuery: str = ""
-    includeTerms: List[str] = []
-    excludeTerms: List[str] = []
+    includeTerms: list[str] = []
+    excludeTerms: list[str] = []
     startYear: int = 2010
     endYear: int = 2025
     maxResults: int = 5000
@@ -370,18 +370,23 @@ def update_config(pid: str, payload: ConfigPayload):
 
 @app.post("/api/{pid}/run/{stage}")
 def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
+    global pipeline_task, pipeline_log, active_project
+
     if stage not in VALID_STAGES:
         raise HTTPException(400, f"Invalid stage. Valid: {VALID_STAGES}")
-
-    if pid in _pipeline_tasks and _pipeline_tasks[pid] is not None:
-        ret = _pipeline_tasks[pid].poll()
-        if ret is None:
-            raise HTTPException(409, f"Project {pid} already has a running pipeline")
 
     pdir = _active_project_dir(pid)
     runner = BASE_DIR / "run.py"
     if not runner.exists():
         raise HTTPException(500, "run.py not found")
+
+    # Validate search query before running data collection
+    if stage in ("scientometric", "all-auto"):
+        cfg = _read_config(pid)
+        sq = cfg.get("research", {}).get("search_query", "").strip()
+        if not sq:
+            raise HTTPException(400,
+                "Search query is empty. Go to Configuration and set a boolean search query first.")
 
     def _run():
         _pipeline_logs[pid] = []
