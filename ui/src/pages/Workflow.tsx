@@ -1,6 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, CheckCircle2, Circle, Loader2, ChevronDown, ChevronRight, Clock, Database, BarChart3, Brain, FileText, Tags, Layers, GitMerge, TrendingUp, ImageIcon, FileCheck } from 'lucide-react';
+import {
+  Play, CheckCircle2, Circle, Loader2, ChevronDown, ChevronRight,
+  Database, Brain, FileText, Tags, Layers, GitMerge, BarChart3,
+  TrendingUp, ImageIcon, FileCheck, Clock, AlertCircle, Terminal,
+} from 'lucide-react';
 import { fetchStatus, runStage, subscribeLogs, fetchStats, fetchTopics, fetchFigures } from '../api';
 import { useProjects } from '../context/ProjectContext';
 
@@ -39,28 +43,62 @@ const STAGE_INFO: Record<StageId, StageDetail> = {
     subScripts: ['report_builder.run()', 'gather_outputs.run()'], outputs: ['FINAL_RESEARCH_REPORT.md'] },
 };
 
+// ── Parsed log state ────────────────────────────────────────────
+interface LogEvent {
+  type: 'step' | 'progress' | 'count' | 'done' | 'error' | 'info';
+  message: string;
+  detail?: string;
+  pct?: number;
+}
+
+function parseLogLine(line: string): LogEvent | null {
+  const t = line.trim();
+  if (!t) return null;
+  if (t.includes('[ERROR]')) return { type: 'error', message: t.replace('[ERROR] ', '') };
+  if (t.includes('Error')) return { type: 'error', message: t };
+  // Progress bar lines from tqdm
+  if (t.includes('%|') && t.includes('|') && t.includes('/')) {
+    const m = t.match(/(\d+)%/);
+    if (m) return { type: 'progress', message: t.replace(/\s*\d+%\|.*/, '').trim(), pct: parseInt(m[1]) };
+    return { type: 'progress', message: t.substring(0, 60), pct: 0 };
+  }
+  // Count / saved lines
+  if (/^Collected:?\s*\d+/i.test(t)) return { type: 'count', message: t, detail: t.match(/\d+/)?.[0] };
+  if (/^Saved\s+\d+/i.test(t)) return { type: 'count', message: t, detail: t.match(/\d+/)?.[0] };
+  if (/^(Original|After|Total)/i.test(t)) return { type: 'info', message: t };
+  // Step phases
+  if (/^(Generating|Loading|Training|Running|Starting|Applying)/i.test(t)) return { type: 'step', message: t };
+  if (t.includes('complete') || t.includes('ready') || t.includes('saved') || t.includes('export')) {
+    return { type: 'done', message: t };
+  }
+  return { type: 'info', message: t };
+}
+
+// ── Component ──────────────────────────────────────────────────
 const Workflow = () => {
   const { activeProject } = useProjects();
   const [status, setStatus] = useState<any>(null);
   const [logs, setLogs] = useState<string[]>([]);
+  const [events, setEvents] = useState<LogEvent[]>([]);
   const [running, setRunning] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [showRawLogs, setShowRawLogs] = useState(false);
   const [liveStats, setLiveStats] = useState<any>({});
   const [topicsCount, setTopicsCount] = useState(0);
   const [figuresCount, setFiguresCount] = useState(0);
-  const consoleRef = useRef<HTMLDivElement>(null);
+  const logEndRef = useRef<HTMLDivElement>(null);
 
-  const pollStatus = () => {
+  const pollStatus = useCallback(() => {
     if (!activeProject) return;
     fetchStatus(activeProject.id).then(setStatus).catch(() => {});
-  };
+  }, [activeProject]);
 
   useEffect(() => {
     if (!activeProject) return;
     pollStatus();
     const i = setInterval(pollStatus, 3000);
     return () => clearInterval(i);
-  }, [activeProject]);
+  }, [activeProject, pollStatus]);
 
   useEffect(() => {
     if (!activeProject) return;
@@ -72,24 +110,41 @@ const Workflow = () => {
   const handleRun = async (stage: string) => {
     if (!activeProject) return;
     const pid = activeProject.id;
-    setRunning(stage); setLogs([]); setExpanded(stage);
+    setRunning(stage);
+    setLogs([]);
+    setEvents([]);
+    setExpanded(stage);
+    setShowRawLogs(false);
     try {
       await runStage(pid, stage);
       subscribeLogs(pid,
-        (line) => setLogs((prev) => [...prev, line]),
+        (line) => {
+          setLogs((prev) => [...prev, line]);
+          const ev = parseLogLine(line);
+          if (ev) setEvents((prev) => [...prev, ev!]);
+        },
         () => { setRunning(null); pollStatus(); },
       );
       const logPoller = setInterval(async () => {
-        try { const d = await (await fetch(`/api/${pid}/logs`)).json(); if (d.lines) setLogs(d.lines); } catch {}
-      }, 1000);
+        try {
+          const resp = await fetch(`/api/${pid}/logs`);
+          const data = await resp.json();
+          if (data.lines) {
+            setLogs(data.lines);
+            setEvents(data.lines.map(parseLogLine).filter(Boolean) as LogEvent[]);
+          }
+        } catch {}
+      }, 1500);
       setTimeout(() => clearInterval(logPoller), 300000);
     } catch (err: any) {
-      setLogs((prev) => [...prev, `[ERROR] ${err.message}`]);
+      setEvents((prev) => [...prev, { type: 'error', message: err.message }]);
       setRunning(null);
     }
   };
 
-  useEffect(() => { if (consoleRef.current) consoleRef.current.scrollTop = consoleRef.current.scrollHeight; }, [logs]);
+  useEffect(() => {
+    logEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [events]);
 
   if (!activeProject) return <div className="card"><p>Select a project first.</p></div>;
 
@@ -101,6 +156,13 @@ const Workflow = () => {
 
   const toggleExpand = (id: string) => setExpanded(expanded === id ? null : id);
 
+  const progressEvents = events.filter((e) => e.type === 'progress');
+  const lastPct = progressEvents.length > 0 ? progressEvents[progressEvents.length - 1].pct ?? 0 : 0;
+  const doneEvents = events.filter((e) => e.type === 'done');
+  const countEvents = events.filter((e) => e.type === 'count');
+  const lastCount = countEvents.length > 0 ? countEvents[countEvents.length - 1].detail : null;
+  const hasError = events.some((e) => e.type === 'error');
+
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
       <header style={{ marginBottom: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
@@ -108,7 +170,16 @@ const Workflow = () => {
           <h1>{activeProject.name} — Workflow</h1>
           <p>Click to expand, or hit Execute to run a stage.</p>
         </div>
-        {status && <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>{status.progress ?? 0}% complete</span>}
+        {status && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+              {status.stages?.filter((s: any) => s.status === 'completed').length ?? 0}/10
+            </span>
+            <div style={{ width: '100px', height: '6px', background: 'var(--bg-tertiary)', borderRadius: '3px', overflow: 'hidden' }}>
+              <div style={{ width: `${status.progress ?? 0}%`, height: '100%', background: 'var(--accent-primary)', borderRadius: '3px', transition: 'width 0.5s ease' }} />
+            </div>
+          </div>
+        )}
       </header>
 
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
@@ -122,8 +193,8 @@ const Workflow = () => {
                   borderBottom: isExpanded ? 'none' : (i === stages.length - 1 ? 'none' : '1px solid var(--border-color)'),
                   background: stage.status === 'current' ? 'rgba(99, 102, 241, 0.05)' : 'transparent',
                   transition: 'background 0.2s' }}
-                onMouseEnter={(e) => { if (stage.status !== 'current') (e.currentTarget.style.background = 'var(--bg-tertiary)'); }}
-                onMouseLeave={(e) => { if (stage.status !== 'current') (e.currentTarget.style.background = 'transparent'); }}
+                onMouseEnter={(e) => { if (stage.status !== 'current') e.currentTarget.style.background = 'var(--bg-tertiary)'; }}
+                onMouseLeave={(e) => { if (stage.status !== 'current') e.currentTarget.style.background = 'transparent'; }}
               >
                 <div style={{ marginRight: '1rem' }}>
                   {stage.status === 'completed' && <CheckCircle2 size={22} color="var(--success)" />}
@@ -154,57 +225,132 @@ const Workflow = () => {
                     exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}
                     style={{ overflow: 'hidden', borderBottom: i === stages.length - 1 ? 'none' : '1px solid var(--border-color)' }}>
                     <div style={{ padding: '1.5rem 2rem 2rem', background: 'var(--bg-tertiary)' }}>
+                      {/* Step tracker */}
                       <div style={{ marginBottom: '1.5rem' }}>
-                        <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-                          <Play size={14} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} /> Sub-scripts
+                        <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '1rem', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <Play size={14} /> Pipeline Steps
                         </h4>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                          {stage.subScripts.map((s, idx) => (
-                            <span key={idx} style={{ background: 'var(--bg-secondary)', padding: '0.4rem 0.75rem', borderRadius: '6px',
-                              fontSize: '0.8rem', fontFamily: 'monospace', border: '1px solid var(--border-color)',
-                              color: running === stage.id ? 'var(--accent-primary)' : 'var(--text-secondary)' }}>{s}</span>
-                          ))}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                          {stage.subScripts.map((s, idx) => {
+                            const isStepCompleted = idx < doneEvents.length;
+                            const isStepActive = idx === doneEvents.length && running === stage.id;
+                            return (
+                              <motion.div key={idx} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.05 }}
+                                style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 0.75rem', borderRadius: '8px',
+                                  background: isStepActive ? 'rgba(99, 102, 241, 0.08)' : 'transparent' }}>
+                                <div style={{ width: '22px', display: 'flex', justifyContent: 'center' }}>
+                                  {isStepCompleted ? <CheckCircle2 size={16} color="var(--success)" /> :
+                                   isStepActive ? <Loader2 size={14} className="spin" color="var(--accent-primary)" /> :
+                                   <Circle size={14} color="var(--text-muted)" />}
+                                </div>
+                                <span style={{ fontFamily: 'monospace', fontSize: '0.85rem',
+                                  color: isStepCompleted ? 'var(--success)' : isStepActive ? 'var(--accent-primary)' : 'var(--text-muted)' }}>
+                                  {s}
+                                </span>
+                                {isStepActive && <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--accent-primary)' }}>Running...</span>}
+                                {isStepCompleted && <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--success)' }}>✓ Done</span>}
+                              </motion.div>
+                            );
+                          })}
                         </div>
                       </div>
 
-                      <div className="grid-2" style={{ gap: '1rem' }}>
+                      {/* Progress bar + Stat cards */}
+                      <div className="grid-2" style={{ gap: '1rem', marginBottom: '1.5rem' }}>
+                        {/* Live stats cards */}
                         <div>
-                          <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-                            <FileText size={14} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} /> Output Files
+                          <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <BarChart3 size={14} /> Live Statistics
+                          </h4>
+                          <div className="grid-2" style={{ gap: '0.5rem' }}>
+                            <StatCard label="Papers" value={running === stage.id ? (lastCount || liveStats.papersFetched || '...') : (liveStats.papersFetched || stage.status === 'completed' ? (['scientometric', 'advanced', 'phase3'].includes(stage.id) ? liveStats.papersFetched : '—') : '—')} compact running={running === stage.id} />
+                            {stage.id === 'advanced' && <StatCard label="Topics" value={liveStats.uniqueTopics || (running === stage.id ? '...' : '—')} compact />}
+                            {stage.id === 'scientometric' && <StatCard label="Authors" value={liveStats.keyAuthors || (running === stage.id ? '...' : '—')} compact />}
+                            {stage.id === 'phase3' && <StatCard label="Growth" value={liveStats.avgGrowthRate || '—'} compact />}
+                            {stage.id === 'phase5' && <StatCard label="Figures" value={figuresCount} compact />}
+                            {stage.id === 'phase1-export' && <StatCard label="Topics" value={topicsCount || liveStats.uniqueTopics || '—'} compact />}
+                          </div>
+                        </div>
+
+                        {/* Output files */}
+                        <div>
+                          <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <FileText size={14} /> Output Files
                           </h4>
                           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                             {stage.outputs.map((f, idx) => (
-                              <li key={idx} style={{ padding: '0.35rem 0', fontSize: '0.8rem', fontFamily: 'monospace',
+                              <li key={idx} style={{ padding: '0.3rem 0', fontSize: '0.8rem', fontFamily: 'monospace',
                                 color: stage.status === 'completed' ? 'var(--success)' : 'var(--text-muted)',
                                 display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                {stage.status === 'completed' ? <CheckCircle2 size={12} /> : <Circle size={12} />} {f}
+                                {stage.status === 'completed' ? <CheckCircle2 size={11} /> : <Circle size={11} />} {f}
                               </li>
                             ))}
                           </ul>
                         </div>
-
-                        <div>
-                          <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-                            <BarChart3 size={14} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} /> Live Data
-                          </h4>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                            {stage.id === 'scientometric' && (<><DataRow label="Papers fetched" value={liveStats.papersFetched ?? '—'} /><DataRow label="Authors" value={liveStats.keyAuthors ?? '—'} /></>)}
-                            {stage.id === 'advanced' && (<><DataRow label="Topics discovered" value={liveStats.uniqueTopics ?? '—'} /><DataRow label="AI interpretations" value={liveStats.uniqueTopics ? `${liveStats.uniqueTopics}` : '—'} /></>)}
-                            {stage.id === 'phase1-export' && <DataRow label="Topics to classify" value={topicsCount || liveStats.uniqueTopics || '—'} />}
-                            {stage.id === 'phase3' && (<><DataRow label="Growth rate" value={liveStats.avgGrowthRate ?? '—'} /><DataRow label="Papers analyzed" value={liveStats.papersFetched ?? '—'} /></>)}
-                            {stage.id === 'phase5' && <DataRow label="Figures" value={figuresCount} />}
-                          </div>
-                        </div>
                       </div>
 
-                      {running === stage.id && (
-                        <div style={{ marginTop: '1.5rem' }}>
-                          <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-                            <Clock size={14} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} /> Console
-                          </h4>
-                          <div ref={consoleRef} style={{ background: '#000', borderRadius: '8px', padding: '0.75rem', fontFamily: 'monospace', fontSize: '0.8rem', color: '#10b981', height: '180px', overflowY: 'auto' }}>
-                            {logs.length === 0 && <span style={{ color: '#64748b' }}>Waiting...</span>}
-                            {logs.map((line, i) => <div key={i}>{line}</div>)}
+                      {/* Progress bar */}
+                      {running === stage.id && lastPct > 0 && (
+                        <div style={{ marginBottom: '1rem' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', marginBottom: '0.3rem' }}>
+                            <span style={{ color: 'var(--accent-primary)' }}>Processing...</span>
+                            <span style={{ color: 'var(--text-muted)' }}>{lastPct}%</span>
+                          </div>
+                          <div style={{ width: '100%', height: '8px', background: 'var(--bg-secondary)', borderRadius: '4px', overflow: 'hidden' }}>
+                            <motion.div initial={{ width: 0 }} animate={{ width: `${lastPct}%` }}
+                              style={{ height: '100%', background: 'linear-gradient(90deg, var(--accent-primary), var(--accent-secondary))', borderRadius: '4px' }}
+                              transition={{ duration: 0.3 }} />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Event feed (visual log) */}
+                      {running === stage.id && events.length > 0 && (
+                        <div style={{ marginBottom: '0.75rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                            <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '0.05em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                              <Clock size={14} /> Activity Feed
+                            </h4>
+                            <button className="btn btn-outline" style={{ padding: '0.2rem 0.5rem', fontSize: '0.7rem' }}
+                              onClick={() => setShowRawLogs(!showRawLogs)}>
+                              <Terminal size={12} style={{ marginRight: '0.3rem' }} />
+                              {showRawLogs ? 'Hide Logs' : 'Raw Logs'}
+                            </button>
+                          </div>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', maxHeight: '200px', overflowY: 'auto', paddingRight: '0.5rem' }}>
+                            {events.slice(-30).map((ev, idx) => (
+                              <motion.div key={idx} initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }}
+                                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.25rem 0.5rem', borderRadius: '4px',
+                                  fontSize: '0.8rem', background: ev.type === 'error' ? 'rgba(239,68,68,0.08)' : 'transparent' }}>
+                                {ev.type === 'error' && <AlertCircle size={12} color="var(--error)" />}
+                                {ev.type === 'done' && <CheckCircle2 size={12} color="var(--success)" />}
+                                {ev.type === 'step' && <Loader2 size={11} className="spin" color="var(--accent-primary)" />}
+                                {ev.type === 'count' && <BarChart3 size={11} color="var(--accent-primary)" />}
+                                {(ev.type === 'info' || ev.type === 'progress') && <Circle size={8} color="var(--text-muted)" />}
+                                <span style={{ color: ev.type === 'error' ? 'var(--error)' : ev.type === 'done' ? 'var(--success)' : 'var(--text-primary)' }}>
+                                  {ev.message.substring(0, 100)}
+                                </span>
+                              </motion.div>
+                            ))}
+                            <div ref={logEndRef} />
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Error banner */}
+                      {hasError && !running && (
+                        <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', borderRadius: '8px', padding: '0.75rem 1rem', marginTop: '0.75rem' }}>
+                          <p style={{ color: 'var(--error)', fontSize: '0.85rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <AlertCircle size={16} /> Stage completed with errors. Check the console for details.
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Raw logs (collapsible) */}
+                      {showRawLogs && (
+                        <div style={{ marginTop: '0.75rem' }}>
+                          <div style={{ background: '#000', borderRadius: '8px', padding: '0.75rem', fontFamily: 'monospace', fontSize: '0.75rem', color: '#10b981', height: '150px', overflowY: 'auto' }}>
+                            {logs.slice(-100).map((line, i) => <div key={i}>{line}</div>)}
                           </div>
                         </div>
                       )}
@@ -220,10 +366,13 @@ const Workflow = () => {
   );
 };
 
-const DataRow = ({ label, value }: { label: string; value: any }) => (
-  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', padding: '0.3rem 0', borderBottom: '1px solid var(--border-color)' }}>
-    <span style={{ color: 'var(--text-muted)' }}>{label}</span>
-    <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{value}</span>
+// ── Sub-components ──────────────────────────────────────────────
+const StatCard = ({ label, value, compact, running }: { label: string; value: any; compact?: boolean; running?: boolean }) => (
+  <div style={{ background: 'var(--bg-secondary)', borderRadius: '8px', padding: compact ? '0.6rem 0.8rem' : '1rem', border: '1px solid var(--border-color)' }}>
+    <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', margin: 0, marginBottom: '0.2rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{label}</p>
+    <p style={{ fontSize: compact ? '1.2rem' : '1.5rem', fontWeight: 700, margin: 0, color: running ? 'var(--accent-primary)' : 'var(--text-primary)' }}>
+      {running ? <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>{value}</motion.span> : value}
+    </p>
   </div>
 );
 
