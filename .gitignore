@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Backend runtime / generated data
+backend/app.db
+backend/outputs/
+backend/data/
+backend/projects/
+
+# UI dependencies & build
+ui/node_modules/
+ui/dist/
+ui/.vite/
+ui/.vite-temp/
+
+# Environment / virtualenv
+.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+*.tmp
+*.bak
