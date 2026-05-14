@@ -17,9 +17,21 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 # ── OpenAlex Fetcher ──────────────────────────────────────────────
 
 def fetch_openalex():
+    # Build query: use search_query directly, or fall back to include_terms
     query = " ".join(cfg["research"]["search_query"].split())
     if not query:
-        print("[ERROR] Search query is empty. Go to Configuration and set a boolean search query first.")
+        include_terms = cfg["research"].get("include_terms", [])
+        if include_terms:
+            query = "(" + " AND ".join(
+                t if t.isidentifier() else f'"{t}"' for t in include_terms
+            ) + ")"
+        exclusions = cfg["cleaning"].get("hard_exclusions", [])
+        if exclusions:
+            query += " NOT (" + " OR ".join(
+                t if t.isidentifier() else f'"{t}"' for t in exclusions
+            ) + ")"
+    if not query:
+        print("[ERROR] Search query is empty. Add include terms in Configuration first.")
         return pd.DataFrame()
 
     max_results = cfg["research"]["max_results"]
@@ -120,23 +132,33 @@ def _filter_relevant(df):
     for term in c.get("hard_exclusions", []):
         mask &= ~combined.str.contains(fr"\b{term}\b", case=False, na=False, regex=True)
 
-    is_high = pd.Series(False, index=df.index)
-    for concept in c.get("high_priority_concepts", []):
-        is_high |= combined.str.contains(fr"\b{concept}\b", case=False, na=False, regex=True)
+    is_high_list = c.get("high_priority_concepts", [])
+    core_list = c.get("core_concepts", [])
+    context_list = c.get("context_keywords", [])
+    security_list = c.get("security_terms", [])
 
-    has_core = pd.Series(False, index=df.index)
-    for concept in c.get("core_concepts", []):
-        has_core |= combined.str.contains(fr"\b{concept}\b", case=False, na=False, regex=True)
+    has_positive_rules = bool(is_high_list or core_list or (security_list and context_list))
 
-    has_context = pd.Series(False, index=df.index)
-    for kw in c.get("context_keywords", []):
-        has_context |= combined.str.contains(fr"\b{kw}\b", case=False, na=False, regex=True)
+    if has_positive_rules:
+        pos = pd.Series(False, index=df.index)
+        hp = pd.Series(False, index=df.index)
+        for concept in is_high_list:
+            hp |= combined.str.contains(fr"\b{concept}\b", case=False, na=False, regex=True)
+        pos |= hp
+        cc = pd.Series(False, index=df.index)
+        for concept in core_list:
+            cc |= combined.str.contains(fr"\b{concept}\b", case=False, na=False, regex=True)
+        pos |= cc
+        hc = pd.Series(False, index=df.index)
+        for kw in context_list:
+            hc |= combined.str.contains(fr"\b{kw}\b", case=False, na=False, regex=True)
+        hs = pd.Series(False, index=df.index)
+        for term in security_list:
+            hs |= combined.str.contains(fr"\b{term}\b", case=False, na=False, regex=True)
+        pos |= (hs & hc)
+        return df[mask & pos]
 
-    has_security = pd.Series(False, index=df.index)
-    for term in c.get("security_terms", []):
-        has_security |= combined.str.contains(fr"\b{term}\b", case=False, na=False, regex=True)
-
-    return df[mask & (is_high | has_core | (has_security & has_context))]
+    return df[mask]
 
 
 def _normalize_keywords(df):

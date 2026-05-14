@@ -47,6 +47,7 @@ def _normalize(cfg):
     r.setdefault("title", "Untitled Research")
     r.setdefault("description", "")
     r.setdefault("search_query", "")
+    r.setdefault("include_terms", [])
     r.setdefault("start_year", 2010)
     r.setdefault("end_year", 2025)
     r.setdefault("max_results", 5000)

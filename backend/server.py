@@ -498,7 +498,11 @@ def get_stats(pid: str):
     stats = {"papersFetched": 0, "uniqueTopics": 0, "keyAuthors": 0, "avgGrowthRate": "0%"}
     try:
         import pandas as pd
+
+        # Check processed dataset (Stage 1+), fall back to cleaned (Stage 0)
         ds = pdir / "data" / "processed" / "topic_dataset.csv"
+        if not ds.exists():
+            ds = pdir / "data" / "cleaned" / "final_dataset.csv"
         if ds.exists():
             df = pd.read_csv(ds)
             stats["papersFetched"] = len(df)
