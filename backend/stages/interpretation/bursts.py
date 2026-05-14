@@ -55,11 +55,15 @@ def run():
             if z > 2.5 and val > 5:
                 bursts.append({"keyword": kw, "burst_year": year, "count": val, "z_score": round(z, 2)})
 
+    burst_dir = os.path.join(OUTPUTS_DIR, "bursts")
+    os.makedirs(burst_dir, exist_ok=True)
+
     if bursts:
         burst_df = pd.DataFrame(bursts).sort_values(["burst_year", "z_score"], ascending=[True, False])
-        burst_dir = os.path.join(OUTPUTS_DIR, "bursts")
-        os.makedirs(burst_dir, exist_ok=True)
         burst_df.to_csv(os.path.join(burst_dir, "burst_detection.csv"), index=False)
         print(f"Bursts detected: {len(burst_df)}")
     else:
         print("No bursts detected.")
+        pd.DataFrame(columns=["keyword", "burst_year", "count", "z_score"]).to_csv(
+            os.path.join(burst_dir, "burst_detection.csv"), index=False
+        )

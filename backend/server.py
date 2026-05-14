@@ -214,8 +214,9 @@ def delete_project_endpoint(pid: str):
         p = db.query(Project).filter(Project.id == pid).first()
         if not p:
             raise HTTPException(404, "Project not found")
-        if p.is_default:
-            raise HTTPException(400, "Cannot delete the default project")
+        # Check for running pipeline before deletion
+        if pid in _pipeline_tasks or pid in _goal_tasks:
+            raise HTTPException(409, "Cannot delete project while a pipeline is running")
 
         # Delete files BEFORE DB row to avoid orphaned data on failure
         pdir = get_project_dir(pid)
@@ -228,6 +229,12 @@ def delete_project_endpoint(pid: str):
         _goal_logs.pop(pid, None)
         _goal_results.pop(pid, None)
         _goal_tasks.pop(pid, None)
+
+        if p.is_default:
+            # Reassign default to another project if any remain
+            other = db.query(Project).filter(Project.id != pid).first()
+            if other:
+                other.is_default = True
 
         db.delete(p)
         db.commit()

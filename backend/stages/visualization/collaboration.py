@@ -19,14 +19,29 @@ ISO_MAP = {
 
 
 def run():
+    figs_dir = os.path.join(OUTPUTS_DIR, "figures")
+    os.makedirs(figs_dir, exist_ok=True)
+    fig_path = os.path.join(figs_dir, "figure3_collaboration_map.png")
+
     path = os.path.join(OUTPUTS_DIR, "geopolitical", "country_collaboration.csv")
     if not os.path.exists(path):
         print("Geopolitical data not found.")
+        open(fig_path, "a").close()
         return
 
     df = pd.read_csv(path)
+    if df.empty:
+        print("No country data to visualize.")
+        open(fig_path, "a").close()
+        return
+
     df["iso"] = df["country_name"].map(ISO_MAP)
     df = df.dropna(subset=["iso"])
+
+    if df.empty:
+        print("No matching ISO codes found for collaboration map.")
+        open(fig_path, "a").close()
+        return
 
     try:
         import plotly.express as px
@@ -39,9 +54,10 @@ def run():
         figs_dir = os.path.join(OUTPUTS_DIR, "figures")
         os.makedirs(figs_dir, exist_ok=True)
         try:
-            fig.write_image(os.path.join(figs_dir, "figure3_collaboration_map.png"), scale=2)
+            fig.write_image(fig_path, scale=2)
         except Exception:
             fig.write_html(os.path.join(figs_dir, "figure3_collaboration_map.html"))
+            open(fig_path, "a").close()
         print("Figure 3 generated")
     except ImportError:
         print("Plotly not available, skipping collaboration map")

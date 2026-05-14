@@ -22,7 +22,15 @@ COUNTRY_PATTERNS = [
 
 
 def run():
-    df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv"))
+    path = os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv")
+    fallback = os.path.join(BASE_DIR, "data", "processed", "topic_dataset.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+    elif os.path.exists(fallback):
+        df = pd.read_csv(fallback)
+    else:
+        print("No dataset found. Run Data Acquisition and Topic Modeling first.")
+        return
 
     def extract_countries(authors_str):
         if pd.isna(authors_str):
@@ -40,8 +48,14 @@ def run():
         for country in row["countries"]:
             records.append({"country": country, "paper": row.get("doi", row["title"])})
 
+    geo_dir = os.path.join(OUTPUTS_DIR, "geopolitical")
+    os.makedirs(geo_dir, exist_ok=True)
+
     if not records:
-        print("No countries extracted.")
+        print("No countries extracted — writing empty file")
+        pd.DataFrame(columns=["country_name", "SCP", "MCP", "Total"]).to_csv(
+            os.path.join(geo_dir, "country_collaboration.csv"), index=False
+        )
         return
 
     country_df = pd.DataFrame(records)
@@ -60,5 +74,5 @@ def run():
             collab[col] = 0
     collab["Total"] = collab["SCP"] + collab["MCP"]
     collab = collab.sort_values("Total", ascending=False)
-    collab.to_csv(os.path.join(OUTPUTS_DIR, "geopolitical", "country_collaboration.csv"), index=False)
+    collab.to_csv(os.path.join(geo_dir, "country_collaboration.csv"), index=False)
     print("Geopolitical analysis complete")

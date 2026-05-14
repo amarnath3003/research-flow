@@ -48,6 +48,9 @@ def run():
             themes[name] = re.escape(name.lower())
     else:
         print("No themes configured and no theme column found.")
+        evo_dir = os.path.join(OUTPUTS_DIR, "evolution")
+        os.makedirs(evo_dir, exist_ok=True)
+        pd.DataFrame(columns=["year"]).to_csv(os.path.join(evo_dir, "theme_evolution.csv"), index=False)
         return
 
     evo = []

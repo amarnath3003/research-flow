@@ -12,7 +12,15 @@ OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
 
 
 def run():
-    df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv"))
+    path = os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv")
+    fallback = os.path.join(BASE_DIR, "data", "processed", "topic_dataset.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+    elif os.path.exists(fallback):
+        df = pd.read_csv(fallback)
+    else:
+        print("No dataset found. Run Data Acquisition and Topic Modeling first.")
+        return
 
     author_records = []
     for _, row in df.iterrows():
@@ -33,5 +41,7 @@ def run():
         total_citations=("citations", "sum")
     ).reset_index().sort_values("paper_count", ascending=False)
 
-    stats.to_csv(os.path.join(OUTPUTS_DIR, "stats", "top_authors.csv"), index=False)
+    stats_dir = os.path.join(OUTPUTS_DIR, "stats")
+    os.makedirs(stats_dir, exist_ok=True)
+    stats.to_csv(os.path.join(stats_dir, "top_authors.csv"), index=False)
     print("Author analysis complete")

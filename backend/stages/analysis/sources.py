@@ -11,7 +11,15 @@ OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
 
 
 def run():
-    df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv"))
+    path = os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv")
+    fallback = os.path.join(BASE_DIR, "data", "processed", "topic_dataset.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+    elif os.path.exists(fallback):
+        df = pd.read_csv(fallback)
+    else:
+        print("No dataset found. Run Data Acquisition and Topic Modeling first.")
+        return
 
     # Drop NaN journals and fill NaN citations with 0
     df = df.dropna(subset=["journal"])
@@ -34,7 +42,9 @@ def run():
     ).reset_index()
     grouped["h_index"] = grouped["citations_list"].apply(h_index)
     grouped = grouped.sort_values("h_index", ascending=False).head(50)
+    sources_dir = os.path.join(OUTPUTS_DIR, "sources")
+    os.makedirs(sources_dir, exist_ok=True)
     grouped.drop(columns=["citations_list"]).to_csv(
-        os.path.join(OUTPUTS_DIR, "sources", "top_sources.csv"), index=False
+        os.path.join(sources_dir, "top_sources.csv"), index=False
     )
     print("Source analysis complete")

@@ -144,7 +144,7 @@ const ProjectsPage = () => {
                   <Star size={16} />
                 </button>
                 <button className="btn btn-outline" style={{ padding: '0.5rem', color: 'var(--error)', borderColor: 'transparent' }}
-                  title="Delete" onClick={() => handleDelete(p.id, p.name)} disabled={p.isDefault}>
+                  title="Delete" onClick={() => handleDelete(p.id, p.name)}>
                   <Trash2 size={16} />
                 </button>
               </div>

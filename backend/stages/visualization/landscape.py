@@ -24,7 +24,8 @@ def run():
         df = df_full.groupby("topic").size().reset_index(name="Count")
         df["Name"] = df["topic"].apply(lambda x: f"Topic {x}")
 
-    df = df[df["topic"] != -1].sort_values("Count", ascending=False).head(20)
+    col = "topic" if "topic" in df.columns else "Topic"
+    df = df[df[col] != -1].sort_values("Count", ascending=False).head(20)
     n = len(df)
     theta = np.linspace(0, 4 * np.pi, n)
     r = np.linspace(0, 10, n)

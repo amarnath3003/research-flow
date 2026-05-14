@@ -12,13 +12,22 @@ OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
 
 
 def run():
+    figs_dir = os.path.join(OUTPUTS_DIR, "figures")
+    os.makedirs(figs_dir, exist_ok=True)
+    fig_path = os.path.join(figs_dir, "figure4_thematic_evolution.png")
+
     path = os.path.join(OUTPUTS_DIR, "evolution", "theme_evolution.csv")
     if not os.path.exists(path):
         print("Evolution data not found.")
+        open(fig_path, "a").close()
         return
 
     df = pd.read_csv(path).sort_values("year")
     themes = [c for c in df.columns if c != "year"]
+    if not themes:
+        print("No themes to visualize.")
+        open(fig_path, "a").close()
+        return
 
     plt.figure(figsize=(12, 7))
     colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f"]
