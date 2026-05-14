@@ -146,6 +146,7 @@ p { line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem; }
 /* Grid Layouts */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
 .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+.grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1.5rem; }
 
 /* Forms */
 .form-group { margin-bottom: 1.5rem; }
@@ -199,3 +200,43 @@ p { line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem; }
 
 .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
 .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+  .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 2rem 0.5rem;
+  }
+  .sidebar span, .logo span { display: none; }
+  .main-content {
+    margin-left: 70px;
+    max-width: calc(100vw - 70px);
+    padding: 1.5rem;
+  }
+  .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
+  .logo { justify-content: center; }
+}

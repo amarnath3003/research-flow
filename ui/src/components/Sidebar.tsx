@@ -14,7 +14,7 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="logo">
-        <Beaker size={28} color="#6366f1" />
+        <Beaker size={28} color="var(--accent-primary)" />
         <span>ResearchFlow</span>
       </div>
       

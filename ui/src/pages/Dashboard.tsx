@@ -22,7 +22,7 @@ const Dashboard = () => {
         <p>Current Research: <strong>Scholarly Communication & Research Security</strong></p>
       </header>
 
-      <div className="grid-3" style={{ gridTemplateColumns: 'repeat(4, 1fr)', marginBottom: '3rem' }}>
+      <div className="grid-4" style={{ marginBottom: '3rem' }}>
         {stats.map((stat, i) => (
           <div key={i} className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
