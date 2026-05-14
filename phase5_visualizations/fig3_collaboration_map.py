@@ -20,7 +20,7 @@ def run_collaboration_map():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     if not os.path.exists(INPUT_FILE):
-        print("Error: Geopolitical data not found. Skipping Figure 3.")
+        print("Error: Geopolitical data not found. Skipping collaboration map.")
         return
 
     df = pd.read_csv(INPUT_FILE)
@@ -34,7 +34,7 @@ def run_collaboration_map():
                         color="Total",
                         hover_name="countries",
                         color_continuous_scale=px.colors.sequential.Viridis,
-                        title="Figure 3: Global Research Collaboration Map")
+                        title="Global Research Collaboration Map")
 
     fig.update_layout(
         geo=dict(
@@ -50,7 +50,7 @@ def run_collaboration_map():
     try:
         plot_path = os.path.join(OUTPUT_DIR, 'figure3_collaboration_map.png')
         fig.write_image(plot_path, scale=2)
-        print(f"Generated Figure 3: {plot_path}")
+        print(f"Generated collaboration map: {plot_path}")
     except Exception as e:
         print(f"Plotly static export failed (likely missing kaleido). Saved HTML instead.")
         fig.write_html(os.path.join(OUTPUT_DIR, 'figure3_collaboration_map.html'))

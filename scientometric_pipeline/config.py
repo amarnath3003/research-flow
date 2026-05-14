@@ -1,39 +1,15 @@
-SEARCH_QUERY = """
-(
-    "open science"
-    OR "open access publishing"
-    OR "scholarly communication"
-    OR "research data repository"
-    OR "open research data"
-    OR "institutional repository"
-    OR "academic publishing"
-)
-AND
-(
-    "research security"
-    OR ransomware
-    OR "data breach"
-    OR "cyber attack"
-    OR "information security"
-)
-AND
-(
-    university
-    OR academia
-    OR scholarly
-    OR researcher
-    OR "research institution"
-    OR library
-)
-"""
+import sys
+import os
 
+# Import from root config_loader
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config_loader import load_config
 
+cfg = load_config()
 
-START_YEAR = 2010
-END_YEAR = 2025
-
-MAX_RESULTS = 5000
-
-EMAIL = "amarnathdevraj2005@gmail.com"
-
+SEARCH_QUERY = cfg["research"]["search_query"]
+START_YEAR = cfg["research"]["start_year"]
+END_YEAR = cfg["research"]["end_year"]
+MAX_RESULTS = cfg["research"]["max_results"]
+EMAIL = cfg["research"]["email"]
 OPENALEX_BASE = "https://api.openalex.org/works"

@@ -5,35 +5,29 @@ This phase focuses on extracting scholarly meaning from the quantitative data ge
 ## Analysis Scripts
 
 ### 1. Temporal Evolution Analysis (`step1_temporal_evolution.py`)
-- **Focus**: Tracks specific high-value terms over time.
-- **Goal**: Identify when security entered the open science discourse and if COVID was a turning point.
-- **Key Themes Tracked**:
-  - Research Security
-  - AI Governance
-  - Ransomware
-  - Open Science (FAIR data, etc.)
+- **Focus**: Tracks specific themes over time.
+- **Goal**: Identify thematic shifts and turning points.
+- **Themes Tracked**: Configured in `research_config.yaml` under `tracking.themes`.
 - **Outputs**:
-  - `outputs/evolution/theme_evolution.png`: Multi-line plot showing theme trajectories.
-  - `outputs/evolution/theme_evolution.csv`: Yearly theme counts.
+  - `outputs/evolution/theme_evolution.png`
+  - `outputs/evolution/theme_evolution.csv`
 
 ### 2. Burst Detection (`step2_burst_detection.py`)
 - **Focus**: Statistical detection of sudden keyword frequency spikes.
-- **Logic**: Uses Z-score anomalies (mimicking CiteSpace burst detection) to identify "surging" topics.
+- **Logic**: Uses Z-score anomalies to identify "surging" topics.
 - **Outputs**:
-  - `outputs/bursts/burst_detection.csv`: List of keywords that experienced significant bursts, categorized by year.
+  - `outputs/bursts/burst_detection.csv`
 
 ### 3. Narrative Generator (`step3_narrative_generator.py`)
 - **Focus**: Synthesis of findings into scholarly prose.
 - **Goal**: Transition from "What happened" to "Why it happened."
 - **Outputs**:
-  - `outputs/narrative/discussion_draft.md`: A collection of high-quality interpretation snippets for your manuscript.
+  - `outputs/narrative/discussion_draft.md`
 
 ## Execution Order
-1. Run `step1_temporal_evolution.py`
-2. Run `step2_burst_detection.py`
-3. Run `step3_narrative_generator.py` (requires Phase 3 results to be present)
+1. `step1_temporal_evolution.py`
+2. `step2_burst_detection.py`
+3. `step3_narrative_generator.py`
 
-## Discussion Themes for the Paper
-- **The Shift (2018-2020)**: Moving from general open science to "Research Security" as a distinct discipline.
-- **The Acceleration (2020-2024)**: How the pandemic and Generative AI combined to create a "perfect storm" for academic cybersecurity governance.
-- **Emerging Frontiers**: Identifying the newest bursts (e.g., Sovereign AI, secure data sharing) that define future research directions.
+## Discussion Themes
+The narrative is generated dynamically from the data — the top themes, highest growth periods, and burst keywords are identified automatically rather than hardcoded.

@@ -99,7 +99,7 @@ def run_keyword_network():
                      color='#34495e',
                      bbox=dict(facecolor='white', alpha=0.85, edgecolor='#bdc3c7', boxstyle='round,pad=0.2'))
 
-    plt.title('Figure 2: Keyword Interconnection Network\n(Core-Periphery Thematic Structure)', fontsize=32, pad=60, fontweight='bold', color='#2c3e50')
+    plt.title('Keyword Interconnection Network\n(Core-Periphery Thematic Structure)', fontsize=32, pad=60, fontweight='bold', color='#2c3e50')
     plt.axis('off')
     
     # Ensure the plot has enough room for external labels
@@ -117,7 +117,7 @@ def run_keyword_network():
     # Save
     plot_path = os.path.join(OUTPUT_DIR, 'figure2_keyword_network.png')
     plt.savefig(plot_path, dpi=300, bbox_inches='tight', facecolor='white')
-    print(f"Generated Improved Figure 2: {plot_path}")
+    print(f"Generated keyword network: {plot_path}")
 
 if __name__ == "__main__":
     run_keyword_network()
