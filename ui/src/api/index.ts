@@ -28,6 +28,7 @@ export const fetchStats = () => req<any>('/api/stats');
 export const fetchTopics = () => req<any[]>('/api/topics');
 export const fetchFigures = () => req<any[]>('/api/figures');
 export const fetchReport = () => req<any>('/api/report');
+export const resetProject = () => req<any>('/api/reset', { method: 'POST' });
 
 // Log streaming
 export function subscribeLogs(

@@ -1,5 +1,0 @@
-topic_id,label,classification,keep/remove,topic_name,document_count,top_keywords,representative_titles,representative_abstracts
-0,Generative AI in academia,SUPPORTING,keep,Example Topic 0,150,"ai, generative, academia","Title 1 | Title 2 | Title 3","Abstract snippet..."
-16,Smart grid security,NOISE,remove,Example Topic 16,45,"smart, grid, security","Title A | Title B | Title C","Abstract snippet..."
-34,Precision agriculture security,NOISE,remove,Example Topic 34,30,"agriculture, precision, farming","Title X | Title Y | Title Z","Abstract snippet..."
-12,Open repositories & ransomware,CORE,keep,Example Topic 12,85,"open, repositories, ransomware","Title I | Title J | Title K","Abstract snippet..."

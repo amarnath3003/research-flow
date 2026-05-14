@@ -365,9 +365,38 @@ def get_data(data_type: str):
 
 # ── Health Check ──────────────────────────────────────────────────
 
-@app.get("/api/health")
-def health():
-    return {"status": "ok", "backend": str(BASE_DIR)}
+@app.post("/api/reset")
+def reset_data():
+    global pipeline_task, pipeline_log
+    if pipeline_task is not None:
+        raise HTTPException(400, "Cannot reset while pipeline is running")
+    
+    try:
+        # Clear directories
+        for d in ["data", "outputs", "models"]:
+            path = BASE_DIR / d
+            if path.exists():
+                shutil.rmtree(path)
+            path.mkdir(exist_ok=True)
+            # Recreate subdirs for data
+            if d == "data":
+                for sub in ["raw", "cleaned", "processed", "share"]:
+                    (path / sub).mkdir(exist_ok=True)
+            # Recreate subdirs for outputs
+            if d == "outputs":
+                for sub in ["figures", "stats", "reports", "networks", "trends"]:
+                    (path / sub).mkdir(exist_ok=True)
+        
+        # Clear files
+        for f in ["research_flow.db", "pipeline_run.log"]:
+            path = BASE_DIR / f
+            if path.exists():
+                os.remove(path)
+        
+        pipeline_log = ["[SYSTEM] Data reset complete. Ready for new project."]
+        return {"success": True}
+    except Exception as e:
+        raise HTTPException(500, f"Reset failed: {e}")
 
 
 if __name__ == "__main__":

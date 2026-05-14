@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, CheckCircle2, Circle, Loader2, ChevronDown, ChevronRight, Clock, Database, BarChart3, Brain, FileText, Tags, Layers, GitMerge, TrendingUp, ImageIcon, FileCheck } from 'lucide-react';
-import { fetchStatus, runStage, subscribeLogs, fetchStats, fetchTopics, fetchFigures } from '../api';
+import { Play, CheckCircle2, Circle, Loader2, ChevronDown, ChevronRight, Clock, Database, BarChart3, Brain, FileText, Tags, Layers, GitMerge, TrendingUp, ImageIcon, FileCheck, Trash2 } from 'lucide-react';
+import { fetchStatus, runStage, subscribeLogs, fetchStats, fetchTopics, fetchFigures, resetProject } from '../api';
 
 type StageId = typeof STAGE_ORDER[number];
 
@@ -111,6 +111,17 @@ const Workflow = () => {
     fetchFigures().then((f) => setFiguresCount(f.length)).catch(() => {});
   }, [status]);
 
+  const handleReset = async () => {
+    if (!window.confirm('WARNING: This will permanently delete ALL collected data, models, and research outputs for the current project. Continue?')) return;
+    try {
+      await resetProject();
+      setLogs(['[SYSTEM] All project data has been cleared. Starting fresh.']);
+      pollStatus();
+    } catch (err: any) {
+      alert(`Reset failed: ${err.message}`);
+    }
+  };
+
   const handleRun = async (stage: string) => {
     setRunning(stage);
     setLogs([]);
@@ -155,12 +166,22 @@ const Workflow = () => {
           <h1>Research Pipeline Workflow</h1>
           <p>Click any stage to expand details, or hit "Execute Stage" to run it.</p>
         </div>
-        {status && (
-          <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.85rem' }}>
-            <span style={{ color: 'var(--success)' }}>{status.stages?.filter((s: any) => s.status === 'completed').length ?? 0}/10 done</span>
-            <span style={{ color: 'var(--text-muted)' }}>{status.progress ?? 0}%</span>
-          </div>
-        )}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <button 
+            className="btn btn-outline" 
+            style={{ borderColor: 'var(--error)', color: 'var(--error)', padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}
+            onClick={handleReset}
+          >
+            <Trash2 size={14} />
+            Reset Project
+          </button>
+          {status && (
+            <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.85rem' }}>
+              <span style={{ color: 'var(--success)' }}>{status.stages?.filter((s: any) => s.status === 'completed').length ?? 0}/10 done</span>
+              <span style={{ color: 'var(--text-muted)' }}>{status.progress ?? 0}%</span>
+            </div>
+          )}
+        </div>
       </header>
 
       <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
