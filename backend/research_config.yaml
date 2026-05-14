@@ -1,40 +1,35 @@
-# Research Configuration
-research:
-  title: "Research on 3DGS and robotics"
-  description: "Research on Guassian Splatting used in robotics"
-  search_query: |
-    3DGS Guassian Splatting
-  start_year: 2015
-  end_year: 2025
-  max_results: 5000
-  email: "amarnathdevraj2005@gmail.com"
-
 cleaning:
+  context_keywords: []
+  core_concepts: []
   enabled: true
   hard_exclusions: []
-  core_concepts: []
-  context_keywords: []
   high_priority_concepts: []
   security_terms:
-    - security
-    - cybersecurity
-    - threat
-
+  - security
+  - cybersecurity
+  - threat
 embedding:
-  model: "all-MiniLM-L6-v2"
   min_topic_size: 10
+  model: all-MiniLM-L6-v2
   top_n_topics: 20
-
 llm:
-  provider: null
-  model: null
   api_key_env: null
   base_url: null
+  model: null
+  provider: null
+research:
+  description: Research on Guassian Splatting used in robotics
+  email: amarnathdevraj2005@gmail.com
+  end_year: 2025
+  max_results: 5000
+  search_query: '3DGS Guassian Splatting
 
+    '
+  start_year: 2015
+  title: Research on 3DGS and robotics
 tracking:
   themes: []
-
 visualizations:
   annotations:
-    enabled: true
     custom: []
+    enabled: true
