@@ -5,11 +5,21 @@ import { fetchStatus } from '../api';
 
 const Sidebar = () => {
   const [status, setStatus] = useState<any>({ running: false, progress: 0 });
+  const [connected, setConnected] = useState<boolean>(true);
 
   useEffect(() => {
-    const poll = setInterval(() => {
-      fetchStatus().then(setStatus).catch(() => {});
-    }, 3000);
+    const check = () => {
+      fetchStatus()
+        .then(data => {
+          setStatus(data);
+          setConnected(true);
+        })
+        .catch(() => {
+          setConnected(false);
+        });
+    };
+    check();
+    const poll = setInterval(check, 3000);
     return () => clearInterval(poll);
   }, []);
 
@@ -44,15 +54,35 @@ const Sidebar = () => {
       </nav>
 
       <div style={{ marginTop: 'auto' }}>
-        <div className="card" style={{ padding: '1rem', marginBottom: 0, background: 'var(--bg-tertiary)' }}>
-          <p style={{ fontSize: '0.8rem', marginBottom: '0.5rem' }}>Pipeline Status</p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: status.running ? 'var(--warning)' : 'var(--success)' }} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>{status.running ? 'Running' : 'Ready'}</span>
+        <div className="card" style={{ padding: '1.25rem', marginBottom: 0, background: 'var(--bg-tertiary)', border: !connected ? '1px solid var(--error)' : '1px solid var(--border-color)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+            <span style={{ fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)' }}>System</span>
+            <div style={{ 
+              width: 10, height: 10, borderRadius: '50%', 
+              backgroundColor: !connected ? 'var(--error)' : status.running ? 'var(--warning)' : 'var(--success)',
+              boxShadow: connected ? '0 0 10px var(--success)' : 'none'
+            }} className={status.running ? 'pulse' : ''} />
           </div>
-          <div style={{ fontSize: '0.75rem', marginTop: '0.5rem', color: 'var(--text-muted)' }}>
-            {status.progress}% complete
+          
+          <div style={{ marginBottom: '0.5rem' }}>
+            <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: 600 }}>
+              {!connected ? 'Backend Offline' : status.running ? 'Pipeline Active' : 'Backend Ready'}
+            </p>
+            <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              {!connected ? 'Check server.py' : status.currentStage || 'Idle'}
+            </p>
           </div>
+
+          {connected && (
+            <div style={{ marginTop: '0.75rem' }}>
+              <div style={{ height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ height: '100%', background: 'var(--accent-primary)', width: `${status.progress}%`, transition: 'width 0.5s ease' }} />
+              </div>
+              <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.7rem', color: 'var(--text-muted)', textAlign: 'right' }}>
+                {status.progress}% complete
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
