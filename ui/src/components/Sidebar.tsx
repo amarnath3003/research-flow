@@ -4,6 +4,8 @@ import { LayoutDashboard, Settings, PlayCircle, Database, FileText, Beaker, Fold
 import { fetchStatus } from '../api';
 import { useProjects } from '../context/ProjectContext';
 
+import ThemeToggle from './ThemeToggle';
+
 const Sidebar = () => {
   const { projects, activeProject, setActive } = useProjects();
   const [status, setStatus] = useState<any>({ running: false, progress: 0 });
@@ -96,7 +98,8 @@ const Sidebar = () => {
         </NavLink>
       </nav>
 
-      <div style={{ marginTop: 'auto' }}>
+      <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <ThemeToggle />
         <div className="card" style={{ padding: '1.25rem', marginBottom: 0, background: 'var(--bg-tertiary)', borderRadius: '4px' }}>
           <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
             Pipeline Status
