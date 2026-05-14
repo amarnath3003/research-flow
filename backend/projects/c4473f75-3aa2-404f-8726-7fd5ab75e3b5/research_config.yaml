@@ -1,0 +1,35 @@
+cleaning:
+  context_keywords: []
+  core_concepts: []
+  enabled: true
+  hard_exclusions: []
+  high_priority_concepts: []
+  security_terms:
+  - security
+  - cybersecurity
+  - threat
+embedding:
+  min_topic_size: 10
+  model: all-MiniLM-L6-v2
+  top_n_topics: 20
+llm:
+  api_key_env: null
+  base_url: null
+  model: null
+  provider: null
+research:
+  description: Research on Guassian Splatting used in robotics
+  email: amarnathdevraj2005@gmail.com
+  end_year: 2025
+  max_results: 5000
+  search_query: '3DGS Guassian Splatting
+
+    '
+  start_year: 2015
+  title: Research on 3DGS and robotics
+tracking:
+  themes: []
+visualizations:
+  annotations:
+    custom: []
+    enabled: true

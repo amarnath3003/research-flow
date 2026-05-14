@@ -1,9 +1,10 @@
-"""Build the final research report."""
+"""Build the final research report (project-scoped via PROJECT_DIR env)."""
 import os
 import sys
+import shutil
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, BASE_DIR)
+BASE_DIR = os.environ.get("PROJECT_DIR") or os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from settings import load
 
 cfg = load()
@@ -14,8 +15,6 @@ OUTPUTS_DIR = os.path.join(BASE_DIR, "outputs")
 
 
 def run():
-    os.makedirs(os.path.join(BASE_DIR, "final_figures"), exist_ok=True)
-
     report = f"# FINAL SCIENTOMETRIC RESEARCH REPORT\n## Topic: {RESEARCH_TITLE}\n\n"
     report += "## 1. Methodology\n"
     report += f"- **Topic**: {RESEARCH_TITLE}\n"
@@ -33,14 +32,10 @@ def run():
         ("outputs/figures/figure5_cluster_landscape.png", "Cluster Landscape"),
         ("outputs/evolution/theme_evolution.png", "Theme Evolution Detail"),
     ]
-    figs_dir = os.path.join(BASE_DIR, "final_figures")
     for src, title in visuals:
         src_path = os.path.join(BASE_DIR, src)
         if os.path.exists(src_path):
-            dst = os.path.join(figs_dir, os.path.basename(src))
-            import shutil
-            shutil.copy(src_path, dst)
-            report += f"### {title}\n![{title}]({dst})\n\n"
+            report += f"### {title}\n![{src}]({src})\n\n"
 
     narr_path = os.path.join(OUTPUTS_DIR, "narrative", "discussion_draft.md")
     if os.path.exists(narr_path):
@@ -52,7 +47,7 @@ def run():
     report += "| Phase 3 | `top_sources.csv` | Top journals |\n"
     report += "| Phase 3 | `keyword_cooccurrence_edges.csv` | Network data |\n"
     report += "| Phase 4 | `burst_detection.csv` | Burst keywords |\n"
-    report += "| Phase 5 | `final_figures/` | Manuscript figures |\n"
+    report += "| Phase 5 | `figures/` | Manuscript figures |\n"
 
     with open(os.path.join(BASE_DIR, "FINAL_RESEARCH_REPORT.md"), "w") as f:
         f.write(report)

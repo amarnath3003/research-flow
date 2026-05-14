@@ -19,7 +19,8 @@ def _call(mod_name, func_name="run_all", cfg_path=None):
     subprocess.run(
         [sys.executable, "-c",
          f"import sys; sys.path.insert(0, {BASE_DIR!r}); "
-         f"from settings import load; load({cfg_path!r} if {cfg_path!r} else None); "
+         f"from settings import load; "
+         f"cfg_path = {cfg_path!r}; load(cfg_path) if cfg_path else None; "
          f"from stages.{mod_name} import {func_name}; {func_name}()"],
         env=env,
     )

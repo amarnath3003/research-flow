@@ -1,24 +1,44 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Config from './pages/Config';
 import Workflow from './pages/Workflow';
 import Explorer from './pages/Explorer';
 import Results from './pages/Results';
+import ProjectsPage from './pages/ProjectsPage';
+import { ProjectProvider, useProjects } from './context/ProjectContext';
+
+function AppRoutes() {
+  const { activeProject } = useProjects();
+
+  return (
+    <>
+      <Sidebar />
+      <main className="main-content">
+        <Routes>
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/:pid/dashboard" element={<Dashboard />} />
+          <Route path="/:pid/config" element={<Config />} />
+          <Route path="/:pid/workflow" element={<Workflow />} />
+          <Route path="/:pid/explorer" element={<Explorer />} />
+          <Route path="/:pid/results" element={<Results />} />
+          <Route path="*" element={
+            activeProject
+              ? <Navigate to={`/${activeProject.id}/dashboard`} replace />
+              : <Navigate to="/projects" replace />
+          } />
+        </Routes>
+      </main>
+    </>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <Sidebar />
-      <main className="main-content">
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/config" element={<Config />} />
-          <Route path="/workflow" element={<Workflow />} />
-          <Route path="/explorer" element={<Explorer />} />
-          <Route path="/results" element={<Results />} />
-        </Routes>
-      </main>
+      <ProjectProvider>
+        <AppRoutes />
+      </ProjectProvider>
     </Router>
   );
 }

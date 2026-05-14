@@ -5,7 +5,9 @@ import threading
 _lock = threading.Lock()
 _cached = None
 _config_path = None
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Allow override via env var for project-scoped execution
+BASE_DIR = os.environ.get("PROJECT_DIR") or os.path.dirname(os.path.abspath(__file__))
 
 
 def find_config():
@@ -21,10 +23,10 @@ def find_config():
 
 def load(path=None):
     global _cached, _config_path
-    if _cached is not None:
+    if _cached is not None and not path:
         return _cached
     with _lock:
-        if _cached is not None:
+        if _cached is not None and not path:
             return _cached
         resolved = path or _config_path or find_config()
         if not resolved:
@@ -74,3 +76,10 @@ def _normalize(cfg):
 
     v = cfg.setdefault("visualizations", {})
     v.setdefault("annotations", {"enabled": True, "custom": []})
+
+
+def clear_cache():
+    global _cached, _config_path
+    with _lock:
+        _cached = None
+        _config_path = None
