@@ -7,6 +7,7 @@ import subprocess
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
+PROJECT_DIR = os.environ.get("PROJECT_DIR") or BASE_DIR
 from settings import load
 
 
@@ -15,6 +16,8 @@ def _call(mod_name, func_name="run_all", cfg_path=None):
     env = os.environ.copy()
     if cfg_path:
         env["RESEARCH_CONFIG"] = os.path.abspath(cfg_path)
+    if os.environ.get("PROJECT_DIR"):
+        env["PROJECT_DIR"] = os.environ["PROJECT_DIR"]
 
     subprocess.run(
         [sys.executable, "-c",
@@ -26,14 +29,18 @@ def _call(mod_name, func_name="run_all", cfg_path=None):
     )
 
 
+def _project_path(rel: str) -> str:
+    return os.path.join(PROJECT_DIR, rel)
+
+
 def _require(path, msg):
-    if not os.path.exists(os.path.join(BASE_DIR, path)):
+    if not os.path.exists(_project_path(path)):
         raise SystemExit(f"{msg}\nMissing: {path}")
 
 
 def _require_column(csv_rel, col, msg):
     import pandas as pd
-    path = os.path.join(BASE_DIR, csv_rel)
+    path = _project_path(csv_rel)
     _require(csv_rel, msg)
     df = pd.read_csv(path)
     if col not in df.columns:
@@ -121,10 +128,11 @@ def do_phase5(cfg_path):
 
 @stage("finalize")
 def do_finalize(cfg_path):
-    # Run report builder and gather from the root
     env = os.environ.copy()
     if cfg_path:
         env["RESEARCH_CONFIG"] = os.path.abspath(cfg_path)
+    if os.environ.get("PROJECT_DIR"):
+        env["PROJECT_DIR"] = os.environ["PROJECT_DIR"]
 
     for script in ["report_builder.py", "gather_outputs.py"]:
         path = os.path.join(BASE_DIR, script)

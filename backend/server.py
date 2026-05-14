@@ -489,6 +489,49 @@ def get_status(pid: str):
 
 
 # ═══════════════════════════════════════════════════════════════════
+#  CSV Editor (serve/save for manual curation files)
+# ═══════════════════════════════════════════════════════════════════
+
+ALLOWED_CSVS = {
+    "topic_classification.csv": "outputs/stats/topic_classification.csv",
+    "topic_merging_map.csv": "outputs/stats/topic_merging_map.csv",
+}
+
+
+@app.get("/api/{pid}/csv/{filename}")
+def get_csv(pid: str, filename: str):
+    if filename not in ALLOWED_CSVS:
+        raise HTTPException(404, f"Unknown CSV: {filename}")
+    pdir = _active_project_dir(pid)
+    path = pdir / ALLOWED_CSVS[filename]
+    if not path.exists():
+        raise HTTPException(404, f"CSV not found. Run the preceding stage first.")
+    import pandas as pd
+    df = pd.read_csv(path)
+    return {
+        "columns": list(df.columns),
+        "rows": df.fillna("").to_dict(orient="records"),
+        "filename": filename,
+    }
+
+
+class CsvSavePayload(BaseModel):
+    rows: list[dict]
+
+
+@app.post("/api/{pid}/csv/{filename}")
+def save_csv(pid: str, filename: str, payload: CsvSavePayload):
+    if filename not in ALLOWED_CSVS:
+        raise HTTPException(404, f"Unknown CSV: {filename}")
+    pdir = _active_project_dir(pid)
+    path = pdir / ALLOWED_CSVS[filename]
+    import pandas as pd
+    df = pd.DataFrame(payload.rows)
+    df.to_csv(path, index=False)
+    return {"success": True, "rows": len(df)}
+
+
+# ═══════════════════════════════════════════════════════════════════
 #  STATS
 # ═══════════════════════════════════════════════════════════════════
 
