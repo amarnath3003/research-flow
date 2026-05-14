@@ -1,49 +1,49 @@
-const API_BASE_URL = 'http://localhost:8000/api';
+const API = '';
 
-export const fetchConfig = async () => {
-  const response = await fetch(`${API_BASE_URL}/config`);
-  if (!response.ok) throw new Error('Failed to fetch config');
-  return response.json();
-};
-
-export const saveConfig = async (config: any) => {
-  const response = await fetch(`${API_BASE_URL}/config`, {
-    method: 'POST',
+async function req<T>(url: string, opts?: RequestInit): Promise<T> {
+  const res = await fetch(`${API}${url}`, {
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(config),
+    ...opts,
   });
-  if (!response.ok) throw new Error('Failed to save config');
-  return response.json();
-};
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`API ${res.status}: ${text}`);
+  }
+  return res.json();
+}
 
-export const runStage = async (stage: string) => {
-  const response = await fetch(`${API_BASE_URL}/run/${stage}`, {
-    method: 'POST',
-  });
-  if (!response.ok) throw new Error('Failed to start pipeline');
-  return response.json();
-};
+// Config
+export const fetchConfig = () => req<any>('/api/config');
+export const saveConfig = (config: any) =>
+  req<any>('/api/config', { method: 'POST', body: JSON.stringify(config) });
 
-export const fetchStatus = async () => {
-  const response = await fetch(`${API_BASE_URL}/status`);
-  if (!response.ok) throw new Error('Failed to fetch status');
-  return response.json();
-};
+// Pipeline
+export const runStage = (stage: string) =>
+  req<any>(`/api/run/${stage}`, { method: 'POST' });
+export const fetchStatus = () => req<any>('/api/status');
+export const fetchLogs = () => req<any>('/api/logs');
 
-export const fetchLogs = async () => {
-  const response = await fetch(`${API_BASE_URL}/logs`);
-  if (!response.ok) throw new Error('Failed to fetch logs');
-  return response.json();
-};
+// Data
+export const fetchStats = () => req<any>('/api/stats');
+export const fetchTopics = () => req<any[]>('/api/topics');
+export const fetchFigures = () => req<any[]>('/api/figures');
+export const fetchReport = () => req<any>('/api/report');
 
-export const fetchStats = async () => {
-  const response = await fetch(`${API_BASE_URL}/stats`);
-  if (!response.ok) throw new Error('Failed to fetch stats');
-  return response.json();
-};
-
-export const fetchTopics = async () => {
-  const response = await fetch(`${API_BASE_URL}/topics`);
-  if (!response.ok) throw new Error('Failed to fetch topics');
-  return response.json();
-};
+// Log streaming
+export function subscribeLogs(
+  onLine: (line: string) => void,
+  onDone?: () => void,
+): () => void {
+  const es = new EventSource('/api/logs/stream');
+  es.onmessage = (ev) => {
+    const data = JSON.parse(ev.data);
+    if (data.done) {
+      onDone?.();
+      es.close();
+      return;
+    }
+    onLine(data.line);
+  };
+  es.onerror = () => es.close();
+  return () => es.close();
+}

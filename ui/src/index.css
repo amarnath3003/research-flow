@@ -201,6 +201,13 @@ p { line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem; }
 .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); }
 .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
 
+/* Spinner animation */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.spin { animation: spin 1s linear infinite; }
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
