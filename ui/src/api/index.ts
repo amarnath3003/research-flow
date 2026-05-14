@@ -1,4 +1,4 @@
-const API = '';
+export const API = 'http://localhost:8000';
 
 async function req<T>(url: string, opts?: RequestInit): Promise<T> {
   const res = await fetch(`${API}${url}`, {
@@ -34,7 +34,7 @@ export function subscribeLogs(
   onLine: (line: string) => void,
   onDone?: () => void,
 ): () => void {
-  const es = new EventSource('/api/logs/stream');
+  const es = new EventSource(`${API}/api/logs/stream`);
   es.onmessage = (ev) => {
     const data = JSON.parse(ev.data);
     if (data.done) {

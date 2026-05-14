@@ -12,6 +12,7 @@ import yaml
 from fastapi import FastAPI, HTTPException, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 BASE_DIR = Path(__file__).parent.resolve()
@@ -19,6 +20,8 @@ sys.path.insert(0, str(BASE_DIR))
 from settings import load as load_cfg
 
 app = FastAPI(title="ResearchFlow API", version="1.0.0")
+
+app.mount("/outputs", StaticFiles(directory=str(BASE_DIR / "outputs")), name="outputs")
 
 app.add_middleware(
     CORSMiddleware,

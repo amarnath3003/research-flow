@@ -39,8 +39,7 @@ const Workflow = () => {
       // Also poll for log lines
       const logPoller = setInterval(async () => {
         try {
-          const res = await fetch('/api/logs');
-          const data = await res.json();
+          const data = await fetchLogs();
           if (data.lines) setLogs(data.lines);
         } catch {}
       }, 1000);

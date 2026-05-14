@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, FileText, ImageIcon } from 'lucide-react';
-import { fetchFigures, fetchReport, fetchStats } from '../api';
+import { API, fetchFigures, fetchReport, fetchStats } from '../api';
 
 const Results = () => {
   const [figures, setFigures] = useState<any[]>([]);
@@ -41,7 +41,7 @@ const Results = () => {
             <div key={i} className="card" style={{ padding: 0, overflow: 'hidden' }}>
               <div style={{ height: '240px', background: 'var(--bg-tertiary)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: '1px solid var(--border-color)', overflow: 'hidden' }}>
                 {fig.type === 'png' ? (
-                  <img src={fig.path} alt={fig.filename} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+                  <img src={`${API}${fig.path}`} alt={fig.filename} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
                 ) : (
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', color: 'var(--text-muted)' }}>
                     <ImageIcon size={48} />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Save, Check } from 'lucide-react';
+import { Save, Check, RotateCcw } from 'lucide-react';
 import { fetchConfig, saveConfig as apiSaveConfig } from '../api';
 
 const Config = () => {
@@ -43,10 +43,10 @@ const Config = () => {
           <h3>Search Strategy</h3>
           <div className="form-group">
             <label>Boolean Search Query</label>
-            <textarea
-              className="form-control"
-              rows={8}
-              value={config.searchQuery ?? ''}
+            <textarea 
+              className="form-control" 
+              rows={8} 
+              value={config.searchQuery || ''}
               onChange={(e) => update('searchQuery', e.target.value)}
               style={{ resize: 'vertical', fontFamily: 'monospace', fontSize: '0.9rem' }}
             />
@@ -54,19 +54,29 @@ const Config = () => {
           <div className="grid-2">
             <div className="form-group">
               <label>Start Year</label>
-              <input type="number" className="form-control" value={config.startYear ?? 2010} onChange={(e) => update('startYear', parseInt(e.target.value) || 2010)} />
+              <input 
+                type="number" 
+                className="form-control" 
+                value={config.startYear} 
+                onChange={(e) => update('startYear', parseInt(e.target.value))}
+              />
             </div>
             <div className="form-group">
               <label>End Year</label>
-              <input type="number" className="form-control" value={config.endYear ?? 2025} onChange={(e) => update('endYear', parseInt(e.target.value) || 2025)} />
+              <input 
+                type="number" 
+                className="form-control" 
+                value={config.endYear} 
+                onChange={(e) => update('endYear', parseInt(e.target.value))}
+              />
             </div>
           </div>
           <div className="form-group">
             <label>Research Description</label>
-            <textarea
-              className="form-control"
-              rows={3}
-              value={config.description ?? ''}
+            <textarea 
+              className="form-control" 
+              rows={3} 
+              value={config.description || ''}
               onChange={(e) => update('description', e.target.value)}
             />
           </div>
@@ -76,44 +86,64 @@ const Config = () => {
           <h3>Pipeline Settings</h3>
           <div className="form-group">
             <label>Max Results</label>
-            <input type="number" className="form-control" value={config.maxResults ?? 5000} onChange={(e) => update('maxResults', parseInt(e.target.value) || 5000)} />
+            <input 
+              type="number" 
+              className="form-control" 
+              value={config.maxResults} 
+              onChange={(e) => update('maxResults', parseInt(e.target.value))}
+            />
           </div>
           <div className="form-group">
             <label>User Email (for OpenAlex)</label>
-            <input type="email" className="form-control" value={config.email ?? ''} onChange={(e) => update('email', e.target.value)} />
+            <input 
+              type="email" 
+              className="form-control" 
+              value={config.email || ''} 
+              onChange={(e) => update('email', e.target.value)}
+            />
           </div>
           <div className="form-group">
             <label>Embedding Model</label>
-            <select className="form-control" value={config.embeddingModel ?? 'all-MiniLM-L6-v2'} onChange={(e) => update('embeddingModel', e.target.value)}>
+            <select 
+              className="form-control" 
+              value={config.embeddingModel} 
+              onChange={(e) => update('embeddingModel', e.target.value)}
+            >
               <option value="all-MiniLM-L6-v2">all-MiniLM-L6-v2 (Fastest)</option>
               <option value="all-mpnet-base-v2">all-mpnet-base-v2 (Most Accurate)</option>
             </select>
           </div>
           <div className="form-group">
             <label>Min Topic Size</label>
-            <input type="number" className="form-control" value={config.minTopicSize ?? 10} onChange={(e) => update('minTopicSize', parseInt(e.target.value) || 10)} />
+            <input 
+              type="number" 
+              className="form-control" 
+              value={config.minTopicSize} 
+              onChange={(e) => update('minTopicSize', parseInt(e.target.value))}
+            />
           </div>
           <div className="form-group">
-            <label>LLM Provider</label>
-            <select className="form-control" value={config.llmProvider ?? ''} onChange={(e) => update('llmProvider', e.target.value || null)}>
-              <option value="">Disabled</option>
-              <option value="ollama">Ollama (Local)</option>
-              <option value="openai">OpenAI</option>
-              <option value="anthropic">Anthropic</option>
-            </select>
+            <label>Local LLM Model (Ollama)</label>
+            <input 
+              type="text" 
+              className="form-control" 
+              value={config.llmModel || ''} 
+              onChange={(e) => update('llmModel', e.target.value)}
+              placeholder="e.g. gemma3:1b"
+            />
           </div>
-          <div className="form-group">
-            <label>LLM Model</label>
-            <input type="text" className="form-control" value={config.llmModel ?? ''} onChange={(e) => update('llmModel', e.target.value || null)} placeholder="e.g. gemma3:1b, gpt-4" />
-          </div>
-
-          {error && <p style={{ color: 'var(--error)', fontSize: '0.85rem' }}>{error}</p>}
+          
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-            <button className="btn btn-primary" onClick={handleSave}>
+            <button className="btn btn-primary" onClick={handleSave} disabled={saved}>
               {saved ? <Check size={18} /> : <Save size={18} />}
               {saved ? 'Saved!' : 'Save Configuration'}
             </button>
+            <button className="btn btn-outline" onClick={() => window.location.reload()}>
+              <RotateCcw size={18} />
+              Reset
+            </button>
           </div>
+          {error && <p style={{ color: 'var(--error)', marginTop: '1rem' }}>{error}</p>}
         </div>
       </div>
     </motion.div>
