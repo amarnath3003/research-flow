@@ -20,7 +20,15 @@ def _cagr(start_val, end_val, years):
 
 
 def run():
-    df = pd.read_csv(os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv"))
+    path = os.path.join(BASE_DIR, "data", "processed", "final_thematic_dataset.csv")
+    fallback = os.path.join(BASE_DIR, "data", "processed", "topic_dataset.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+    elif os.path.exists(fallback):
+        df = pd.read_csv(fallback)
+    else:
+        print("No dataset found. Run Data Acquisition and Topic Modeling first.")
+        return
     df["year"] = pd.to_numeric(df["year"], errors="coerce")
     df = df.dropna(subset=["year"])
     df["year"] = df["year"].astype(int)

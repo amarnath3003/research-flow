@@ -1,15 +1,26 @@
-const API = '';
+const API = import.meta.env.VITE_API_URL ?? '';
+
+const REQUEST_TIMEOUT = 30000;
 
 async function req<T>(url: string, opts?: RequestInit): Promise<T> {
-  const res = await fetch(`${API}${url}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...opts,
-  });
-  if (!res.ok) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT);
+  try {
+    const { headers: extraHeaders, ...rest } = opts ?? {};
+    const res = await fetch(`${API}${url}`, {
+      headers: { 'Content-Type': 'application/json', ...(extraHeaders as Record<string, string>) },
+      signal: controller.signal,
+      ...rest,
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`API ${res.status}: ${text}`);
+    }
     const text = await res.text();
-    throw new Error(`API ${res.status}: ${text}`);
+    return text ? JSON.parse(text) : (null as T);
+  } finally {
+    clearTimeout(timeoutId);
   }
-  return res.json();
 }
 
 // ── Projects ───────────────────────────────────────────────────
@@ -51,11 +62,13 @@ export function subscribeGoalLogs(
 ): () => void {
   const es = new EventSource(`/api/${pid}/goal-logs/stream`);
   es.onmessage = (ev) => {
-    const data = JSON.parse(ev.data);
-    if (data.done) { onDone?.(); es.close(); return; }
-    onEvent(data);
+    try {
+      const data = JSON.parse(ev.data);
+      if (data.done) { onDone?.(); es.close(); return; }
+      onEvent(data);
+    } catch { /* ignore parse errors */ }
   };
-  es.onerror = () => es.close();
+  es.onerror = () => { es.close(); onDone?.(); };
   return () => es.close();
 }
 
@@ -78,10 +91,12 @@ export function subscribeLogs(
 ): () => void {
   const es = new EventSource(`/api/${pid}/logs/stream`);
   es.onmessage = (ev) => {
-    const data = JSON.parse(ev.data);
-    if (data.done) { onDone?.(); es.close(); return; }
-    onLine(data.line);
+    try {
+      const data = JSON.parse(ev.data);
+      if (data.done) { onDone?.(); es.close(); return; }
+      onLine(data.line);
+    } catch { /* ignore */ }
   };
-  es.onerror = () => es.close();
+  es.onerror = () => { es.close(); onDone?.(); };
   return () => es.close();
 }

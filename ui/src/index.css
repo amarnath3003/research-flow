@@ -278,27 +278,6 @@ p { line-height: 1.6; color: var(--text-secondary); margin-bottom: 1rem; }
   background: var(--border-color);
 }
 
-.badge {
-  padding: 0.25rem 0.6rem;
-  border-radius: 2px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.badge-success {
-  background-color: #e6f4ea;
-  color: #1e4620;
-  border: 1px solid rgba(30, 70, 32, 0.1);
-}
-
-.badge-warning {
-  background-color: #fff4e5;
-  color: #856404;
-  border: 1px solid rgba(133, 100, 4, 0.1);
-}
-
 .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }

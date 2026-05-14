@@ -19,13 +19,16 @@ const Explorer = () => {
   useEffect(() => {
     if (!activeProject) return;
     setLoading(true);
-    Promise.all([
+    Promise.allSettled([
       fetchTopics(activeProject.id),
       listGoals(activeProject.id),
       fetchGoalStatus(activeProject.id),
-    ])
-      .then(([t, g, gs]) => { setTopics(t); setGoals(g); setGoalStatus(gs); setLoading(false); })
-      .catch(() => setLoading(false));
+    ]).then(([t, g, gs]) => {
+      if (t.status === 'fulfilled') setTopics(t.value);
+      if (g.status === 'fulfilled') setGoals(g.value);
+      if (gs.status === 'fulfilled') setGoalStatus(gs.value);
+      setLoading(false);
+    });
   }, [activeProject]);
 
   const filtered = topics.filter((t) =>

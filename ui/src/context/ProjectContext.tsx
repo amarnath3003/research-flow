@@ -43,7 +43,11 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
 
   // Auto-select default or last-used project
   useEffect(() => {
-    if (projects.length === 0) return;
+    if (projects.length === 0) {
+      setActiveProject(null);
+      localStorage.removeItem('activeProjectId');
+      return;
+    }
     const lastId = localStorage.getItem('activeProjectId');
     const last = projects.find((p) => p.id === lastId);
     if (last) { setActive(last); return; }

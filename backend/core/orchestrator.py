@@ -25,6 +25,10 @@ MODULES = {
     "landscape_figure": ("stages.visualization.landscape", "run"),
     "report": ("report_builder", "run"),
     "gather": ("gather_outputs", "run"),
+    "export_classification": ("stages.curation.export_classification", "run"),
+    "refine_dataset": ("stages.curation.refine_dataset", "run"),
+    "validate_semantics": ("stages.curation.validate_semantics", "run_all"),
+    "apply_merges": ("stages.curation.apply_merges", "run"),
 }
 
 MODULE_INFO = {
@@ -60,25 +64,40 @@ def _ensure_sys_path():
 def run_module(module_id: str, project_dir: Path, config_path: Path):
     """Execute a single capability module by ID.
     
-    Sets PROJECT_DIR and RESEARCH_CONFIG env vars, overrides the module's
-    PROJECT_DIR constant, clears settings cache, and calls the module's
-    run function directly (no subprocess).
+    Sets PROJECT_DIR and RESEARCH_CONFIG env vars, reloads settings.py
+    so BASE_DIR picks up the project directory, clears config cache,
+    and calls the module's run function directly.
     """
     if module_id not in MODULES:
         raise ValueError(f"Unknown module: {module_id}")
 
     mod_path, func_name = MODULES[module_id]
+    pdir_str = str(project_dir)
 
-    os.environ["PROJECT_DIR"] = str(project_dir)
+    os.environ["PROJECT_DIR"] = pdir_str
     os.environ["RESEARCH_CONFIG"] = str(config_path)
 
     _ensure_sys_path()
-    from settings import clear_cache
-    clear_cache()
+
+    # Patch settings.BASE_DIR to the current project (it's a module-level
+    # constant frozen at server startup), then clear the config cache so
+    # the next load() picks up the new project's config file.
+    import settings as _settings_mod
+    _settings_mod.BASE_DIR = pdir_str
+    _settings_mod.clear_cache()
 
     mod = importlib.import_module(mod_path)
-    if hasattr(mod, "PROJECT_DIR"):
-        mod.PROJECT_DIR = str(project_dir)
+
+    # Fix stale module-level path constants. When a module is already
+    # cached from a previous run with a different project, its path
+    # variables (BASE_DIR, DATA_DIR, OUTPUTS_DIR, etc.) still point to
+    # the old project directory. Patch them to the current project.
+    _old_base = getattr(mod, "BASE_DIR", None)
+    if _old_base and str(_old_base) != pdir_str:
+        for _attr in dir(mod):
+            _val = getattr(mod, _attr, None)
+            if isinstance(_val, str) and str(_old_base) in _val:
+                setattr(mod, _attr, _val.replace(str(_old_base), pdir_str))
 
     func = getattr(mod, func_name)
     func()

@@ -6,7 +6,7 @@ import { listProjects, createProject, deleteProject, setDefaultProject, duplicat
 import { useProjects } from '../context/ProjectContext';
 
 const ProjectsPage = () => {
-  const { setActive, refreshProjects } = useProjects();
+  const { activeProject, setActive, refreshProjects } = useProjects();
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
@@ -33,6 +33,7 @@ const ProjectsPage = () => {
       setNewName('');
       setNewDesc('');
       await load();
+      await refreshProjects();
       setActive(p);
       navigate(`/${p.id}/dashboard`);
     } catch (e: any) { alert(e.message); }
@@ -44,6 +45,9 @@ const ProjectsPage = () => {
       await deleteProject(pid);
       await load();
       await refreshProjects();
+      if (pid === activeProject?.id) {
+        navigate('/projects');
+      }
     } catch (e: any) { alert(e.message); }
   };
 
@@ -59,6 +63,7 @@ const ProjectsPage = () => {
     try {
       await duplicateProject(pid, `${name} (Copy)`);
       await load();
+      await refreshProjects();
     } catch (e: any) { alert(e.message); }
   };
 

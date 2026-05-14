@@ -39,7 +39,7 @@ def run():
 
     narr_path = os.path.join(OUTPUTS_DIR, "narrative", "discussion_draft.md")
     if os.path.exists(narr_path):
-        with open(narr_path) as f:
+        with open(narr_path, encoding="utf-8") as f:
             report += "## 3. Executive Discussion\n" + f.read() + "\n"
 
     report += "## 4. Output Data Inventory\n"
@@ -49,7 +49,7 @@ def run():
     report += "| Phase 4 | `burst_detection.csv` | Burst keywords |\n"
     report += "| Phase 5 | `figures/` | Manuscript figures |\n"
 
-    with open(os.path.join(BASE_DIR, "FINAL_RESEARCH_REPORT.md"), "w") as f:
+    with open(os.path.join(BASE_DIR, "FINAL_RESEARCH_REPORT.md"), "w", encoding="utf-8") as f:
         f.write(report)
     print("Report generated")
 

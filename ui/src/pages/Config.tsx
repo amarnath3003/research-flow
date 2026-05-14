@@ -38,7 +38,7 @@ const Config = () => {
         if (data.includeTerms?.length) {
           setIncludeTerms(data.includeTerms);
         } else if (data.searchQuery) {
-          const parts = data.searchQuery.split(/ NOT /i);
+          const parts = (data.searchQuery ?? '').split(/ NOT /i);
           const pos = parts[0]?.replace(/[()]/g, '').split(/ AND /i).map((s: string) => s.trim().replace(/^"|"$/g, '')).filter(Boolean);
           setIncludeTerms(pos || []);
           const neg = parts[1]?.replace(/[()]/g, '').split(/ OR /i).map((s: string) => s.trim().replace(/^"|"$/g, '')).filter(Boolean);

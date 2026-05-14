@@ -130,7 +130,7 @@ def _filter_relevant(df):
 
     mask = pd.Series(True, index=df.index)
     for term in c.get("hard_exclusions", []):
-        mask &= ~combined.str.contains(fr"\b{term}\b", case=False, na=False, regex=True)
+        mask &= ~combined.str.contains(fr"\b{re.escape(term)}\b", case=False, na=False, regex=True)
 
     is_high_list = c.get("high_priority_concepts", [])
     core_list = c.get("core_concepts", [])
@@ -143,18 +143,18 @@ def _filter_relevant(df):
         pos = pd.Series(False, index=df.index)
         hp = pd.Series(False, index=df.index)
         for concept in is_high_list:
-            hp |= combined.str.contains(fr"\b{concept}\b", case=False, na=False, regex=True)
+            hp |= combined.str.contains(fr"\b{re.escape(concept)}\b", case=False, na=False, regex=True)
         pos |= hp
         cc = pd.Series(False, index=df.index)
         for concept in core_list:
-            cc |= combined.str.contains(fr"\b{concept}\b", case=False, na=False, regex=True)
+            cc |= combined.str.contains(fr"\b{re.escape(concept)}\b", case=False, na=False, regex=True)
         pos |= cc
         hc = pd.Series(False, index=df.index)
         for kw in context_list:
-            hc |= combined.str.contains(fr"\b{kw}\b", case=False, na=False, regex=True)
+            hc |= combined.str.contains(fr"\b{re.escape(kw)}\b", case=False, na=False, regex=True)
         hs = pd.Series(False, index=df.index)
         for term in security_list:
-            hs |= combined.str.contains(fr"\b{term}\b", case=False, na=False, regex=True)
+            hs |= combined.str.contains(fr"\b{re.escape(term)}\b", case=False, na=False, regex=True)
         pos |= (hs & hc)
         return df[mask & pos]
 
@@ -223,8 +223,10 @@ def run_basic_analysis():
     plt.savefig(os.path.join(figs_dir, "publication_trend.png"))
     plt.close()
 
+    stats_dir = os.path.join(BASE_DIR, "outputs", "stats")
+    os.makedirs(stats_dir, exist_ok=True)
     df["journal"].value_counts().head(20).to_csv(
-        os.path.join(BASE_DIR, "outputs", "stats", "top_journals.csv")
+        os.path.join(stats_dir, "top_journals.csv")
     )
 
     all_kw = []
@@ -233,7 +235,7 @@ def run_basic_analysis():
             continue
         all_kw.extend(k.strip() for k in kws.split(";"))
     kw_df = pd.DataFrame(Counter(all_kw).items(), columns=["keyword", "count"]).sort_values("count", ascending=False)
-    kw_df.to_csv(os.path.join(BASE_DIR, "outputs", "stats", "top_keywords.csv"), index=False)
+    kw_df.to_csv(os.path.join(stats_dir, "top_keywords.csv"), index=False)
 
     print("Basic analysis complete")
 

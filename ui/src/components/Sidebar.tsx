@@ -62,7 +62,7 @@ const Sidebar = () => {
               {projects.map((p) => (
                 <div
                   key={p.id}
-                  onClick={() => { setActive(p); setShowSelector(false); }}
+                  onClick={() => { setActive(p); setShowSelector(false); navigate(`/${p.id}/dashboard`); }}
                   style={{
                     padding: '0.75rem 1rem', cursor: 'pointer', fontSize: '0.85rem',
                     background: p.id === activeProject?.id ? 'var(--bg-tertiary)' : 'transparent',
@@ -85,23 +85,25 @@ const Sidebar = () => {
         )}
       </div>
 
-      <nav>
-        <NavLink to={`/${activeProject?.id ?? ''}/dashboard`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <LayoutDashboard size={18} /><span>Overview</span>
-        </NavLink>
-        <NavLink to={`/${activeProject?.id ?? ''}/config`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <Settings size={18} /><span>Research Setup</span>
-        </NavLink>
-        <NavLink to={`/${activeProject?.id ?? ''}/research`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <Target size={18} /><span>Research</span>
-        </NavLink>
-        <NavLink to={`/${activeProject?.id ?? ''}/explorer`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <Database size={18} /><span>Explore</span>
-        </NavLink>
-        <NavLink to={`/${activeProject?.id ?? ''}/results`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <FileText size={18} /><span>Results</span>
-        </NavLink>
-      </nav>
+      {activeProject && (
+        <nav>
+          <NavLink to={`/${activeProject.id}/dashboard`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+            <LayoutDashboard size={18} /><span>Overview</span>
+          </NavLink>
+          <NavLink to={`/${activeProject.id}/config`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+            <Settings size={18} /><span>Research Setup</span>
+          </NavLink>
+          <NavLink to={`/${activeProject.id}/research`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+            <Target size={18} /><span>Research</span>
+          </NavLink>
+          <NavLink to={`/${activeProject.id}/explorer`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+            <Database size={18} /><span>Explore</span>
+          </NavLink>
+          <NavLink to={`/${activeProject.id}/results`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+            <FileText size={18} /><span>Results</span>
+          </NavLink>
+        </nav>
+      )}
 
       <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         <ThemeToggle />

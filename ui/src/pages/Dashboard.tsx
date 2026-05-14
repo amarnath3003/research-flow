@@ -12,8 +12,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!activeProject) return;
-    fetchStats(activeProject.id).then(setStats).catch(() => {});
-    listGoals(activeProject.id).then(setGoals).catch(() => {});
+    fetchStats(activeProject.id).then(setStats).catch((e) => console.error('fetchStats:', e));
+    listGoals(activeProject.id).then(setGoals).catch((e) => console.error('listGoals:', e));
+    fetchGoalStatus(activeProject.id).then(setGoalStatus).catch((e) => console.error('fetchGoalStatus:', e));
     const poll = setInterval(() => {
       fetchGoalStatus(activeProject.id).then(setGoalStatus).catch(() => {});
     }, 5000);

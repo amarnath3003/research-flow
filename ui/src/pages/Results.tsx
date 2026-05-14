@@ -29,7 +29,7 @@ const Results = () => {
   if (!activeProject) return <div className="card"><p>Select a project first.</p></div>;
 
   const completedGoals = goals.filter((g) => goalStatus[g.id]?.complete);
-  const noResults = figures.length === 0 && !report?.exists;
+  const noResults = figures.length === 0 && (report === null || !report.exists);
 
   return (
     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>

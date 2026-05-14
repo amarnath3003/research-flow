@@ -26,7 +26,7 @@ from goals import GOALS
 init_db()
 
 app = FastAPI(title="ResearchFlow API", version="2.0.0")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
+app.add_middleware(CORSMiddleware, allow_origins=["*"],
                    allow_methods=["*"], allow_headers=["*"])
 
 # ── Per-project pipeline state ─────────────────────────────────────
@@ -222,6 +222,13 @@ def delete_project_endpoint(pid: str):
         if pdir.exists():
             shutil.rmtree(pdir)
 
+        # Clean up pipeline/goal state
+        _pipeline_logs.pop(pid, None)
+        _pipeline_tasks.pop(pid, None)
+        _goal_logs.pop(pid, None)
+        _goal_results.pop(pid, None)
+        _goal_tasks.pop(pid, None)
+
         db.delete(p)
         db.commit()
         return {"success": True}
@@ -261,14 +268,11 @@ def duplicate_project(pid: str, payload: CreateProjectPayload):
         raise HTTPException(404, "Source project data not found")
 
     db = SessionLocal()
+    new_project = None
     try:
         new_project = cp(payload.name.strip(), payload.description, db=db)
-    finally:
-        db.close()
+        new_dir = get_project_dir(new_project.id)
 
-    new_dir = get_project_dir(new_project.id)
-
-    try:
         # Copy data directory
         src_data = original_dir / "data"
         dst_data = new_dir / "data"
@@ -287,10 +291,15 @@ def duplicate_project(pid: str, payload: CreateProjectPayload):
             with open(dst_cfg, "w") as f:
                 yaml.dump(cfg, f, default_flow_style=False, allow_unicode=True)
     except Exception:
-        # Cleanup on failure
-        if new_dir.exists():
-            shutil.rmtree(new_dir)
+        if new_project:
+            pdir = get_project_dir(new_project.id)
+            if pdir.exists():
+                shutil.rmtree(pdir)
+            db.query(Project).filter(Project.id == new_project.id).delete()
+            db.commit()
         raise
+    finally:
+        db.close()
 
     return {"id": new_project.id, "name": new_project.name}
 
@@ -372,20 +381,37 @@ def update_config(pid: str, payload: ConfigPayload):
 
 
 # ═══════════════════════════════════════════════════════════════════
-#  PIPELINE RUNNER
+#  PIPELINE RUNNER (legacy — delegates to orchestrator)
 # ═══════════════════════════════════════════════════════════════════
+
+_STAGE_MODULES = {
+    "scientometric": ["acquisition"],
+    "advanced": ["topic_modeling"],
+    "phase1-export": ["export_classification"],
+    "phase1-refine": ["refine_dataset"],
+    "phase2-prepare": ["validate_semantics"],
+    "phase2-merge": ["apply_merges"],
+    "phase3": ["trends", "sources", "geopolitical", "networks", "authors"],
+    "phase4": ["evolution", "bursts", "narrative"],
+    "phase5": ["growth_figure", "keyword_network_figure", "collaboration_figure", "thematic_evolution_figure", "landscape_figure"],
+    "finalize": ["report", "gather"],
+    "all-auto": ["acquisition", "topic_modeling", "export_classification"],
+    "post-curation": ["refine_dataset", "validate_semantics"],
+    "all-after-manual": ["apply_merges", "trends", "sources", "geopolitical", "networks", "authors", "evolution", "bursts", "narrative", "growth_figure", "keyword_network_figure", "collaboration_figure", "thematic_evolution_figure", "landscape_figure", "report", "gather"],
+}
+
 
 @app.post("/api/{pid}/run/{stage}")
 def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
-    global pipeline_task, pipeline_log, active_project
-
     if stage not in VALID_STAGES:
         raise HTTPException(400, f"Invalid stage. Valid: {VALID_STAGES}")
 
     pdir = _active_project_dir(pid)
-    runner = BASE_DIR / "run.py"
-    if not runner.exists():
-        raise HTTPException(500, "run.py not found")
+    cfg_path = get_project_config_path(pid)
+
+    module_ids = _STAGE_MODULES.get(stage, [])
+    if not module_ids:
+        raise HTTPException(400, f"No modules mapped for stage: {stage}")
 
     # Validate search query before running data collection
     if stage in ("scientometric", "all-auto"):
@@ -397,35 +423,35 @@ def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
 
     def _run():
         _pipeline_logs[pid] = []
-        env = os.environ.copy()
-        env["PROJECT_DIR"] = str(pdir)
-        env["RESEARCH_CONFIG"] = str(pdir / "research_config.yaml")
+        _goal_logs[pid] = []
         log_file = pdir / "pipeline_run.log"
 
-        proc = subprocess.Popen(
-            [sys.executable, str(runner), stage],
-            cwd=str(BASE_DIR),
-            env=env,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            bufsize=1,
-        )
-        _pipeline_tasks[pid] = proc
-        for line in iter(proc.stdout.readline, ""):
-            _pipeline_logs.setdefault(pid, []).append(line)
-            with open(log_file, "a") as lf:
-                lf.write(line)
-        proc.wait()
+        from core.orchestrator import run_module
 
-        if pid in _pipeline_tasks and _pipeline_tasks[pid] is proc:
-            del _pipeline_tasks[pid]
+        all_ok = True
+        for mid in module_ids:
+            info = MODULE_INFO.get(mid, {})
+            msg = f"Running {info.get('name', mid)}..."
+            _pipeline_logs[pid].append(msg + "\n")
+            _goal_logs[pid].append({"message": msg, "status": "running"})
+            with open(log_file, "a", encoding="utf-8") as lf:
+                lf.write(msg + "\n")
+            try:
+                run_module(mid, pdir, cfg_path)
+                _pipeline_logs[pid].append(f"  Complete\n")
+                _goal_logs[pid].append({"message": f"{info.get('name', mid)} complete", "status": "completed"})
+            except Exception as e:
+                err = f"  FAILED: {e}\n"
+                _pipeline_logs[pid].append(err)
+                _goal_logs[pid].append({"message": f"{info.get('name', mid)} failed: {e}", "status": "failed"})
+                all_ok = False
+                break
 
         db = SessionLocal()
         try:
             p = db.query(Project).filter(Project.id == pid).first()
             if p:
-                p.status = "completed" if proc.returncode == 0 else "failed"
+                p.status = "completed" if all_ok else "failed"
                 db.commit()
         finally:
             db.close()
@@ -838,6 +864,12 @@ async def stream_goal_logs(pid: str):
                 break
             await asyncio.sleep(0.15)
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+
+@app.get("/api/{pid}/goal-logs")
+def get_goal_logs(pid: str):
+    """Get goal execution progress log as plain JSON."""
+    return {"log": _goal_logs.get(pid, [])}
 
 
 @app.get("/api/{pid}/goal-results")

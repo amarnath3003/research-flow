@@ -32,6 +32,13 @@ const Research = () => {
   const [refining, setRefining] = useState<string | null>(null);
   const [csvEditorOpen, setCsvEditorOpen] = useState<string | null>(null);
   const logEndRef = useRef<HTMLDivElement>(null);
+  const unsubRef = useRef<(() => void) | null>(null);
+  const runningRef = useRef(false);
+
+  // Cleanup EventSource on unmount
+  useEffect(() => {
+    return () => { unsubRef.current?.(); };
+  }, []);
 
   const goal = goals.find(g => g.id === selectedGoal);
   const IconComponent = goal ? ICON_MAP[goal.icon] || Play : null;
@@ -63,18 +70,20 @@ const Research = () => {
   const handleRun = async () => {
     if (!activeProject || !selectedGoal) return;
     const pid = activeProject.id;
+    unsubRef.current?.();
+    runningRef.current = true;
     setRunning(true);
     setProgress([]);
     setResults(null);
 
     try {
       await runGoal(pid, selectedGoal);
-      const unsub = subscribeGoalLogs(pid,
-        (ev) => {
-          setProgress((prev) => [...prev, ev]);
-        },
+      unsubRef.current = subscribeGoalLogs(pid,
+        (ev) => { if (runningRef.current) setProgress((prev) => [...prev, ev]); },
         () => {
+          runningRef.current = false;
           setRunning(false);
+          unsubRef.current = null;
           fetchGoalStatus(pid).then(setGoalStatuses).catch(() => {});
           fetchGoalResults(pid).then((r) => setResults(r.results)).catch(() => {});
           fetchStats(pid).then(setLiveStats).catch(() => {});
@@ -84,19 +93,22 @@ const Research = () => {
     } catch (err: any) {
       setProgress((prev) => [...prev, { current: 0, total: 0, message: `Error: ${err.message}`, status: 'failed' }]);
       setRunning(false);
+      runningRef.current = false;
     }
   };
 
   const handleRefine = async (refinementId: string) => {
     if (!activeProject) return;
+    unsubRef.current?.();
     setRefining(refinementId);
     setProgress([]);
     try {
       await runRefinement(activeProject.id, refinementId);
-      const unsub = subscribeGoalLogs(activeProject.id,
-        (ev) => setProgress((prev) => [...prev, ev]),
+      unsubRef.current = subscribeGoalLogs(activeProject.id,
+        (ev) => { if (runningRef.current) setProgress((prev) => [...prev, ev]); },
         () => {
           setRefining(null);
+          unsubRef.current = null;
           fetchRefinementOptions(activeProject.id).then(setRefinementOptions).catch(() => {});
           fetchStats(activeProject.id).then(setLiveStats).catch(() => {});
         },
@@ -166,7 +178,7 @@ const Research = () => {
               </div>
               {isSelected && (
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                  {g.description.substring(0, 120)}...
+                  {(g.description ?? '').substring(0, 120)}...
                 </motion.div>
               )}
             </motion.div>

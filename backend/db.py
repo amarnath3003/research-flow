@@ -43,14 +43,18 @@ def _repair_project_state():
         # Get all project IDs from DB
         db_ids = {p.id for p in db.query(Project.id).all()}
 
-        # Remove orphaned directories (no DB record)
-        orphans_removed = 0
-        for d in PROJECTS_DIR.iterdir():
-            if d.is_dir() and d.name not in db_ids:
-                shutil.rmtree(d)
-                orphans_removed += 1
-        if orphans_removed:
-            print(f"  Cleaned {orphans_removed} orphaned project directories")
+        # SAFETY: never delete directories when DB is empty.
+        # If the DB was reset but project dirs remain, we'd lose all data.
+        if not db_ids:
+            print("  DB is empty — skipping orphan cleanup")
+        else:
+            orphans_removed = 0
+            for d in PROJECTS_DIR.iterdir():
+                if d.is_dir() and d.name not in db_ids:
+                    shutil.rmtree(d)
+                    orphans_removed += 1
+            if orphans_removed:
+                print(f"  Cleaned {orphans_removed} orphaned project directories")
 
         # Fix projects with missing directories or configs
         from settings import _normalize
@@ -74,7 +78,7 @@ def _repair_project_state():
                                "cleaning": {"enabled": True}, "embedding": {}, "llm": {},
                                "tracking": {}, "visualizations": {}}
                 _normalize(default_cfg)
-                with open(cfg_path, "w") as f:
+                with open(cfg_path, "w", encoding="utf-8") as f:
                     yaml.dump(default_cfg, f, default_flow_style=False, allow_unicode=True)
                 fixed += 1
 
