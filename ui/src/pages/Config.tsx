@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Save, Check } from 'lucide-react';
 import { fetchConfig, saveConfig as apiSaveConfig } from '../api';
 import { useProjects } from '../context/ProjectContext';
+import TagInput from '../components/TagInput';
 
 const Config = () => {
   const { activeProject } = useProjects();
@@ -11,11 +12,26 @@ const Config = () => {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState('');
 
+  // Derived state for tags
+  const [includeTerms, setIncludeTerms] = useState<string[]>([]);
+  const [excludeTerms, setExcludeTerms] = useState<string[]>([]);
+
   useEffect(() => {
     if (!activeProject) return;
     setLoading(true);
     fetchConfig(activeProject.id)
-      .then(data => { setConfig(data); setLoading(false); })
+      .then(data => { 
+        setConfig(data); 
+        setLoading(false);
+        // Parse current query into tags if it exists
+        // This is a simplified parser for (A AND B) NOT (C OR D)
+        const query = data.searchQuery || '';
+        const parts = query.split(/ NOT /i);
+        const pos = parts[0]?.replace(/[()]/g, '').split(/ AND /i).map((s: string) => s.trim()).filter(Boolean);
+        const neg = parts[1]?.replace(/[()]/g, '').split(/ OR /i).map((s: string) => s.trim()).filter(Boolean);
+        setIncludeTerms(pos || []);
+        setExcludeTerms(neg || []);
+      })
       .catch(err => { setError(err.message); setLoading(false); });
   }, [activeProject]);
 
@@ -23,7 +39,17 @@ const Config = () => {
     if (!activeProject) return;
     try {
       setError('');
-      await apiSaveConfig(activeProject.id, config);
+      // Build structured query
+      let query = '';
+      if (includeTerms.length > 0) {
+        query = `(${includeTerms.join(' AND ')})`;
+      }
+      if (excludeTerms.length > 0) {
+        query += ` NOT (${excludeTerms.join(' OR ')})`;
+      }
+      
+      const payload = { ...config, searchQuery: query };
+      await apiSaveConfig(activeProject.id, payload);
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
     } catch (err: any) { setError(err.message); }
@@ -45,13 +71,27 @@ const Config = () => {
       <div className="grid-2">
         <div className="card">
           <h3>Search Strategy</h3>
-          <div className="form-group">
-            <label>Boolean Search Query</label>
-            <textarea className="form-control" rows={8} value={config.searchQuery ?? ''}
-              onChange={(e) => update('searchQuery', e.target.value)}
-              style={{ resize: 'vertical', fontFamily: 'monospace', fontSize: '0.9rem' }} />
-          </div>
-          <div className="grid-2">
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+            Terms are combined into a Boolean query. Press <strong>Space</strong> or <strong>Enter</strong> to add a term.
+          </p>
+          
+          <TagInput 
+            label="Included Research Terms" 
+            tags={includeTerms} 
+            onChange={setIncludeTerms} 
+            placeholder="e.g. scientometrics, open access" 
+            type="positive"
+          />
+
+          <TagInput 
+            label="Excluded Terms (Negative)" 
+            tags={excludeTerms} 
+            onChange={setExcludeTerms} 
+            placeholder="e.g. medical, hardware" 
+            type="negative"
+          />
+
+          <div className="grid-2" style={{ marginTop: '2rem' }}>
             <div className="form-group">
               <label>Start Year</label>
               <input type="number" className="form-control" value={config.startYear ?? 2010}

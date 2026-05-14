@@ -294,6 +294,8 @@ def duplicate_project(pid: str, payload: CreateProjectPayload):
 
 class ConfigPayload(BaseModel):
     searchQuery: str = ""
+    includeTerms: List[str] = []
+    excludeTerms: List[str] = []
     startYear: int = 2010
     endYear: int = 2025
     maxResults: int = 5000
@@ -310,9 +312,12 @@ def get_config(pid: str):
     cfg = _read_config(pid)
     r = cfg.get("research", {})
     e = cfg.get("embedding", {})
+    cl = cfg.get("cleaning", {})
     llm = cfg.get("llm", {})
     return {
         "searchQuery": r.get("search_query", ""),
+        "includeTerms": r.get("include_terms", []),
+        "excludeTerms": cl.get("hard_exclusions", []),
         "startYear": r.get("start_year", 2010),
         "endYear": r.get("end_year", 2025),
         "maxResults": r.get("max_results", 5000),
@@ -331,14 +336,18 @@ def update_config(pid: str, payload: ConfigPayload):
         raise HTTPException(422, "Invalid year range")
     if payload.maxResults < 1:
         raise HTTPException(422, "maxResults must be positive")
-    if not payload.searchQuery.strip():
-        raise HTTPException(422, "Search query is required")
+    if not payload.includeTerms and not payload.searchQuery.strip():
+        raise HTTPException(422, "Search terms are required")
     if not payload.email.strip():
         raise HTTPException(422, "Email is required")
 
     cfg = _read_config(pid)
     cfg.setdefault("research", {})
     cfg["research"]["search_query"] = payload.searchQuery.strip()
+    cfg["research"]["include_terms"] = payload.includeTerms
+    cfg.setdefault("cleaning", {})
+    cfg["cleaning"]["hard_exclusions"] = payload.excludeTerms
+    
     cfg["research"]["start_year"] = payload.startYear
     cfg["research"]["end_year"] = payload.endYear
     cfg["research"]["max_results"] = payload.maxResults
