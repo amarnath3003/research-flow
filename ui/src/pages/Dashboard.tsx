@@ -1,117 +1,249 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { TrendingUp, Users, BookOpen, Layers, Target, CheckCircle2, Loader2, ArrowRight } from 'lucide-react';
-import { fetchStats, fetchGoalStatus, listGoals } from '../api';
+import { ArrowRight, CheckCircle2, Compass, FlaskConical, Settings2, Sparkles } from 'lucide-react';
+import { fetchWorkspace } from '../api';
 import { useProjects } from '../context/ProjectContext';
 
 const Dashboard = () => {
   const { activeProject } = useProjects();
-  const [stats, setStats] = useState<any>(null);
-  const [goalStatus, setGoalStatus] = useState<Record<string, any>>({});
-  const [goals, setGoals] = useState<any[]>([]);
+  const [workspace, setWorkspace] = useState<any>(null);
 
   useEffect(() => {
     if (!activeProject) return;
-    fetchStats(activeProject.id).then(setStats).catch((e) => console.error('fetchStats:', e));
-    listGoals(activeProject.id).then(setGoals).catch((e) => console.error('listGoals:', e));
-    fetchGoalStatus(activeProject.id).then(setGoalStatus).catch((e) => console.error('fetchGoalStatus:', e));
-    const poll = setInterval(() => {
-      fetchGoalStatus(activeProject.id).then(setGoalStatus).catch(() => {});
-    }, 5000);
-    return () => clearInterval(poll);
+    fetchWorkspace(activeProject.id).then(setWorkspace).catch(() => {});
   }, [activeProject]);
 
-  if (!activeProject) return <div className="card"><p>Select a project to begin.</p></div>;
+  if (!activeProject) {
+    return <div className="card">Select a project first.</div>;
+  }
 
-  const completedGoals = Object.values(goalStatus).filter((s: any) => s?.complete).length;
-  const totalGoals = Object.keys(goalStatus).length;
-  const anyRunning = Object.values(goalStatus).some((s: any) => s?.running);
-
-  const statCards = [
-    { label: 'Papers Fetched', value: stats?.papersFetched ?? '—', icon: <BookOpen size={20} />, subtitle: stats?.papersFetched ? 'Total publications' : '—' },
-    { label: 'Unique Topics', value: stats?.uniqueTopics ?? '—', icon: <Layers size={20} />, subtitle: stats?.uniqueTopics ? 'BERTopic clusters' : '—' },
-    { label: 'Key Authors', value: stats?.keyAuthors ?? '—', icon: <Users size={20} />, subtitle: stats?.keyAuthors ? 'Unique researchers' : '—' },
-    { label: 'Avg Growth Rate', value: stats?.avgGrowthRate ?? '—', icon: <TrendingUp size={20} />, subtitle: 'CAGR' },
-  ];
-
-  const goalList = goals.map((g) => ({
-    ...g,
-    status: goalStatus[g.id],
-  }));
+  const readiness = workspace?.readiness;
+  const stats = workspace?.stats ?? {};
+  const goals = workspace?.goals ?? [];
+  const nextAction = !readiness?.configured
+    ? { label: 'Finish setup', href: `/${activeProject.id}/config`, icon: Settings2 }
+    : !readiness?.hasDataset
+      ? { label: 'Run first analysis', href: `/${activeProject.id}/research`, icon: Sparkles }
+      : { label: 'Inspect evidence', href: `/${activeProject.id}/explorer`, icon: Compass };
+  const NextIcon = nextAction.icon;
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-      <header style={{ marginBottom: '2.5rem' }}>
-        <p style={{ color: 'var(--accent-primary)', fontWeight: 600, marginBottom: '0.5rem' }}>Research Project</p>
+    <motion.div className="page" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+      <section className="card hero-card" style={{ marginBottom: '1rem' }}>
+        <p className="eyebrow">Research Overview</p>
         <h1>{activeProject.name}</h1>
-        <p>{activeProject.description || 'Project Overview'}</p>
-      </header>
+        <p className="lede" style={{ maxWidth: '52rem', marginTop: '0.9rem' }}>
+          {activeProject.description || 'This workspace turns a broad literature question into a traceable pipeline of search, topic discovery, field mapping, refinement, and reporting.'}
+        </p>
 
-      {/* Stats Grid */}
-      <div className="grid-4" style={{ marginBottom: '3rem' }}>
-        {statCards.map((stat, i) => (
-          <div key={i} className="card">
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-              <div style={{ color: 'var(--accent-primary)' }}>{stat.icon}</div>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 700 }}>{stat.subtitle}</span>
+        <div className="inline-list" style={{ marginTop: '1.2rem' }}>
+          <span className={`badge ${readiness?.configured ? 'badge-success' : 'badge-warning'}`}>
+            {readiness?.configured ? 'Research brief ready' : 'Setup incomplete'}
+          </span>
+          <span className="badge badge-neutral">{stats.papersFetched ?? 0} papers</span>
+          <span className="badge badge-neutral">{stats.uniqueTopics ?? 0} topics</span>
+          <span className="badge badge-neutral">{workspace?.figuresPreview?.length ?? 0} preview figures</span>
+        </div>
+
+        <div className="two-up" style={{ marginTop: '1.4rem' }}>
+          <div className="query-box">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Current Search Logic</p>
+                <h3>Study scope</h3>
+              </div>
             </div>
-            <h2 style={{ fontSize: '1.75rem', marginBottom: '0.25rem' }}>{stat.value}</h2>
-            <p style={{ fontSize: '0.85rem', margin: 0 }}>{stat.label}</p>
+            {workspace?.config?.searchQuery ? workspace.config.searchQuery : 'No search query has been configured yet.'}
           </div>
-        ))}
-      </div>
 
-      <div className="grid-2">
-        {/* Goal Progress */}
+          <div className="card-flat" style={{ padding: '1rem 1.1rem' }}>
+            <p className="eyebrow">Best Next Step</p>
+            <h3 style={{ marginBottom: '0.5rem' }}>{nextAction.label}</h3>
+            <p className="muted" style={{ marginBottom: '1rem' }}>
+              {!readiness?.configured
+                ? 'Define the search strategy and pipeline settings before you spend compute on analysis.'
+                : !readiness?.hasDataset
+                  ? 'Run a goal that matches the research question and generate the first evidence pack.'
+                  : 'Review topics, trends, and artifacts before writing or exporting the report.'}
+            </p>
+            <a className="btn btn-primary" href={nextAction.href}>
+              <NextIcon size={16} />
+              {nextAction.label}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="grid-4" style={{ marginBottom: '1rem' }}>
+        <div className="card metric-card">
+          <span className="metric-label">Corpus Size</span>
+          <strong className="metric-value">{stats.papersFetched ?? 0}</strong>
+          <span className="metric-meta">Records currently available for analysis.</span>
+        </div>
+        <div className="card metric-card">
+          <span className="metric-label">Topic Count</span>
+          <strong className="metric-value">{stats.uniqueTopics ?? 0}</strong>
+          <span className="metric-meta">Machine-discovered themes in the current corpus.</span>
+        </div>
+        <div className="card metric-card">
+          <span className="metric-label">Researcher Graph</span>
+          <strong className="metric-value">{stats.keyAuthors ?? 0}</strong>
+          <span className="metric-meta">Unique authors detected in the processed dataset.</span>
+        </div>
+        <div className="card metric-card">
+          <span className="metric-label">Growth Signal</span>
+          <strong className="metric-value">{stats.avgGrowthRate ?? '0%'}</strong>
+          <span className="metric-meta">Aggregate publication growth pulled from trend outputs.</span>
+        </div>
+      </section>
+
+      <section className="grid-2" style={{ marginBottom: '1rem' }}>
         <div className="card">
-          <h3 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <Target size={18} color="var(--accent-primary)" /> Research Goals
-          </h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-            {goalList.map((g, i) => {
-              const isComplete = g.status?.complete;
-              const isRunning = g.status?.running;
-              return (
-                <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '0.75rem', borderBottom: '1px solid var(--border-color)' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    {isComplete ? <CheckCircle2 size={18} color="var(--success)" /> :
-                     isRunning ? <Loader2 size={16} className="spin" color="var(--warning)" /> :
-                     <div style={{ width: 18, height: 18, borderRadius: '50%', border: '2px solid var(--text-muted)' }} />}
-                    <div>
-                      <p style={{ margin: 0, fontSize: '0.9rem', fontWeight: 500, color: isComplete ? 'var(--success)' : 'var(--text-primary)' }}>{g.name}</p>
-                      {g.status && (
-                        <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                          {g.status.done}/{g.status.total} steps
-                        </p>
-                      )}
-                    </div>
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Journey</p>
+              <h2>Project flow</h2>
+              <p className="muted">A strong run should move through these checkpoints without guesswork.</p>
+            </div>
+          </div>
+          <div className="checklist">
+            <div className="checklist-item">
+              <Settings2 size={18} color="var(--accent-primary)" />
+              <div>
+                <strong>1. Scope the study</strong>
+                <div className="muted">Clarify search logic, years, exclusions, and AI settings.</div>
+              </div>
+            </div>
+            <div className="checklist-item">
+              <Sparkles size={18} color="var(--accent-primary)" />
+              <div>
+                <strong>2. Run the right goal</strong>
+                <div className="muted">Choose a full landscape map, quick scan, experts view, or evolution pass.</div>
+              </div>
+            </div>
+            <div className="checklist-item">
+              <Compass size={18} color="var(--accent-primary)" />
+              <div>
+                <strong>3. Inspect the evidence</strong>
+                <div className="muted">Use topics, tables, and figures to validate whether the field map makes sense.</div>
+              </div>
+            </div>
+            <div className="checklist-item">
+              <FlaskConical size={18} color="var(--accent-primary)" />
+              <div>
+                <strong>4. Refine and report</strong>
+                <div className="muted">Classify noise, merge themes, then review the narrative and visuals.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Readiness</p>
+              <h2>Operational status</h2>
+            </div>
+          </div>
+
+          <div className="stack" style={{ gap: '0.25rem' }}>
+            {(readiness?.missing ?? []).length === 0 ? (
+              <div className="list-row">
+                <div style={{ display: 'flex', gap: '0.75rem' }}>
+                  <CheckCircle2 size={18} color="var(--success)" />
+                  <div>
+                    <strong>Workspace configured</strong>
+                    <div className="muted">The app has enough information to run research goals.</div>
                   </div>
-                  <a href={`/${activeProject.id}/research`} className="btn btn-outline" style={{ padding: '0.3rem 0.6rem', fontSize: '0.75rem', textDecoration: 'none' }}>
-                    {isComplete ? 'Re-run' : 'Run'}
-                  </a>
                 </div>
-              );
-            })}
-            {goalList.length === 0 && (
-              <p style={{ color: 'var(--text-muted)' }}>No goals available. Set up your project to get started.</p>
+              </div>
+            ) : (
+              readiness.missing.map((item: string) => (
+                <div key={item} className="list-row">
+                  <div>
+                    <strong>{item}</strong>
+                    <div className="muted">Resolve this in Setup before running new goals.</div>
+                  </div>
+                </div>
+              ))
             )}
+            <div className="list-row">
+              <div>
+                <strong>Classified topics</strong>
+                <div className="muted">Manual refinement coverage across topic outputs.</div>
+              </div>
+              <strong>{readiness?.classifiedTopics ?? 0}</strong>
+            </div>
+            <div className="list-row">
+              <div>
+                <strong>Report available</strong>
+                <div className="muted">Narrative package ready for inspection or export.</div>
+              </div>
+              <strong>{readiness?.hasReport ? 'Yes' : 'No'}</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="grid-2">
+        <div className="card">
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Research Goals</p>
+              <h2>What this workspace can produce</h2>
+            </div>
+            <a href={`/${activeProject.id}/research`} className="btn btn-outline">
+              Open Lab
+              <ArrowRight size={16} />
+            </a>
+          </div>
+          <div className="stack" style={{ gap: '0.2rem' }}>
+            {goals.slice(0, 4).map((goal: any) => (
+              <div key={goal.id} className="list-row">
+                <div>
+                  <strong>{goal.name}</strong>
+                  <div className="muted">{goal.description}</div>
+                </div>
+                <span className={`badge ${goal.status?.complete ? 'badge-success' : goal.status?.running ? 'badge-warning' : 'badge-neutral'}`}>
+                  {goal.status?.running ? 'Running' : goal.status?.complete ? 'Complete' : `${goal.numSteps} steps`}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Quick Actions */}
         <div className="card">
-          <h3>Quick Actions</h3>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>Start a research goal or view your results.</p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginTop: '1rem' }}>
-            <a href={`/${activeProject.id}/research`} className="btn btn-primary" style={{ width: '100%', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-              <Target size={18} /> Start Research
-            </a>
-            <a href={`/${activeProject.id}/results`} className="btn btn-outline" style={{ width: '100%', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
-              <ArrowRight size={18} /> View Results
+          <div className="section-head">
+            <div>
+              <p className="eyebrow">Topic Preview</p>
+              <h2>Leading themes</h2>
+            </div>
+            <a href={`/${activeProject.id}/explorer`} className="btn btn-outline">
+              Open Explorer
+              <ArrowRight size={16} />
             </a>
           </div>
+
+          {workspace?.topicsPreview?.length ? (
+            <div className="stack" style={{ gap: '0.2rem' }}>
+              {workspace.topicsPreview.map((topic: any) => (
+                <div key={topic.id} className="list-row">
+                  <div>
+                    <strong>{topic.label || `Topic ${topic.id}`}</strong>
+                    <div className="muted">Topic #{topic.id}</div>
+                  </div>
+                  <span className="badge badge-neutral">{topic.count} papers</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <div className="muted">No topic preview yet. Run a goal that includes topic modeling to populate this area.</div>
+            </div>
+          )}
         </div>
-      </div>
+      </section>
     </motion.div>
   );
 };

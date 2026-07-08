@@ -1,131 +1,157 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, react-hooks/set-state-in-effect */
 import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Settings, Beaker, Database, FileText, FolderKanban, ChevronDown, Target, CheckCircle2, Loader2 } from 'lucide-react';
-import { fetchGoalStatus } from '../api';
+import {
+  Beaker,
+  BookOpenText,
+  ChevronDown,
+  Compass,
+  FileText,
+  FolderKanban,
+  LayoutDashboard,
+  Settings2,
+  Sparkles,
+} from 'lucide-react';
+import { fetchWorkspace } from '../api';
 import { useProjects } from '../context/ProjectContext';
-
 import ThemeToggle from './ThemeToggle';
 
 const Sidebar = () => {
   const { projects, activeProject, setActive } = useProjects();
-  const [goalStatus, setGoalStatus] = useState<Record<string, any>>({});
   const [showSelector, setShowSelector] = useState(false);
+  const [workspace, setWorkspace] = useState<any>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!activeProject) return;
-    const poll = setInterval(() => {
-      fetchGoalStatus(activeProject.id).then(setGoalStatus).catch(() => {});
+    if (!activeProject) {
+      setWorkspace(null);
+      return;
+    }
+
+    fetchWorkspace(activeProject.id).then(setWorkspace).catch(() => {});
+    const interval = setInterval(() => {
+      fetchWorkspace(activeProject.id).then(setWorkspace).catch(() => {});
     }, 5000);
-    fetchGoalStatus(activeProject.id).then(setGoalStatus).catch(() => {});
-    return () => clearInterval(poll);
+
+    return () => clearInterval(interval);
   }, [activeProject]);
 
-  const completedGoals = Object.values(goalStatus).filter((s: any) => s?.complete).length;
-  const totalGoals = Object.keys(goalStatus).length;
-  const anyRunning = Object.values(goalStatus).some((s: any) => s?.running);
-  const progressPct = totalGoals > 0 ? Math.round((completedGoals / totalGoals) * 100) : 0;
+  const goals = workspace?.goals ?? [];
+  const completedGoals = goals.filter((goal: any) => goal.status?.complete).length;
+  const runningGoal = goals.find((goal: any) => goal.status?.running);
+  const progress = goals.length > 0 ? Math.round((completedGoals / goals.length) * 100) : 0;
 
   return (
-    <div className="sidebar">
+    <aside className="sidebar">
       <div className="logo" style={{ cursor: 'pointer' }} onClick={() => navigate('/projects')}>
         <Beaker size={28} color="var(--accent-primary)" />
-        <span>ResearchFlow</span>
+        <div>
+          <div>ResearchFlow</div>
+          <div className="muted" style={{ fontSize: '0.78rem' }}>Field mapping workspace</div>
+        </div>
       </div>
 
-      {/* Project Selector */}
-      <div style={{ position: 'relative', marginBottom: '2rem' }}>
-        <div
-          onClick={() => setShowSelector(!showSelector)}
-          style={{
-            display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer',
-            padding: '0.75rem 1rem', borderRadius: '4px', background: 'var(--bg-secondary)',
-            border: '1px solid var(--border-color)', fontSize: '0.9rem',
-            boxShadow: 'var(--card-shadow)',
-          }}
-        >
-          <FolderKanban size={16} color="var(--accent-primary)" />
-          <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 500 }}>
-            {activeProject?.name ?? 'Select Project'}
+      <div className="project-selector">
+        <button className="btn btn-outline selector-button" onClick={() => setShowSelector((value) => !value)}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <FolderKanban size={16} />
+            <span>{activeProject?.name ?? 'Select project'}</span>
           </span>
-          <ChevronDown size={14} color="var(--text-muted)" />
-        </div>
+          <ChevronDown size={16} />
+        </button>
+
         {showSelector && (
-          <>
-            <div style={{ position: 'fixed', inset: 0, zIndex: 98 }} onClick={() => setShowSelector(false)} />
-            <div style={{
-              position: 'absolute', top: '100%', left: 0, right: 0, zIndex: 99,
-              background: 'var(--bg-secondary)', border: '1px solid var(--border-color)',
-              borderRadius: '4px', marginTop: '4px', overflow: 'hidden',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
-            }}>
-              {projects.map((p) => (
-                <div
-                  key={p.id}
-                  onClick={() => { setActive(p); setShowSelector(false); navigate(`/${p.id}/dashboard`); }}
-                  style={{
-                    padding: '0.75rem 1rem', cursor: 'pointer', fontSize: '0.85rem',
-                    background: p.id === activeProject?.id ? 'var(--bg-tertiary)' : 'transparent',
-                    color: p.id === activeProject?.id ? 'var(--accent-primary)' : 'var(--text-primary)',
-                    borderBottom: '1px solid var(--border-color)',
-                    fontWeight: p.id === activeProject?.id ? 600 : 400,
-                  }}
-                >
-                  {p.name} {p.isDefault ? '★' : ''}
-                </div>
-              ))}
-              <div
-                onClick={() => { setShowSelector(false); navigate('/projects'); }}
-                style={{ padding: '0.75rem 1rem', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--accent-primary)', textAlign: 'center', fontWeight: 600, background: 'var(--bg-tertiary)' }}
+          <div className="selector-menu">
+            {projects.map((project) => (
+              <button
+                key={project.id}
+                className={`selector-option ${project.id === activeProject?.id ? 'active' : ''}`}
+                onClick={() => {
+                  setActive(project);
+                  setShowSelector(false);
+                  navigate(`/${project.id}/dashboard`);
+                }}
               >
-                + Manage Projects
-              </div>
-            </div>
-          </>
+                <span>{project.name}</span>
+                <span className={`badge ${project.isDefault ? 'badge-success' : 'badge-neutral'}`}>
+                  {project.isDefault ? 'Default' : project.status}
+                </span>
+              </button>
+            ))}
+            <button className="selector-option" onClick={() => navigate('/projects')}>
+              <span>Manage projects</span>
+            </button>
+          </div>
         )}
       </div>
 
       {activeProject && (
-        <nav>
+        <nav className="nav-list">
           <NavLink to={`/${activeProject.id}/dashboard`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-            <LayoutDashboard size={18} /><span>Overview</span>
+            <LayoutDashboard size={18} />
+            <span>Overview</span>
           </NavLink>
           <NavLink to={`/${activeProject.id}/config`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-            <Settings size={18} /><span>Research Setup</span>
+            <Settings2 size={18} />
+            <span>Setup</span>
           </NavLink>
           <NavLink to={`/${activeProject.id}/research`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-            <Target size={18} /><span>Research</span>
+            <Sparkles size={18} />
+            <span>Research Lab</span>
           </NavLink>
           <NavLink to={`/${activeProject.id}/explorer`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-            <Database size={18} /><span>Explore</span>
+            <Compass size={18} />
+            <span>Evidence Explorer</span>
           </NavLink>
           <NavLink to={`/${activeProject.id}/results`} className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-            <FileText size={18} /><span>Results</span>
+            <FileText size={18} />
+            <span>Report Room</span>
           </NavLink>
         </nav>
       )}
 
-      <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <ThemeToggle />
-        <div className="card" style={{ padding: '1.25rem', marginBottom: 0, background: 'var(--bg-tertiary)', borderRadius: '4px' }}>
-          <p style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-            Goal Status
-          </p>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-            <div style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: anyRunning ? 'var(--warning)' : 'var(--success)' }} />
-            <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>
-              {anyRunning ? 'Running' : completedGoals === totalGoals && totalGoals > 0 ? 'All Complete' : 'Ready'}
+      <div className="card spotlight" style={{ marginTop: 'auto' }}>
+        <div className="section-head" style={{ marginBottom: '0.8rem' }}>
+          <div>
+            <p className="eyebrow">Project Pulse</p>
+            <h3>{runningGoal ? 'Analysis running' : workspace?.readiness?.configured ? 'Ready to run' : 'Needs setup'}</h3>
+          </div>
+          <BookOpenText size={20} color="var(--accent-secondary)" />
+        </div>
+
+        <div className="stack" style={{ gap: '0.8rem' }}>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.45rem' }}>
+              <span className="muted">Goals completed</span>
+              <strong>{completedGoals}/{goals.length || 0}</strong>
+            </div>
+            <div className="progress-bar">
+              <span style={{ width: `${progress}%` }} />
+            </div>
+          </div>
+
+          <div className="inline-list">
+            <span className={`badge ${workspace?.readiness?.configured ? 'badge-success' : 'badge-warning'}`}>
+              {workspace?.readiness?.configured ? 'Configured' : 'Missing setup'}
+            </span>
+            <span className="badge badge-neutral">
+              {workspace?.stats?.papersFetched ?? 0} papers
+            </span>
+            <span className="badge badge-neutral">
+              {workspace?.stats?.uniqueTopics ?? 0} topics
             </span>
           </div>
-          <div style={{ height: 4, background: 'rgba(0,0,0,0.05)', borderRadius: 2, overflow: 'hidden' }}>
-            <div style={{ height: '100%', background: 'var(--accent-primary)', width: `${progressPct}%`, transition: 'width 0.5s ease' }} />
-          </div>
-          <p style={{ fontSize: '0.75rem', marginTop: '0.5rem', color: 'var(--text-muted)', textAlign: 'right' }}>
-            {completedGoals}/{totalGoals} goals
-          </p>
+
+          {runningGoal && (
+            <div className="muted" style={{ fontSize: '0.84rem' }}>
+              Current run: {runningGoal.name}
+            </div>
+          )}
         </div>
       </div>
-    </div>
+
+      <ThemeToggle />
+    </aside>
   );
 };
 

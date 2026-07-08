@@ -12,7 +12,7 @@ function AppRoutes() {
   const { activeProject } = useProjects();
 
   return (
-    <>
+    <div className="app-shell">
       <Sidebar />
       <main className="main-content">
         <Routes>
@@ -30,7 +30,7 @@ function AppRoutes() {
           } />
         </Routes>
       </main>
-    </>
+    </div>
   );
 }
 

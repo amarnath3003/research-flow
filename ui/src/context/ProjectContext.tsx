@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect, react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { listProjects, createProject as apiCreateProject } from '../api';
 
@@ -54,7 +55,7 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     const def = projects.find((p) => p.isDefault);
     if (def) { setActive(def); return; }
     setActive(projects[0]);
-  }, [projects.length]);
+  }, [projects]);
 
   const createProject = async (name: string, description: string) => {
     const p = await apiCreateProject(name, description);

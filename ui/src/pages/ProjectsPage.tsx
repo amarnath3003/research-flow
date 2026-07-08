@@ -1,155 +1,166 @@
-import { useState, useEffect } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any, react-hooks/set-state-in-effect */
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Plus, Trash2, Copy, Star, ArrowRight, Beaker } from 'lucide-react';
-import { listProjects, createProject, deleteProject, setDefaultProject, duplicateProject } from '../api';
+import { ArrowRight, Copy, Plus, Star, Trash2 } from 'lucide-react';
+import { createProject, deleteProject, duplicateProject, listProjects, setDefaultProject } from '../api';
 import { useProjects } from '../context/ProjectContext';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectsPage = () => {
-  const { activeProject, setActive, refreshProjects } = useProjects();
+  const { activeProject, refreshProjects, setActive } = useProjects();
   const [projects, setProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
-  const [newName, setNewName] = useState('');
-  const [newDesc, setNewDesc] = useState('');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const load = async () => {
+  const refresh = async () => {
     setLoading(true);
     try {
-      const data = await listProjects();
-      setProjects(data);
-    } catch {}
-    setLoading(false);
+      const response = await listProjects();
+      setProjects(response);
+    } catch (reason: any) {
+      setError(reason.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    refresh();
+  }, []);
 
   const handleCreate = async () => {
-    if (!newName.trim()) return;
-    try {
-      const p = await createProject(newName.trim(), newDesc.trim());
-      setShowCreate(false);
-      setNewName('');
-      setNewDesc('');
-      await load();
-      await refreshProjects();
-      setActive(p);
-      navigate(`/${p.id}/dashboard`);
-    } catch (e: any) { alert(e.message); }
-  };
+    if (!name.trim()) return;
 
-  const handleDelete = async (pid: string, name: string) => {
-    if (!confirm(`Delete "${name}"? This will remove all data permanently.`)) return;
-    try {
-      await deleteProject(pid);
-      await load();
-      await refreshProjects();
-      if (pid === activeProject?.id) {
-        navigate('/projects');
-      }
-    } catch (e: any) { alert(e.message); }
-  };
-
-  const handleSetDefault = async (pid: string) => {
-    try {
-      await setDefaultProject(pid);
-      await load();
-      await refreshProjects();
-    } catch (e: any) { alert(e.message); }
-  };
-
-  const handleDuplicate = async (pid: string, name: string) => {
-    try {
-      await duplicateProject(pid, `${name} (Copy)`);
-      await load();
-      await refreshProjects();
-    } catch (e: any) { alert(e.message); }
+    const project = await createProject(name.trim(), description.trim());
+    await refresh();
+    await refreshProjects();
+    setActive(project);
+    setShowCreate(false);
+    setName('');
+    setDescription('');
+    navigate(`/${project.id}/dashboard`);
   };
 
   return (
-    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-      <header style={{ marginBottom: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-        <div>
-          <h1>Research Projects</h1>
-          <p>Create and manage multiple research studies.</p>
-        </div>
-        <button className="btn btn-primary" onClick={() => setShowCreate(true)}>
-          <Plus size={18} /> New Project
-        </button>
-      </header>
-
-      {/* Create Modal */}
-      {showCreate && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.6)' }}>
-          <div className="card" style={{ width: '480px', maxWidth: '90vw' }}>
-            <h3>Create New Project</h3>
-            <div className="form-group">
-              <label>Project Name</label>
-              <input className="form-control" value={newName} onChange={(e) => setNewName(e.target.value)}
-                placeholder="e.g. My Research Study" autoFocus />
-            </div>
-            <div className="form-group">
-              <label>Description (optional)</label>
-              <textarea className="form-control" rows={3} value={newDesc} onChange={(e) => setNewDesc(e.target.value)}
-                placeholder="Brief description of your research topic..." />
-            </div>
-            <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>
-              <button className="btn btn-outline" onClick={() => setShowCreate(false)}>Cancel</button>
-              <button className="btn btn-primary" onClick={handleCreate} disabled={!newName.trim()}>Create Project</button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {loading ? (
-        <div className="card"><p>Loading projects...</p></div>
-      ) : projects.length === 0 ? (
-        <div className="card" style={{ textAlign: 'center', padding: '4rem 2rem' }}>
-          <Beaker size={48} color="var(--text-muted)" style={{ marginBottom: '1rem' }} />
-          <h2>No Projects Yet</h2>
-          <p>Create your first research project to get started.</p>
-          <button className="btn btn-primary" onClick={() => setShowCreate(true)} style={{ marginTop: '1rem' }}>
-            <Plus size={18} /> Create Project
+    <motion.div className="page" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+      <section className="card hero-card" style={{ marginBottom: '1rem' }}>
+        <p className="eyebrow">Project Portfolio</p>
+        <h1>Each research question deserves its own clean workspace.</h1>
+        <p className="lede" style={{ maxWidth: '54rem', marginTop: '0.9rem' }}>
+          Keep corpora, configuration, topic decisions, and reports separated by project. That makes reruns safer and the narrative trail easier to defend later.
+        </p>
+        <div style={{ marginTop: '1.2rem' }}>
+          <button className="btn btn-primary" onClick={() => setShowCreate(true)}>
+            <Plus size={16} />
+            New project
           </button>
         </div>
+      </section>
+
+      {loading ? (
+        <section className="card">Loading projects…</section>
       ) : (
-        <div className="grid-2" style={{ gap: '1.5rem' }}>
-          {projects.map((p) => (
-            <div key={p.id} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.75rem' }}>
-                <h3 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  {p.name}
-                  {p.isDefault && <Star size={16} color="var(--warning)" fill="var(--warning)" />}
-                </h3>
-                <span className={`badge ${p.status === 'completed' ? 'badge-success' : 'badge-warning'}`}>
-                  {p.status}
-                </span>
+        <section className="grid-2">
+          {projects.map((project) => (
+            <div key={project.id} className="card goal-card">
+              <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.75rem' }}>
+                <div>
+                  <h2 style={{ fontSize: '1.3rem' }}>{project.name}</h2>
+                  <p className="muted" style={{ marginTop: '0.35rem' }}>
+                    {project.description || 'No description yet.'}
+                  </p>
+                </div>
+                <div className="inline-list">
+                  {project.isDefault && (
+                    <span className="badge badge-success">
+                      <Star size={12} />
+                      Default
+                    </span>
+                  )}
+                  <span className={`badge ${project.status === 'completed' ? 'badge-success' : project.status === 'running' ? 'badge-warning' : 'badge-neutral'}`}>
+                    {project.status}
+                  </span>
+                </div>
               </div>
-              <p style={{ fontSize: '0.85rem', flex: 1, margin: 0 }}>{p.description || 'No description'}</p>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.75rem' }}>
-                Created: {p.createdAt ? new Date(p.createdAt).toLocaleDateString() : '—'}
-              </div>
-              <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem', flexWrap: 'wrap' }}>
-                <button className="btn btn-primary" style={{ flex: 1, fontSize: '0.8rem' }}
-                  onClick={() => { navigate(`/${p.id}/dashboard`); }}>
-                  <ArrowRight size={16} /> Open
+
+              <div className="muted">Created {project.createdAt ? new Date(project.createdAt).toLocaleDateString() : 'recently'}</div>
+
+              <div className="inline-list">
+                <button className="btn btn-primary" onClick={() => navigate(`/${project.id}/dashboard`)}>
+                  <ArrowRight size={16} />
+                  Open
                 </button>
-                <button className="btn btn-outline" style={{ padding: '0.5rem' }} title="Duplicate"
-                  onClick={() => handleDuplicate(p.id, p.name)}>
+                <button className="btn btn-outline" onClick={() => duplicateProject(project.id, `${project.name} copy`).then(refresh).then(refreshProjects)}>
                   <Copy size={16} />
+                  Duplicate
                 </button>
-                <button className="btn btn-outline" style={{ padding: '0.5rem' }} title="Set as Default"
-                  onClick={() => handleSetDefault(p.id)} disabled={p.isDefault}>
+                <button className="btn btn-outline" onClick={() => setDefaultProject(project.id).then(refresh).then(refreshProjects)} disabled={project.isDefault}>
                   <Star size={16} />
+                  Default
                 </button>
-                <button className="btn btn-outline" style={{ padding: '0.5rem', color: 'var(--error)', borderColor: 'transparent' }}
-                  title="Delete" onClick={() => handleDelete(p.id, p.name)}>
+                <button
+                  className="btn btn-outline"
+                  onClick={() => {
+                    if (window.confirm(`Delete "${project.name}" permanently?`)) {
+                      deleteProject(project.id).then(refresh).then(refreshProjects).then(() => {
+                        if (activeProject?.id === project.id) {
+                          navigate('/projects');
+                        }
+                      });
+                    }
+                  }}
+                >
                   <Trash2 size={16} />
+                  Delete
                 </button>
               </div>
             </div>
           ))}
+        </section>
+      )}
+
+      {!loading && projects.length === 0 && (
+        <section className="card">
+          <div className="empty-state">
+            <h2>No projects yet</h2>
+            <p className="muted">Create the first project to start building a literature map.</p>
+          </div>
+        </section>
+      )}
+
+      {error && <section className="card" style={{ color: 'var(--error)', marginTop: '1rem' }}>{error}</section>}
+
+      {showCreate && (
+        <div className="modal-backdrop">
+          <div className="card modal-card">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Create Project</p>
+                <h2>Start a new research workspace</h2>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label>Project name</label>
+              <input className="form-control" value={name} onChange={(event) => setName(event.target.value)} autoFocus />
+            </div>
+
+            <div className="form-group">
+              <label>Description</label>
+              <textarea className="form-control" rows={4} value={description} onChange={(event) => setDescription(event.target.value)} />
+            </div>
+
+            <div className="inline-list">
+              <button className="btn btn-outline" onClick={() => setShowCreate(false)}>Cancel</button>
+              <button className="btn btn-primary" onClick={handleCreate} disabled={!name.trim()}>
+                Create
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </motion.div>

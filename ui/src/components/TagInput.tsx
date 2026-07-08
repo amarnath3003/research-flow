@@ -1,4 +1,4 @@
-import { useState, useRef, type FC, type KeyboardEvent, type ClipboardEvent } from 'react';
+import { useRef, useState, type ClipboardEvent, type FC, type KeyboardEvent } from 'react';
 import { X } from 'lucide-react';
 
 interface TagInputProps {
@@ -17,82 +17,109 @@ const TagInput: FC<TagInputProps> = ({ tags, onChange, placeholder, label, type 
   const commit = (raw: string) => {
     const items = raw
       .split(/[,;]/)
-      .map(s => s.trim().replace(/^["']|["']$/g, ''))
+      .map((value) => value.trim().replace(/^["']|["']$/g, ''))
       .filter(Boolean);
+
     if (items.length === 0) return;
-    const newTags = tags.concat(items.filter(t => !tags.includes(t)));
-    if (newTags.length !== tags.length) onChange(newTags);
+
+    const next = tags.concat(items.filter((item) => !tags.includes(item)));
+    if (next.length !== tags.length) {
+      onChange(next);
+    }
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' || e.key === ',') {
-      e.preventDefault();
+  const removeTag = (index: number) => onChange(tags.filter((_, currentIndex) => currentIndex !== index));
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' || event.key === ',') {
+      event.preventDefault();
       commit(input);
       setInput('');
-    } else if (e.key === 'Backspace' && !input && tags.length > 0) {
+      return;
+    }
+
+    if (event.key === 'Backspace' && !input && tags.length > 0) {
       onChange(tags.slice(0, -1));
     }
   };
 
-  const handlePaste = (e: ClipboardEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const pasted = e.clipboardData?.getData('text') || '';
-    commit(pasted);
+  const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    commit(event.clipboardData?.getData('text') || '');
   };
 
-  const removeTag = (index: number) => onChange(tags.filter((_, i) => i !== index));
-
   const accentColor = type === 'positive' ? 'var(--accent-primary)' : 'var(--error)';
-  const bgColor = type === 'positive' ? 'rgba(99, 102, 241, 0.08)' : 'rgba(239, 68, 68, 0.08)';
-  const borderColor = type === 'positive' ? 'rgba(99, 102, 241, 0.25)' : 'rgba(239, 68, 68, 0.25)';
+  const bgColor = type === 'positive' ? 'var(--bg-accent-soft)' : 'var(--bg-danger-soft)';
+  const borderColor = type === 'positive' ? 'var(--border-strong)' : 'rgba(190, 63, 74, 0.25)';
 
   return (
     <div className="form-group">
-      {label && <label style={{ color: accentColor, fontWeight: 600 }}>{label}</label>}
+      {label && <label style={{ color: accentColor }}>{label}</label>}
+
       <div
-        onClick={() => inputRef.current?.focus()}
         className="form-control"
+        onClick={() => inputRef.current?.focus()}
         style={{
-          display: 'flex', flexWrap: 'wrap', gap: '0.4rem',
-          minHeight: '48px', alignItems: 'center', padding: '0.5rem',
-          cursor: 'text', borderColor: focused ? accentColor : undefined,
-          transition: 'border-color 0.2s',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '0.4rem',
+          minHeight: '52px',
+          alignItems: 'center',
+          padding: '0.55rem',
+          cursor: 'text',
+          borderColor: focused ? accentColor : undefined,
         }}
       >
-        {tags.map((tag, i) => (
+        {tags.map((tag, index) => (
           <span
-            key={i}
+            key={`${tag}-${index}`}
             style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.3rem',
-              backgroundColor: bgColor, color: accentColor,
-              padding: '0.25rem 0.5rem 0.25rem 0.7rem',
-              borderRadius: '20px', fontSize: '0.85rem', fontWeight: 500,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              padding: '0.28rem 0.6rem 0.28rem 0.75rem',
+              borderRadius: '999px',
+              background: bgColor,
+              color: accentColor,
               border: `1px solid ${borderColor}`,
-              animation: 'fadeIn 0.2s ease-out',
+              fontSize: '0.84rem',
+              fontWeight: 600,
             }}
           >
             {tag}
-            <X size={14} style={{ cursor: 'pointer', opacity: 0.7, flexShrink: 0 }} onClick={() => removeTag(i)} />
+            <X size={14} style={{ cursor: 'pointer' }} onClick={() => removeTag(index)} />
           </span>
         ))}
+
         <input
           ref={inputRef}
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(event) => setInput(event.target.value)}
           onKeyDown={handleKeyDown}
           onPaste={handlePaste}
           onFocus={() => setFocused(true)}
-          onBlur={() => { setFocused(false); if (input.trim()) { commit(input); setInput(''); } }}
+          onBlur={() => {
+            setFocused(false);
+            if (input.trim()) {
+              commit(input);
+              setInput('');
+            }
+          }}
           placeholder={tags.length === 0 ? placeholder : ''}
           style={{
-            border: 'none', outline: 'none', flex: 1, minWidth: '120px',
-            background: 'transparent', fontSize: '0.9rem', color: 'var(--text-primary)',
+            flex: 1,
+            minWidth: '120px',
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            color: 'var(--text-primary)',
           }}
         />
       </div>
-      <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: '0.3rem', marginBottom: 0 }}>
-        Press <strong>Enter</strong> or <strong>comma</strong> to add · Paste multiple terms at once · Click × to remove
+
+      <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.72rem' }}>
+        Press <strong>Enter</strong> or <strong>comma</strong> to add. Paste multiple terms at once. Click x to remove.
       </p>
     </div>
   );
