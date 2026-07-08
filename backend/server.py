@@ -650,11 +650,17 @@ def get_topics(pid: str):
     df = pd.read_csv(path)
     df = df[df["Topic"] != -1].sort_values("Count", ascending=False)
 
+    def _clean(value, fallback=""):
+        return fallback if pd.isna(value) else value
+
     classification = {}
     if class_path.exists():
         cdf = pd.read_csv(class_path)
         for _, r in cdf.iterrows():
-            classification[r["topic_id"]] = {"label": r.get("label", ""), "status": r.get("classification", "")}
+            classification[r["topic_id"]] = {
+                "label": _clean(r.get("label", ""), ""),
+                "status": _clean(r.get("classification", ""), ""),
+            }
 
     topics = []
     for _, r in df.iterrows():
@@ -662,10 +668,10 @@ def get_topics(pid: str):
         cls = classification.get(tid, {})
         topics.append({
             "id": tid,
-            "label": cls.get("label", r.get("Name", "")),
+            "label": _clean(cls.get("label", r.get("Name", "")), ""),
             "count": int(r["Count"]),
             "keywords": "",
-            "status": cls.get("status", "PENDING"),
+            "status": _clean(cls.get("status", "PENDING"), "PENDING"),
         })
     return topics
 
