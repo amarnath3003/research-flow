@@ -30,12 +30,12 @@ app.add_middleware(CORSMiddleware, allow_origins=["*"],
                    allow_methods=["*"], allow_headers=["*"])
 
 # ── Per-project pipeline state ─────────────────────────────────────
-_pipeline_tasks: dict[str, subprocess.Popen] = {}
+_pipeline_tasks: dict[str, dict] = {}
 _pipeline_logs: dict[str, list[str]] = {}
 
 # ── Per-project goal state ─────────────────────────────────────────
 _goal_tasks: dict[str, dict] = {}
-_goal_logs: dict[str, list[str]] = {}
+_goal_logs: dict[str, list[dict]] = {}
 _goal_results: dict[str, list[dict]] = {}
 
 
@@ -118,6 +118,54 @@ def _detect_stage_status(pid: str):
             found_current = True
         stages.append({"id": sid, "name": stage_names.get(sid, sid), "description": "", "status": status})
     return stages
+
+
+def _get_project_summary(pid: str) -> dict:
+    db = SessionLocal()
+    try:
+        project = get_project(pid, db=db)
+        if not project:
+            raise HTTPException(404, "Project not found")
+        return {
+            "id": project.id,
+            "name": project.name,
+            "description": project.description,
+            "createdAt": project.created_at.isoformat() if project.created_at else None,
+            "status": project.status,
+            "isDefault": project.is_default,
+        }
+    finally:
+        db.close()
+
+
+def _compute_stats(pid: str) -> dict:
+    pdir = _active_project_dir(pid)
+    stats = {"papersFetched": 0, "uniqueTopics": 0, "keyAuthors": 0, "avgGrowthRate": "0%"}
+    try:
+        import pandas as pd
+
+        dataset_path = pdir / "data" / "processed" / "topic_dataset.csv"
+        if not dataset_path.exists():
+            dataset_path = pdir / "data" / "cleaned" / "final_dataset.csv"
+        if dataset_path.exists():
+            df = pd.read_csv(dataset_path)
+            stats["papersFetched"] = len(df)
+            stats["uniqueTopics"] = df["topic"].nunique() if "topic" in df.columns else 0
+            if "authors" in df.columns:
+                all_authors = set()
+                for author_list in df["authors"].dropna():
+                    all_authors.update(a.strip() for a in str(author_list).split(";") if a.strip())
+                stats["keyAuthors"] = len(all_authors)
+
+        trend_path = pdir / "outputs" / "trends" / "trend_summary.csv"
+        if trend_path.exists():
+            trend = pd.read_csv(trend_path)
+            cagr = trend[trend["Metric"] == "Total CAGR"]["Value"].values
+            if len(cagr):
+                stats["avgGrowthRate"] = cagr[0]
+    except Exception:
+        pass
+    return stats
 
 
 VALID_STAGES = [
@@ -462,6 +510,7 @@ def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
                 db.commit()
         finally:
             db.close()
+        _pipeline_tasks.pop(pid, None)
 
     db = SessionLocal()
     try:
@@ -473,6 +522,7 @@ def run_stage(pid: str, stage: str, background_tasks: BackgroundTasks):
     finally:
         db.close()
 
+    _pipeline_tasks[pid] = {"stage": stage, "running": True}
     background_tasks.add_task(_run)
     return {"success": True, "stage": stage, "project": pid, "message": f"Started {stage} for {pid}"}
 
@@ -490,8 +540,8 @@ async def stream_logs(pid: str):
             while sent_lines < len(log):
                 yield f"data: {json.dumps({'line': log[sent_lines]})}\n\n"
                 sent_lines += 1
-            proc = _pipeline_tasks.get(pid)
-            if proc is None and sent_lines >= len(log):
+            task_state = _pipeline_tasks.get(pid)
+            if (task_state is None or not task_state.get("running")) and sent_lines >= len(log):
                 yield f"data: {json.dumps({'line': '', 'done': True})}\n\n"
                 break
             await asyncio.sleep(0.1)
@@ -518,14 +568,18 @@ def get_status(pid: str):
     stages = _detect_stage_status(pid)
     total = len(stages)
     done = sum(1 for s in stages if s["status"] == "completed")
-    proc = _pipeline_tasks.get(pid)
-    running = proc is not None and proc.poll() is None
+    running = bool(_pipeline_tasks.get(pid, {}).get("running"))
     return {
         "stages": stages,
         "progress": round(done / total * 100) if total else 0,
         "running": running,
         "currentStage": next((s["name"] for s in stages if s["status"] == "current"), None),
     }
+
+
+@app.get("/api/{pid}/workspace")
+def get_workspace(pid: str):
+    return _get_workspace(pid)
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -577,33 +631,7 @@ def save_csv(pid: str, filename: str, payload: CsvSavePayload):
 
 @app.get("/api/{pid}/stats")
 def get_stats(pid: str):
-    pdir = _active_project_dir(pid)
-    stats = {"papersFetched": 0, "uniqueTopics": 0, "keyAuthors": 0, "avgGrowthRate": "0%"}
-    try:
-        import pandas as pd
-
-        # Check processed dataset (Stage 1+), fall back to cleaned (Stage 0)
-        ds = pdir / "data" / "processed" / "topic_dataset.csv"
-        if not ds.exists():
-            ds = pdir / "data" / "cleaned" / "final_dataset.csv"
-        if ds.exists():
-            df = pd.read_csv(ds)
-            stats["papersFetched"] = len(df)
-            stats["uniqueTopics"] = df["topic"].nunique() if "topic" in df.columns else 0
-            if "authors" in df.columns:
-                all_authors = set()
-                for a in df["authors"].dropna():
-                    all_authors.update(a.split(";"))
-                stats["keyAuthors"] = len(all_authors)
-        ts = pdir / "outputs" / "trends" / "trend_summary.csv"
-        if ts.exists():
-            trend = pd.read_csv(ts)
-            cagr = trend[trend["Metric"] == "Total CAGR"]["Value"].values
-            if len(cagr):
-                stats["avgGrowthRate"] = cagr[0]
-    except Exception:
-        pass
-    return stats
+    return _compute_stats(pid)
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -693,7 +721,10 @@ def get_report(pid: str):
 
 MAPPING = {
     "trends": "outputs/trends/yearly_counts.csv",
+    "trends/summary": "outputs/trends/trend_summary.csv",
     "sources": "outputs/sources/top_sources.csv",
+    "authors": "outputs/stats/top_authors.csv",
+    "geopolitical": "outputs/geopolitical/country_collaboration.csv",
     "networks/edges": "outputs/networks/keyword_cooccurrence_edges.csv",
     "networks/nodes": "outputs/networks/keyword_nodes.csv",
     "bursts": "outputs/bursts/burst_detection.csv",
@@ -804,27 +835,7 @@ async def run_goal_endpoint(pid: str, goal_id: str, background_tasks: Background
 @app.get("/api/{pid}/goal-status")
 def get_goal_status(pid: str):
     """Get completion status for all goals by checking output file existence."""
-    pdir = get_project_dir(pid)
-    if not pdir.exists():
-        raise HTTPException(404, "Project directory not found")
-
-    running_goal = _goal_tasks.get(pid, {}).get("goal_id") if _goal_tasks.get(pid, {}).get("running") else None
-    statuses = {}
-
-    for gid, goal in GOALS.items():
-        chain = goal["module_chain"]
-        def _check(mid):
-            p = _product_path_for_module(mid, pdir)
-            return p is not None and p.exists()
-        done = sum(1 for mid in chain if _check(mid))
-        statuses[gid] = {
-            "done": done,
-            "total": len(chain),
-            "complete": done == len(chain),
-            "running": running_goal == gid,
-        }
-
-    return statuses
+    return _list_goal_statuses(pid)
 
 
 def _product_path_for_module(module_id: str, pdir: Path) -> Optional[Path]:
@@ -853,6 +864,109 @@ def _product_path_for_module(module_id: str, pdir: Path) -> Optional[Path]:
         path = pdir / rel
         return path
     return None
+
+
+def _list_goal_statuses(pid: str) -> dict:
+    pdir = get_project_dir(pid)
+    if not pdir.exists():
+        raise HTTPException(404, "Project directory not found")
+
+    running_goal = _goal_tasks.get(pid, {}).get("goal_id") if _goal_tasks.get(pid, {}).get("running") else None
+    statuses = {}
+
+    for gid, goal in GOALS.items():
+        done = sum(
+            1
+            for module_id in goal["module_chain"]
+            if (product_path := _product_path_for_module(module_id, pdir)) is not None and product_path.exists()
+        )
+        statuses[gid] = {
+            "done": done,
+            "total": len(goal["module_chain"]),
+            "complete": done == len(goal["module_chain"]),
+            "running": running_goal == gid,
+        }
+
+    return statuses
+
+
+def _get_workspace(pid: str) -> dict:
+    project = _get_project_summary(pid)
+    cfg = _read_config(pid)
+    stats = _compute_stats(pid)
+    goal_statuses = _list_goal_statuses(pid)
+    figures = list_figures(pid)
+    report = get_report(pid)
+    topics = get_topics(pid)
+    refinements = get_refinement_options(pid)
+
+    research = cfg.get("research", {})
+    cleaning = cfg.get("cleaning", {})
+    embedding = cfg.get("embedding", {})
+    llm = cfg.get("llm", {})
+
+    query = research.get("search_query", "").strip()
+    configured = bool(query and research.get("email", "").strip())
+    missing = []
+    if not query:
+        missing.append("Add a search strategy")
+    if not research.get("email", "").strip():
+        missing.append("Provide an email for OpenAlex polite-pool access")
+
+    goals = []
+    for gid, meta in GOALS.items():
+        goals.append({
+            "id": gid,
+            "name": meta["name"],
+            "description": meta["description"],
+            "icon": meta["icon"],
+            "color": meta.get("color", "#6366f1"),
+            "outputs": meta["outputs"],
+            "supportsRefinement": meta.get("supports_refinement", False),
+            "estimatedMinutes": meta.get("estimated_minutes", ""),
+            "numSteps": len(meta["module_chain"]),
+            "status": goal_statuses.get(gid, {}),
+        })
+
+    classified_topics = sum(1 for topic in topics if topic.get("status") and topic.get("status") != "PENDING")
+
+    return {
+        "project": project,
+        "config": {
+            "searchQuery": query,
+            "includeTerms": research.get("include_terms", []),
+            "excludeTerms": cleaning.get("hard_exclusions", []),
+            "startYear": research.get("start_year", 2010),
+            "endYear": research.get("end_year", 2025),
+            "maxResults": research.get("max_results", 5000),
+            "email": research.get("email", ""),
+            "description": research.get("description", ""),
+            "embeddingModel": embedding.get("model", "all-MiniLM-L6-v2"),
+            "minTopicSize": embedding.get("min_topic_size", 10),
+            "llmProvider": llm.get("provider"),
+            "llmModel": llm.get("model"),
+        },
+        "readiness": {
+            "configured": configured,
+            "missing": missing,
+            "hasDataset": stats["papersFetched"] > 0,
+            "hasTopics": len(topics) > 0,
+            "hasReport": report.get("exists", False),
+            "hasFigures": len(figures) > 0,
+            "activeRun": _goal_tasks.get(pid) or _pipeline_tasks.get(pid),
+            "classifiedTopics": classified_topics,
+        },
+        "stats": stats,
+        "goalStatus": goal_statuses,
+        "goals": goals,
+        "refinements": refinements,
+        "topicsPreview": topics[:6],
+        "figuresPreview": figures[:4],
+        "report": {
+            "exists": report.get("exists", False),
+            "preview": "\n".join(report.get("content", "").splitlines()[:12]).strip(),
+        },
+    }
 
 
 @app.get("/api/{pid}/goal-logs/stream")
@@ -957,24 +1071,27 @@ async def run_refinement(pid: str, refinement_id: str, background_tasks: Backgro
             })
 
         results = []
-        for i, mid in enumerate(ref["steps"]):
-            info = MODULE_INFO.get(mid, {})
-            name = info.get("name", mid)
-            msg = f"({i+1}/{len(ref['steps'])}) {name}"
-            _progress(i, len(ref["steps"]), msg, "running")
-            try:
-                from core.orchestrator import run_module as _rm
-                _rm(mid, pdir, cfg_path)
-                results.append({"module": mid, "status": "completed"})
-                _progress(i + 1, len(ref["steps"]), msg, "completed")
-            except Exception as e:
-                err = f"{type(e).__name__}: {e}"
-                results.append({"module": mid, "status": "failed", "error": err})
-                _progress(i + 1, len(ref["steps"]), f"{name} FAILED: {err}", "failed")
-                break
+        try:
+            for i, mid in enumerate(ref["steps"]):
+                info = MODULE_INFO.get(mid, {})
+                name = info.get("name", mid)
+                msg = f"({i+1}/{len(ref['steps'])}) {name}"
+                _progress(i, len(ref["steps"]), msg, "running")
+                try:
+                    from core.orchestrator import run_module as _rm
+                    _rm(mid, pdir, cfg_path)
+                    results.append({"module": mid, "status": "completed"})
+                    _progress(i + 1, len(ref["steps"]), msg, "completed")
+                except Exception as e:
+                    err = f"{type(e).__name__}: {e}"
+                    results.append({"module": mid, "status": "failed", "error": err})
+                    _progress(i + 1, len(ref["steps"]), f"{name} FAILED: {err}", "failed")
+                    break
+            _goal_results[pid] = results
+        finally:
+            _goal_tasks.pop(pid, None)
 
-        _goal_results[pid] = results
-
+    _goal_tasks[pid] = {"goal_id": f"refinement:{refinement_id}", "running": True}
     background_tasks.add_task(_run)
     return {"success": True, "refinement": refinement_id, "steps": ref["steps"]}
 
